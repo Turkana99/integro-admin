@@ -1,0 +1,11 @@
+@import "../../../styles/variables.scss";
+
+.form-wrapper {
+  padding: 30px 30px 15px 30px;
+  user-select: none;
+
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+}

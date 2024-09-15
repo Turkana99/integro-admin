@@ -1,0 +1,66 @@
+<div class="new-homePage px-5 py-5">
+  <div class="title">
+    <h1>Yeni Ana səhifə məlumatı</h1>
+  </div>
+  <div class="w-100 tab-content">
+    <form formGroupName="newHomePageForm">
+      <p-tabView>
+        <p-tabPanel header="Azərbaycan">
+          <div class="az_form">
+            <div class="pb-2">
+              <label for="title"> Başlıq</label>
+              <input type="text" pInputText class="w-100" />
+            </div>
+            <div class="pb-2">
+              <label for="subTitle"> Alt başlıq</label>
+              <input type="text" pInputText class="w-100" />
+            </div>
+            <div class="d-flex flex-column pb-2">
+              <label for="title"> Məzmun</label>
+              <textarea rows="5" cols="30" pInputTextarea> </textarea>
+            </div>
+          </div>
+        </p-tabPanel>
+        <p-tabPanel header="İngilis">
+          <div class="en_form">
+            <div class="pb-2">
+              <label for="title"> Title</label>
+              <input type="text" pInputText class="w-100" />
+            </div>
+            <div class="pb-2">
+              <label for="subTitle"> Subtitle</label>
+              <input type="text" pInputText class="w-100" />
+            </div>
+            <div class="d-flex flex-column pb-2">
+              <label for="title">Context</label>
+              <textarea rows="5" cols="30" pInputTextarea> </textarea>
+            </div>
+          </div>
+        </p-tabPanel>
+        <p-tabPanel header="Rus">
+          <div class="ru_form">
+            <div class="pb-2">
+              <label for="title"> Заголовок</label>
+              <input type="text" pInputText class="w-100" />
+            </div>
+            <div class="pb-2">
+              <label for="subTitle"> Подзаголовок</label>
+              <input type="text" pInputText class="w-100" />
+            </div>
+            <div class="d-flex flex-column pb-2">
+              <label for="title"> Контекст</label>
+              <textarea rows="5" cols="30" pInputTextarea> </textarea>
+            </div>
+          </div>
+        </p-tabPanel>
+      </p-tabView>
+      <div class="d-flex justify-content-end pt-4">
+        <p-button
+          label="Əlavə et"
+          icon="fa-solid fa-plus"
+          routerLink="/new-homePage"
+        />
+      </div>
+    </form>
+  </div>
+</div>

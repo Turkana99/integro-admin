@@ -1,0 +1,26 @@
+/* You can add global styles to this file, and also import other style files */
+@import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeng/resources/primeng.css";
+@import "styles/variables.scss";
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.p-tabview-nav-link {
+  text-decoration: none !important;
+  font-family: "Poppins", sans-serif !important;
+  font-weight: 600;
+  text-align: center;
+}
+.p-tabview ul {
+  padding: 0px !important;
+}
+.p-tabview-panels {
+  padding: 10px 0px;
+}
+
