@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { HomePageService } from '../../../core/services/homepage.service';
+import { HomeService } from '../../../core/services/home.service';
 
 @Component({
   selector: 'app-about',
@@ -9,7 +9,7 @@ import { HomePageService } from '../../../core/services/homepage.service';
 export class AboutComponent {
   ELEMENT_DATA: any;
   showSpinner = false;
-  constructor(private homeService: HomePageService) {}
+  constructor(private homeService: HomeService) {}
   displayedColumns: any[] = [
     {
       key: 'title',

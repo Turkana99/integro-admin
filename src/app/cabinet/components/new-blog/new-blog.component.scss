@@ -1,17 +1,12 @@
 @import "../../../../styles/variables.scss";
 
-.new-homePage {
+.new-blog {
   .title {
     h1 {
       font-family: "Poppins", sans-serif !important;
       font-size: 40px;
       font-weight: bold;
       color: $main-color;
-    }
-    ::ng-deep .p-button {
-      border-radius: 8px;
-      background-color: $mainInt-color;
-      border: none;
     }
   }
   ::ng-deep .p-button {

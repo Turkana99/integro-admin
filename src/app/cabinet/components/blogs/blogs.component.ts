@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { HomePageService } from '../../../core/services/homepage.service';
 import { BlogsService } from '../../../core/services/blogs.service';
 import { finalize } from 'rxjs';
 

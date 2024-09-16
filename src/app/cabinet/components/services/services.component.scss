@@ -8,10 +8,12 @@
       font-weight: bold;
       color: $main-color;
     }
-    ::ng-deep .p-button {
+    button {
       border-radius: 8px;
       background-color: $mainInt-color;
       border: none;
+      color: white!important;
+      font-family: "Poppins", sans-serif !important;
     }
   }
 }

@@ -1,10 +1,16 @@
 <div class="new-homePage px-5 py-5">
-  <div class="Title">
+  <div class="title">
     <h1>Yeni partnyor</h1>
   </div>
   <div class="w-100 tab-content">
     <form [formGroup]="newPartnerForm">
-      <input type="file" accept="image/*" (change)="onFileSelected($event)" />
+      <input
+        type="file"
+        accept="image/*"
+        (change)="onFileSelected($event)"
+        class="form-control"
+        id="uploadfile"
+      />
 
       <div class="d-flex justify-content-end pt-4">
         <p-button

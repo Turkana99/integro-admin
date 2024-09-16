@@ -1,1 +1,216 @@
-<p>new-about works!</p>
+<div class="new-about px-5 py-5">
+  <div class="title">
+    <h1>Yeni Haqqımızda məlumatı</h1>
+  </div>
+
+  <div class="w-100 tab-content">
+    <form [formGroup]="newAboutForm">
+      <p-tabView>
+        <p-tabPanel header="Azərbaycan">
+          <div class="az_form">
+            <div class="pb-2">
+              <label for="Title"> Başlıq</label>
+              <input
+                type="text"
+                pInputText
+                class="w-100"
+                formControlName="TitleAz"
+              />
+              <!--Required message-->
+              <div
+                class="validationMessage"
+                *ngIf="
+                  newAboutForm.get('TitleAz')?.invalid &&
+                  newAboutForm.get('TitleAz')?.touched
+                "
+              >
+                <p class="p-0 m-0">* Xana boş ola bilməz.</p>
+              </div>
+            </div>
+
+            <div class="pb-2">
+              <label for="SubTitle"> Alt başlıq</label>
+              <input
+                type="text"
+                pInputText
+                class="w-100"
+                formControlName="SubTitleAz"
+              />
+              <!--Required message-->
+              <div
+                class="validationMessage"
+                *ngIf="
+                  newAboutForm.get('SubTitleAz')?.invalid &&
+                  newAboutForm.get('SubTitleAz')?.touched
+                "
+              >
+                <p class="p-0 m-0">* Xana boş ola bilməz.</p>
+              </div>
+            </div>
+            <div class="d-flex flex-column pb-2">
+              <label for="Title"> Məzmun</label>
+              <textarea
+                rows="5"
+                cols="30"
+                pInputTextarea
+                formControlName="TextAz"
+              >
+              </textarea>
+              <!--Required message-->
+              <div
+                class="validationMessage"
+                *ngIf="
+                  newAboutForm.get('TextAz')?.invalid &&
+                  newAboutForm.get('TextAz')?.touched
+                "
+              >
+                <p class="p-0 m-0">* Xana boş ola bilməz.</p>
+              </div>
+            </div>
+          </div>
+        </p-tabPanel>
+        <p-tabPanel header="İngilis">
+          <div class="en_form">
+            <div class="pb-2">
+              <label for="Title"> Title</label>
+              <input
+                type="text"
+                pInputText
+                class="w-100"
+                formControlName="TitleEn"
+              />
+              <!--Required message-->
+              <div
+                class="validationMessage"
+                *ngIf="
+                  newAboutForm.get('TitleEn')?.invalid &&
+                  newAboutForm.get('TitleEn')?.touched
+                "
+              >
+                <p class="p-0 m-0">* Field mustn't be empty.</p>
+              </div>
+            </div>
+            <div class="pb-2">
+              <label for="SubTitle"> SubTitle</label>
+              <input
+                type="text"
+                pInputText
+                class="w-100"
+                formControlName="SubTitleEn"
+              />
+              <!--Required message-->
+              <div
+                class="validationMessage"
+                *ngIf="
+                  newAboutForm.get('SubTitleEn')?.invalid &&
+                  newAboutForm.get('SubTitleEn')?.touched
+                "
+              >
+                <p class="p-0 m-0">* Field mustn't be empty.</p>
+              </div>
+            </div>
+            <div class="d-flex flex-column pb-2">
+              <label for="Title">Context</label>
+              <textarea
+                rows="5"
+                cols="30"
+                pInputTextarea
+                formControlName="TextEn"
+              >
+              </textarea>
+              <!--Required message-->
+              <div
+                class="validationMessage"
+                *ngIf="
+                  newAboutForm.get('TextEn')?.invalid &&
+                  newAboutForm.get('TextEn')?.touched
+                "
+              >
+                <p class="p-0 m-0">* Field mustn't be empty.</p>
+              </div>
+            </div>
+          </div>
+        </p-tabPanel>
+        <p-tabPanel header="Rus">
+          <div class="ru_form">
+            <div class="pb-2">
+              <label for="Title"> Заголовок</label>
+              <input
+                type="text"
+                pInputText
+                class="w-100"
+                formControlName="TitleRu"
+              />
+              <!--Required message-->
+              <div
+                class="validationMessage"
+                *ngIf="
+                  newAboutForm.get('TitleRu')?.invalid &&
+                  newAboutForm.get('TitleRu')?.touched
+                "
+              >
+                <p class="p-0 m-0">* Поле не должно быть пустым.</p>
+              </div>
+            </div>
+            <div class="pb-2">
+              <label for="SubTitle"> Подзаголовок</label>
+              <input
+                type="text"
+                pInputText
+                class="w-100"
+                formControlName="SubTitleRu"
+              />
+              <!--Required message-->
+              <div
+                class="validationMessage"
+                *ngIf="
+                  newAboutForm.get('SubTitleRu')?.invalid &&
+                  newAboutForm.get('SubTitleRu')?.touched
+                "
+              >
+                <p class="p-0 m-0">* Поле не должно быть пустым.</p>
+              </div>
+            </div>
+            <div class="d-flex flex-column pb-2">
+              <label for="Title"> Контекст</label>
+              <textarea
+                rows="5"
+                cols="30"
+                pInputTextarea
+                formControlName="TextRu"
+              >
+              </textarea>
+              <!--Required message-->
+              <div
+                class="validationMessage"
+                *ngIf="
+                  newAboutForm.get('TextRu')?.invalid &&
+                  newAboutForm.get('TextRu')?.touched
+                "
+              >
+                <p class="p-0 m-0">* Поле не должно быть пустым.</p>
+              </div>
+            </div>
+          </div>
+        </p-tabPanel>
+      </p-tabView>
+
+      <input
+        type="file"
+        accept="image/*"
+        (change)="onFileSelected($event)"
+        class="form-control"
+        id="uploadfile"
+      />
+
+      <div class="d-flex justify-content-end pt-4">
+        <p-button
+          label="Əlavə et"
+          icon="fa-solid fa-plus"
+          [disabled]="newAboutForm.invalid"
+          
+        />
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,5 +1,5 @@
 <div class="new-homePage px-5 py-5">
-  <div class="Title">
+  <div class="title">
     <h1>Yeni Ana səhifə məlumatı</h1>
   </div>
   <div class="w-100 tab-content">
@@ -13,17 +13,38 @@
                 type="text"
                 pInputText
                 class="w-100"
-                formControlName="TitleAz"
+                formControlName="titleAz"
               />
+              <!--Required message-->
+              <div
+                class="validationMessage"
+                *ngIf="
+                  newHomePageForm.get('titleAz')?.invalid &&
+                  newHomePageForm.get('titleAz')?.touched
+                "
+              >
+                <p class="p-0 m-0">* Xana boş ola bilməz.</p>
+              </div>
             </div>
+
             <div class="pb-2">
-              <label for="SubTitle"> Alt başlıq</label>
+              <label for="subTitle"> Alt başlıq</label>
               <input
                 type="text"
                 pInputText
                 class="w-100"
-                formControlName="SubTitleAz"
+                formControlName="subTitleAz"
               />
+              <!--Required message-->
+              <div
+                class="validationMessage"
+                *ngIf="
+                  newHomePageForm.get('subTitleAz')?.invalid &&
+                  newHomePageForm.get('subTitleAz')?.touched
+                "
+              >
+                <p class="p-0 m-0">* Xana boş ola bilməz.</p>
+              </div>
             </div>
             <div class="d-flex flex-column pb-2">
               <label for="Title"> Məzmun</label>
@@ -31,9 +52,19 @@
                 rows="5"
                 cols="30"
                 pInputTextarea
-                formControlName="TextAz"
+                formControlName="textAz"
               >
               </textarea>
+              <!--Required message-->
+              <div
+                class="validationMessage"
+                *ngIf="
+                  newHomePageForm.get('textAz')?.invalid &&
+                  newHomePageForm.get('textAz')?.touched
+                "
+              >
+                <p class="p-0 m-0">* Xana boş ola bilməz.</p>
+              </div>
             </div>
           </div>
         </p-tabPanel>
@@ -45,8 +76,18 @@
                 type="text"
                 pInputText
                 class="w-100"
-                formControlName="TitleEn"
+                formControlName="titleEn"
               />
+              <!--Required message-->
+              <div
+                class="validationMessage"
+                *ngIf="
+                  newHomePageForm.get('titleEn')?.invalid &&
+                  newHomePageForm.get('titleEn')?.touched
+                "
+              >
+                <p class="p-0 m-0">* Field mustn't be empty.</p>
+              </div>
             </div>
             <div class="pb-2">
               <label for="SubTitle"> SubTitle</label>
@@ -54,8 +95,18 @@
                 type="text"
                 pInputText
                 class="w-100"
-                formControlName="SubTitleEn"
+                formControlName="subTitleEn"
               />
+              <!--Required message-->
+              <div
+                class="validationMessage"
+                *ngIf="
+                  newHomePageForm.get('subTitleEn')?.invalid &&
+                  newHomePageForm.get('subTitleEn')?.touched
+                "
+              >
+                <p class="p-0 m-0">* Field mustn't be empty.</p>
+              </div>
             </div>
             <div class="d-flex flex-column pb-2">
               <label for="Title">Context</label>
@@ -63,9 +114,19 @@
                 rows="5"
                 cols="30"
                 pInputTextarea
-                formControlName="TextEn"
+                formControlName="textEn"
               >
               </textarea>
+              <!--Required message-->
+              <div
+                class="validationMessage"
+                *ngIf="
+                  newHomePageForm.get('textEn')?.invalid &&
+                  newHomePageForm.get('textEn')?.touched
+                "
+              >
+                <p class="p-0 m-0">* Field mustn't be empty.</p>
+              </div>
             </div>
           </div>
         </p-tabPanel>
@@ -77,17 +138,37 @@
                 type="text"
                 pInputText
                 class="w-100"
-                formControlName="TitleRu"
+                formControlName="titleRu"
               />
+              <!--Required message-->
+              <div
+                class="validationMessage"
+                *ngIf="
+                  newHomePageForm.get('titleRu')?.invalid &&
+                  newHomePageForm.get('titleRu')?.touched
+                "
+              >
+                <p class="p-0 m-0">* Поле не должно быть пустым.</p>
+              </div>
             </div>
             <div class="pb-2">
-              <label for="SubTitle"> Подзаголовок</label>
+              <label for="subTitle"> Подзаголовок</label>
               <input
                 type="text"
                 pInputText
                 class="w-100"
-                formControlName="SubTitleRu"
+                formControlName="subTitleRu"
               />
+              <!--Required message-->
+              <div
+                class="validationMessage"
+                *ngIf="
+                  newHomePageForm.get('subTitleRu')?.invalid &&
+                  newHomePageForm.get('subTitleRu')?.touched
+                "
+              >
+                <p class="p-0 m-0">* Поле не должно быть пустым.</p>
+              </div>
             </div>
             <div class="d-flex flex-column pb-2">
               <label for="Title"> Контекст</label>
@@ -95,23 +176,40 @@
                 rows="5"
                 cols="30"
                 pInputTextarea
-                formControlName="TextRu"
+                formControlName="textRu"
               >
               </textarea>
+              <!--Required message-->
+              <div
+                class="validationMessage"
+                *ngIf="
+                  newHomePageForm.get('textRu')?.invalid &&
+                  newHomePageForm.get('textRu')?.touched
+                "
+              >
+                <p class="p-0 m-0">* Поле не должно быть пустым.</p>
+              </div>
             </div>
           </div>
         </p-tabPanel>
       </p-tabView>
 
-      <input type="file" accept="image/*" (change)="onFileSelected($event)" />
+      <input
+        type="file"
+        accept="image/*"
+        (change)="onFileSelected($event)"
+        class="form-control"
+        id="uploadfile"
+      />
 
       <div class="d-flex justify-content-end pt-4">
         <p-button
           label="Əlavə et"
           icon="fa-solid fa-plus"
-          (onClick)="Submit()"
+          [disabled]="newHomePageForm.invalid"
         />
       </div>
     </form>
   </div>
+  <p-toast />
 </div>

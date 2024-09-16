@@ -1,0 +1,12 @@
+@import "../../../../styles/variables.scss";
+
+.new-about {
+  .title {
+    h1 {
+      font-family: "Poppins", sans-serif !important;
+      font-size: 40px;
+      font-weight: bold;
+      color: $main-color;
+    }
+  }
+}

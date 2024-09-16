@@ -31,6 +31,8 @@ import { NewServiceComponent } from './components/new-service/new-service.compon
 import { NewMemberComponent } from './components/new-member/new-member.component';
 import { MessagesModule } from 'primeng/messages';
 import { ToastModule } from 'primeng/toast';
+import { HomeService } from '../core/services/home.service';
+import { MessageService } from 'primeng/api';
 
 @NgModule({
   declarations: [
@@ -70,5 +72,6 @@ import { ToastModule } from 'primeng/toast';
     MessagesModule,
     ToastModule,
   ],
+  providers: [HomeService,MessageService]
 })
 export class CabinetModule {}

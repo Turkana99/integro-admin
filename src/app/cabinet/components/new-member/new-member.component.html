@@ -1,5 +1,5 @@
 <div class="new-homePage px-5 py-5">
-  <div class="Title">
+  <div class="title">
     <h1>Yeni komanda üzvü</h1>
   </div>
   <div class="w-100 tab-content">
@@ -104,7 +104,13 @@
         />
       </div>
 
-      <input type="file" accept="image/*" (change)="onFileSelected($event)" />
+      <input
+        type="file"
+        accept="image/*"
+        (change)="onFileSelected($event)"
+        class="form-control mt-3"
+        id="uploadfile"
+      />
 
       <div class="d-flex justify-content-end pt-4">
         <p-button

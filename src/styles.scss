@@ -24,3 +24,46 @@ body {
   padding: 10px 0px;
 }
 
+.custom-inp-file {
+  position: relative;
+}
+
+.custom-inp-file input {
+  padding-left: 110px;
+  padding-top: 13px;
+  height: 46px;
+  border-radius: 6px;
+  font-size: 14px; /* Şrift ölçüsünü təyin edin */
+  font-family: "Helvetica", sans-serif !important;
+}
+
+.custom-inp-file label {
+  position: absolute;
+  height: 46px;
+  background: #eeeeee;
+  color: #555555;
+  border: 1px solid #c6cfdd;
+  font-weight: bold;
+  font-size: 14px; /* Şrift ölçüsünü təyin edin */
+  font-family: "Helvetica", sans-serif !important;
+  line-height: normal;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0 30px;
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+}
+
+.custom-inp-file input::file-selector-button {
+  display: none;
+}
+
+.validationMessage{
+  color: red;
+  font-size: 15px;
+  font-weight: 500;
+  font-style: italic;
+  padding: 5px 0px 0px 0px;
+}
