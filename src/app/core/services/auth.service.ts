@@ -32,31 +32,27 @@ export class AuthService {
     return structuredClone(this._user);
   }
 
-  public login(email: string, password: string): Observable<any> {
-    return this.http.post<any>(environment.loginUrl, { email, password }).pipe(
-      map((response) => {
-        console.log('RESPONSE', response);
-        if (response.error) {
-          throw new Error('Login failed');
-        }
+  public login(username: string, password: string): Observable<any> {
+    return this.http
+      .post<any>(environment.loginUrl, { username, password })
+      .pipe(
+        map((response) => {
+          console.log('RESPONSE', response);
+          if (!response.accessToken) {
+            throw new Error('Login failed');
+          }
 
-        console.log(
-          'token',
-          this.getDecodedAccessToken(response.data.accessToken)
-        );
+          console.log(
+            'token',
+            this.getDecodedAccessToken(response.accessToken.token)
+          );
 
-        this.user = this.getDecodedAccessToken(response.data.accessToken);
-        localStorage.setItem('accessToken', response.data.accessToken);
-        this.router.navigate(['/organizations']);
-        return response;
-      })
-    );
-  }
-
-  public loginMock(user: UserInterface) {
-    this.user = user;
-    localStorage.setItem('accessToken', "tokennnnn");
-    this.router.navigate(['/main']);
+          this.user = this.getDecodedAccessToken(response.accessToken.token);
+          localStorage.setItem('accessToken', response.accessToken.token);
+          this.router.navigate(['/main']);
+          return response;
+        })
+      );
   }
 
   public logout() {
@@ -92,5 +88,11 @@ export class AuthService {
 
   resetPassword(request: any): Observable<any> {
     return this.http.post<any>(environment.resetPass, request);
+  }
+
+  getUserDetails() {
+    return this.getDecodedAccessToken(
+      localStorage.getItem('accessToken') || ''
+    );
   }
 }

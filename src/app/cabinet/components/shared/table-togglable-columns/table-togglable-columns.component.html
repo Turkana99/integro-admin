@@ -88,6 +88,7 @@
   @if(paginator){
   <mat-paginator
     [pageSizeOptions]="pageSizeOptions"
+    (page)="onPage.emit($event)"
     showFirstLastButtons
   ></mat-paginator>
   }

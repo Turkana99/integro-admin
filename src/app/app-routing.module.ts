@@ -18,6 +18,7 @@ const routes: Routes = [
     path: '',
     loadChildren: () =>
       import('./cabinet/cabinet.module').then((m) => m.CabinetModule),
+    canActivate: [CabinetGuard],
   },
 ];
 

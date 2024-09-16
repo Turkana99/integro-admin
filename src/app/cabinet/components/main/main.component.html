@@ -3,10 +3,10 @@
     <div><h1>Ana səhifə</h1></div>
     <div>
       <p-button
-      label="Əlavə et"
-      icon="fa-solid fa-plus"
-      routerLink="/new-homePage"
-    />
+        label="Əlavə et"
+        icon="fa-solid fa-plus"
+        routerLink="/new-homepage"
+      />
     </div>
   </div>
   <div class="data_table">
@@ -21,6 +21,7 @@
       deleteButtonText="sil"
       (onEdit)="logData($event)"
       (onDelete)="logData($event)"
+      (onPage)="onPageChange($event)"
     ></table-togglable-columns>
   </div>
 </div>

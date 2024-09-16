@@ -1,64 +1,115 @@
 <div class="new-homePage px-5 py-5">
-  <div class="title">
+  <div class="Title">
     <h1>Yeni Ana səhifə məlumatı</h1>
   </div>
   <div class="w-100 tab-content">
-    <form formGroupName="newHomePageForm">
+    <form [formGroup]="newHomePageForm">
       <p-tabView>
         <p-tabPanel header="Azərbaycan">
           <div class="az_form">
             <div class="pb-2">
-              <label for="title"> Başlıq</label>
-              <input type="text" pInputText class="w-100" />
+              <label for="Title"> Başlıq</label>
+              <input
+                type="text"
+                pInputText
+                class="w-100"
+                formControlName="TitleAz"
+              />
             </div>
             <div class="pb-2">
-              <label for="subTitle"> Alt başlıq</label>
-              <input type="text" pInputText class="w-100" />
+              <label for="SubTitle"> Alt başlıq</label>
+              <input
+                type="text"
+                pInputText
+                class="w-100"
+                formControlName="SubTitleAz"
+              />
             </div>
             <div class="d-flex flex-column pb-2">
-              <label for="title"> Məzmun</label>
-              <textarea rows="5" cols="30" pInputTextarea> </textarea>
+              <label for="Title"> Məzmun</label>
+              <textarea
+                rows="5"
+                cols="30"
+                pInputTextarea
+                formControlName="TextAz"
+              >
+              </textarea>
             </div>
           </div>
         </p-tabPanel>
         <p-tabPanel header="İngilis">
           <div class="en_form">
             <div class="pb-2">
-              <label for="title"> Title</label>
-              <input type="text" pInputText class="w-100" />
+              <label for="Title"> Title</label>
+              <input
+                type="text"
+                pInputText
+                class="w-100"
+                formControlName="TitleEn"
+              />
             </div>
             <div class="pb-2">
-              <label for="subTitle"> Subtitle</label>
-              <input type="text" pInputText class="w-100" />
+              <label for="SubTitle"> SubTitle</label>
+              <input
+                type="text"
+                pInputText
+                class="w-100"
+                formControlName="SubTitleEn"
+              />
             </div>
             <div class="d-flex flex-column pb-2">
-              <label for="title">Context</label>
-              <textarea rows="5" cols="30" pInputTextarea> </textarea>
+              <label for="Title">Context</label>
+              <textarea
+                rows="5"
+                cols="30"
+                pInputTextarea
+                formControlName="TextEn"
+              >
+              </textarea>
             </div>
           </div>
         </p-tabPanel>
         <p-tabPanel header="Rus">
           <div class="ru_form">
             <div class="pb-2">
-              <label for="title"> Заголовок</label>
-              <input type="text" pInputText class="w-100" />
+              <label for="Title"> Заголовок</label>
+              <input
+                type="text"
+                pInputText
+                class="w-100"
+                formControlName="TitleRu"
+              />
             </div>
             <div class="pb-2">
-              <label for="subTitle"> Подзаголовок</label>
-              <input type="text" pInputText class="w-100" />
+              <label for="SubTitle"> Подзаголовок</label>
+              <input
+                type="text"
+                pInputText
+                class="w-100"
+                formControlName="SubTitleRu"
+              />
             </div>
             <div class="d-flex flex-column pb-2">
-              <label for="title"> Контекст</label>
-              <textarea rows="5" cols="30" pInputTextarea> </textarea>
+              <label for="Title"> Контекст</label>
+              <textarea
+                rows="5"
+                cols="30"
+                pInputTextarea
+                formControlName="TextRu"
+              >
+              </textarea>
             </div>
           </div>
         </p-tabPanel>
       </p-tabView>
+
+      <input type="file" accept="image/*" (change)="onFileSelected($event)" />
+
       <div class="d-flex justify-content-end pt-4">
         <p-button
           label="Əlavə et"
           icon="fa-solid fa-plus"
-          routerLink="/new-homePage"
+          (onClick)="Submit()"
         />
       </div>
     </form>

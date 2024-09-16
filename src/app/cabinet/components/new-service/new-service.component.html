@@ -1,0 +1,60 @@
+<div class="new-homePage px-5 py-5">
+  <div class="Title">
+    <h1>Yeni xidmət</h1>
+  </div>
+  <div class="w-100 tab-content">
+    <form [formGroup]="newServiceForm">
+      <p-tabView>
+        <p-tabPanel header="Azərbaycan">
+          <div class="az_form">
+            <div class="pb-2">
+              <label for="Title"> Başlıq</label>
+              <input
+                type="text"
+                pInputText
+                class="w-100"
+                formControlName="titleAz"
+              />
+            </div>
+          </div>
+        </p-tabPanel>
+        <p-tabPanel header="İngilis">
+          <div class="en_form">
+            <div class="pb-2">
+              <label for="Title"> Title</label>
+              <input
+                type="text"
+                pInputText
+                class="w-100"
+                formControlName="titleEn"
+              />
+            </div>
+          </div>
+        </p-tabPanel>
+        <p-tabPanel header="Rus">
+          <div class="ru_form">
+            <div class="pb-2">
+              <label for="Title"> Заголовок</label>
+              <input
+                type="text"
+                pInputText
+                class="w-100"
+                formControlName="titleRu"
+              />
+            </div>
+          </div>
+        </p-tabPanel>
+      </p-tabView>
+
+      <input type="file" accept="image/*" (change)="onFileSelected($event)" />
+
+      <div class="d-flex justify-content-end pt-4">
+        <p-button
+          label="Əlavə et"
+          icon="fa-solid fa-plus"
+          (onClick)="Submit()"
+        />
+      </div>
+    </form>
+  </div>
+</div>

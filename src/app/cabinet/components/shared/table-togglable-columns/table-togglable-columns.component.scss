@@ -22,7 +22,14 @@
 
 .table-wrapper {
   width: calc(100% - 80px);
-
+  .not-found-text {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 50px 0;
+  }
   mat-table {
     min-width: unset;
     overflow-y: auto;

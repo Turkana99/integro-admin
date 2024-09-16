@@ -16,6 +16,21 @@ import { NewHomePageComponent } from './components/new-home-page/new-home-page.c
 import { TabViewModule } from 'primeng/tabview';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { ServicesComponent } from './components/services/services.component';
+import { AboutComponent } from './components/about/about.component';
+import { TeamComponent } from './components/team/team.component';
+import { PartnersComponent } from './components/partners/partners.component';
+import { BlogsComponent } from './components/blogs/blogs.component';
+import { ContactComponent } from './components/contact/contact.component';
+import { FileUploadModule } from 'primeng/fileupload';
+import { NewAboutComponent } from './components/new-about/new-about.component';
+import { NewBlogComponent } from './components/new-blog/new-blog.component';
+import { NewContactComponent } from './components/new-contact/new-contact.component';
+import { NewPartnerComponent } from './components/new-partner/new-partner.component';
+import { NewServiceComponent } from './components/new-service/new-service.component';
+import { NewMemberComponent } from './components/new-member/new-member.component';
+import { MessagesModule } from 'primeng/messages';
+import { ToastModule } from 'primeng/toast';
 
 @NgModule({
   declarations: [
@@ -27,6 +42,18 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
     TableTogglableColumnsComponent,
     TableMenuDialogComponent,
     NewHomePageComponent,
+    ServicesComponent,
+    AboutComponent,
+    TeamComponent,
+    PartnersComponent,
+    BlogsComponent,
+    ContactComponent,
+    NewAboutComponent,
+    NewBlogComponent,
+    NewContactComponent,
+    NewPartnerComponent,
+    NewServiceComponent,
+    NewMemberComponent,
   ],
   imports: [
     CommonModule,
@@ -38,7 +65,10 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
     ButtonModule,
     TabViewModule,
     InputTextModule,
-    InputTextareaModule
+    InputTextareaModule,
+    FileUploadModule,
+    MessagesModule,
+    ToastModule,
   ],
 })
 export class CabinetModule {}

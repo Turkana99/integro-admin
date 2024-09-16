@@ -31,31 +31,51 @@
       >
     </li>
     <li>
-      <a href="#"><span class="material-symbols-outlined"> info </span>About</a>
+      <a
+        routerLink="about"
+        [routerLinkActiveOptions]="{ exact: true }"
+        routerLinkActive="router-link-active"
+        ><span class="material-symbols-outlined"> info </span>About</a
+      >
     </li>
     <li>
-      <a href="#"
+      <a
+        routerLink="services"
+        [routerLinkActiveOptions]="{ exact: true }"
+        routerLinkActive="router-link-active"
         ><span class="material-symbols-outlined"> volunteer_activism </span
         >Services</a
       >
     </li>
     <li>
-      <a href="#"
+      <a
+        routerLink="team"
+        [routerLinkActiveOptions]="{ exact: true }"
+        routerLinkActive="router-link-active"
         ><span class="material-symbols-outlined"> groups </span>Team</a
       >
     </li>
     <li>
-      <a href="#"
+      <a
+        routerLink="partners"
+        [routerLinkActiveOptions]="{ exact: true }"
+        routerLinkActive="router-link-active"
         ><span class="material-symbols-outlined"> handshake </span>Partners</a
       >
     </li>
     <li>
-      <a href="#"
+      <a
+        routerLink="blogs"
+        [routerLinkActiveOptions]="{ exact: true }"
+        routerLinkActive="router-link-active"
         ><span class="material-symbols-outlined"> rss_feed </span>Blogs</a
       >
     </li>
     <li>
-      <a href="#"
+      <a
+        routerLink="contact"
+        [routerLinkActiveOptions]="{ exact: true }"
+        routerLinkActive="router-link-active"
         ><span class="material-symbols-outlined"> call </span>Contact</a
       >
     </li>
@@ -79,11 +99,19 @@
     <div class="user-profile">
       <img src="assets/images/profile-img.jpg" alt="Profile Image" />
       <div class="user-detail">
-        <h3>Admin Admin</h3>
-        <span>Admin</span>
+        <h3>{{ getUser()?.name }}</h3>
+        <span>{{
+          getUser()?.[
+            "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
+          ]
+        }}</span>
       </div>
     </div>
-    <div class="logout-overlay d-flex align-items-center" style="gap: 10px">
+    <div
+      class="logout-overlay d-flex align-items-center"
+      style="gap: 10px"
+      (click)="logout()"
+    >
       Log out<span class="material-symbols-outlined"> logout </span>
     </div>
   </div>

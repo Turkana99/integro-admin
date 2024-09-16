@@ -62,9 +62,11 @@ export class TableTogglableColumnsComponent
   @Input() deleteButtonText: string = 'Delete';
   @Input() maxHeight: number = 650;
   @Input() columnWidth: string | number = '0 0 25%';
+  @Input() notFoundText: string = 'Məlumat tapılmadı';
 
   @Output() onEdit = new EventEmitter<any>();
   @Output() onDelete = new EventEmitter<any>();
+  @Output() onPage = new EventEmitter<any>();
 
   @ViewChild(MatPaginator) private _paginator!: MatPaginator;
   @ViewChild(MatSort) private _sort!: MatSort;

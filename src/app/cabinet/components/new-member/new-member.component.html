@@ -1,0 +1,118 @@
+<div class="new-homePage px-5 py-5">
+  <div class="Title">
+    <h1>Yeni komanda üzvü</h1>
+  </div>
+  <div class="w-100 tab-content">
+    <form [formGroup]="newMemberForm">
+      <p-tabView>
+        <p-tabPanel header="Azərbaycan">
+          <div class="az_form">
+            <div class="pb-2">
+              <label for="Title"> Tam ad</label>
+              <input
+                type="text"
+                pInputText
+                class="w-100"
+                formControlName="FullNameAz"
+              />
+            </div>
+            <div class="pb-2">
+              <label for="SubTitle"> Vəzifə</label>
+              <input
+                type="text"
+                pInputText
+                class="w-100"
+                formControlName="PositionAz"
+              />
+            </div>
+          </div>
+        </p-tabPanel>
+        <p-tabPanel header="İngilis">
+          <div class="en_form">
+            <div class="pb-2">
+              <label for="Title"> Full name</label>
+              <input
+                type="text"
+                pInputText
+                class="w-100"
+                formControlName="FullNameEn"
+              />
+            </div>
+            <div class="pb-2">
+              <label for="SubTitle"> Position name</label>
+              <input
+                type="text"
+                pInputText
+                class="w-100"
+                formControlName="PositionEn"
+              />
+            </div>
+          </div>
+        </p-tabPanel>
+        <p-tabPanel header="Rus">
+          <div class="ru_form">
+            <div class="pb-2">
+              <label for="Title"> Полная имя</label>
+              <input
+                type="text"
+                pInputText
+                class="w-100"
+                formControlName="FullNameRu"
+              />
+            </div>
+            <div class="pb-2">
+              <label for="SubTitle"> Позиция</label>
+              <input
+                type="text"
+                pInputText
+                class="w-100"
+                formControlName="PositionRu"
+              />
+            </div>
+          </div>
+        </p-tabPanel>
+      </p-tabView>
+
+      <div class="pb-2">
+        <label for="Title"> Instagram URL</label>
+        <input
+          type="text"
+          pInputText
+          class="w-100"
+          formControlName="InstagramUrl"
+        />
+      </div>
+
+      <div class="pb-2">
+        <label for="Title"> Facebook URL</label>
+        <input
+          type="text"
+          pInputText
+          class="w-100"
+          formControlName="FacebookUrl"
+        />
+      </div>
+
+      <div class="pb-2">
+        <label for="Title"> LinkedIn URL</label>
+
+        <input
+          type="text"
+          pInputText
+          class="w-100"
+          formControlName="LinkedinUrl"
+        />
+      </div>
+
+      <input type="file" accept="image/*" (change)="onFileSelected($event)" />
+
+      <div class="d-flex justify-content-end pt-4">
+        <p-button
+          label="Əlavə et"
+          icon="fa-solid fa-plus"
+          (onClick)="Submit()"
+        />
+      </div>
+    </form>
+  </div>
+</div>

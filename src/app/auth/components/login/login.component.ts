@@ -23,16 +23,20 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.authService.loginMock(this.loginForm.value);
+    this.authService
+      .login(this.loginForm.value.username, this.loginForm.value.password)
+      .subscribe((res) => {
+        console.log('login response', res);
+      });
   }
 
   ngOnInit(): void {
-    this.initForm()
+    this.initForm();
   }
 
   initForm() {
     this.loginForm = this.fb.group({
-      email: null,
+      username: null,
       password: null,
     });
   }
