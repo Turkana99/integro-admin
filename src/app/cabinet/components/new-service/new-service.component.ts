@@ -23,26 +23,13 @@ export class NewServiceComponent implements OnInit {
   }
 
   Submit() {
-    this.ourServices.createServiceInfo(this.newServiceForm.value).subscribe(
-      (res: any) => {
+    this.ourServices
+      .createServiceInfo(this.newServiceForm.value)
+      .subscribe((res: any) => {
         console.log('res', res);
         if (res?.id) {
-          this.messageService.add({
-            severity: 'success',
-            summary: 'Success',
-            detail: 'Added successfully',
-          });
         }
-      },
-      (error) => {
-        this.messageService.add({
-          severity: 'error',
-          summary: error.title,
-          detail: error.detail,
-        });
-      },
-      () => {}
-    );
+      });
   }
 
   initForm() {

@@ -71,11 +71,15 @@ export class NewHomePageComponent implements OnInit {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
       this.backgroundImage = file;
+      this.newHomePageForm.controls['backgroundImage'].setValue(
+        this.backgroundImage
+      );
+      console.log(this.backgroundImage);
     }
   }
 
   submitProject() {
-    console.log(this.newHomePageForm.get('state')!.value);
+    // console.log(this.newHomePageForm.get('state')!.value);
     const formData = new FormData();
     formData.append('titleAz', this.newHomePageForm.get('titleAz')!.value);
     formData.append(
@@ -95,56 +99,19 @@ export class NewHomePageComponent implements OnInit {
       this.newHomePageForm.get('subTitleRu')!.value
     );
     formData.append('textRu', this.newHomePageForm.get('textRu')!.value);
-    
+
     if (this.backgroundImage) {
       formData.append('backgroundImage', this.backgroundImage);
     }
     if (this.homePageId) {
       formData.append('id', this.homePageId);
-      this.homeService.editHomePageInfo(formData).subscribe(
-        () => {
-          this.messageService.add({
-            severity: 'success',
-            summary: 'Uğurlu',
-            detail: 'Ana səhifə məlumatları müvəffəqiyyətlə yeniləndi!',
-            key: 'br',
-            life: 2000,
-          });
-          this.newHomePageForm.reset();
-        },
-        (error: any) => {
-          console.error('Error updating project:', error);
-          this.messageService.add({
-            severity: 'error',
-            summary: 'Xəbərdarlıq',
-            detail: 'Ana səhifə məlumatları yenilənmədi!',
-            key: 'br',
-            life: 2000,
-          });
-        }
-      );
+      this.homeService.editHomePageInfo(formData).subscribe(() => {
+        this.newHomePageForm.reset();
+      });
     } else {
-      this.homeService.addHomePageInfo(formData).subscribe(
-        () => {
-          this.messageService.add({
-            severity: 'success',
-            summary: 'Uğurlu',
-            detail: 'Yeni Ana səhifə məlumatları müvəffəqiyyətlə əlavə edildi!',
-            key: 'br',
-            life: 2000,
-          });
-          this.newHomePageForm.reset();
-        },
-        (error) => {
-          console.error('Error adding project:', error);
-          this.messageService.add({
-            severity: 'error',
-            summary: 'Xəbərdarlıq',
-            detail: 'Ana səhifə məlumatları əlavə edilmədi!',
-            life: 2000,
-          });
-        }
-      );
+      this.homeService.addHomePageInfo(formData).subscribe(() => {
+        this.newHomePageForm.reset();
+      });
     }
   }
 }

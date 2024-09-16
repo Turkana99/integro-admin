@@ -8,6 +8,10 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { MaterialModule } from './material.module';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from './core/services/auth-interceptor.service';
+import { MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
+import { MessagesModule } from 'primeng/messages';
+import { MessageInterceptor } from './core/services/message-interceptor.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,10 +23,14 @@ import { AuthInterceptor } from './core/services/auth-interceptor.service';
     BrowserAnimationsModule,
     MaterialModule,
     HttpClientModule,
+    ToastModule,
+    MessagesModule,
   ],
   providers: [
     provideAnimationsAsync(),
+    { provide: HTTP_INTERCEPTORS, useClass: MessageInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    MessageService,
   ],
   bootstrap: [AppComponent],
 })
