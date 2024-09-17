@@ -22,6 +22,7 @@
 
 .table-wrapper {
   width: calc(100% - 80px);
+
   .not-found-text {
     width: 100%;
     display: flex;
@@ -30,6 +31,7 @@
     margin: 0;
     padding: 50px 0;
   }
+
   mat-table {
     min-width: unset;
     overflow-y: auto;
@@ -43,6 +45,15 @@
       justify-content: end;
       align-items: center;
     }
+
+    mat-header-row:first-child mat-header-cell:first-child {
+      border-top-left-radius: 10px !important;
+    }
+
+    mat-header-row:first-child mat-header-cell:last-child {
+      border-top-right-radius: 10px !important;
+    }
+
     mat-header-cell {
       display: flex;
       flex-direction: column;
@@ -54,12 +65,13 @@
       border-bottom: none !important;
       background-color: $main-color !important;
       font-size: 13px !important;
-      text-align: center !important;
       font-weight: 700 !important;
       color: white !important;
       line-height: 20px !important;
       font-family: "Poppins", sans-serif !important;
+      text-align: left !important;
       cursor: pointer;
+
       mat-form-field {
         width: 100%;
         background-color: white;
@@ -72,6 +84,7 @@
         --mdc-outlined-text-field-outline-color: white !important;
       }
     }
+
     mat-cell {
       padding: 20px 10px;
     }

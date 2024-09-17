@@ -4,6 +4,7 @@ import { UploadEvent } from 'primeng/fileupload';
 import { finalize } from 'rxjs';
 import { MessageService } from 'primeng/api';
 import { HomeService } from '../../../core/services/home.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-new-home-page',
@@ -13,17 +14,26 @@ import { HomeService } from '../../../core/services/home.service';
 export class NewHomePageComponent implements OnInit {
   newHomePageForm: any;
   showSpinner = false;
+  buttonSpinner=false;
   backgroundImage?: any;
   homePageId: any;
 
   constructor(
     private fb: FormBuilder,
+    private route: ActivatedRoute,
     private homeService: HomeService,
     private messageService: MessageService
   ) {}
 
   ngOnInit(): void {
     this.initForm();
+    if (this.homePageId) this.getHomePageInfoById(this.homePageId);
+    this.route.paramMap.subscribe(params => {
+      this.homePageId = +params.get('id')!;
+      if (this.homePageId) {
+        this.getHomePageInfoById(this.homePageId);
+      }
+    });
   }
 
   initForm() {
@@ -48,6 +58,8 @@ export class NewHomePageComponent implements OnInit {
       .pipe(finalize(() => (this.showSpinner = false)))
       .subscribe(
         (response) => {
+          console.log("response", response);
+          this.backgroundImage=response.backgroundImageUrl;
           this.newHomePageForm.setValue({
             titleAz: response.titleAz,
             subTitleAz: response.subTitleAz,
@@ -58,7 +70,7 @@ export class NewHomePageComponent implements OnInit {
             titleRu: response.titleRu,
             subTitleRu: response.subTitleRu,
             textRu: response.textRu,
-            backgroundImage: response.backgroundImage,
+            backgroundImage: response.backgroundImageUrl,
           });
         },
         (error) => {
@@ -104,14 +116,72 @@ export class NewHomePageComponent implements OnInit {
       formData.append('backgroundImage', this.backgroundImage);
     }
     if (this.homePageId) {
+      this.buttonSpinner = true;
       formData.append('id', this.homePageId);
-      this.homeService.editHomePageInfo(formData).subscribe(() => {
-        this.newHomePageForm.reset();
-      });
-    } else {
-      this.homeService.addHomePageInfo(formData).subscribe(() => {
-        this.newHomePageForm.reset();
-      });
+      this.homeService
+        .editHomePageInfo(formData)
+        .pipe(
+          finalize(() => {
+            setTimeout(() => {
+              this.buttonSpinner = false;
+            }, 200);
+          })
+        )
+        .subscribe(
+          () => {
+            console.log('Contact updated successfully');
+            this.messageService.add({
+              severity: 'success',
+              summary: 'Uğurlu',
+              detail: 'Məlumat müvəffəqiyyətlə yeniləndi!',
+              life: 2000,
+            });
+            this.newHomePageForm.reset();
+          },
+          (error) => {
+            console.error('Error updating contact:', error);
+            this.messageService.add({
+              severity: 'error',
+              summary: 'Xəbərdarlıq',
+              detail: error
+                ? error?.error?.error?.errors?.join('\n')
+                : 'Məlumat yenilənmədi!',
+            });
+          }
+        );
+      return;
     }
+    this.buttonSpinner = true;
+    console.log('FormData2', formData);
+    this.homeService
+      .addHomePageInfo(formData)
+      .pipe(
+        finalize(() => {
+          setTimeout(() => {
+            this.buttonSpinner = false;
+          }, 200);
+        })
+      )
+      .subscribe(
+        () => {
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Uğurlu',
+            detail: 'Yeni ana səhifə məlumatı müvəffəqiyyətlə əlavə edildi!',
+          });
+          console.log('Contact added successfully');
+          this.newHomePageForm.reset();
+        },
+        (error) => {
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Xəbərdarlıq',
+            detail: error
+              ? error?.error?.error?.errors?.join('\n')
+              : 'Məlumat əlavə edilmədi!',
+          });
+          console.error('Error adding contact:', error);
+        }
+      );
   }
 }

@@ -193,6 +193,9 @@
           </div>
         </p-tabPanel>
       </p-tabView>
+      @if(backgroundImage){
+      <img [src]="backgroundImage" alt="" class="mb-3" />
+      }
 
       <input
         type="file"

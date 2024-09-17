@@ -59,6 +59,10 @@ const routes: Routes = [
         component: NewHomePageComponent,
       },
       {
+        path: 'new-homepage/:id',
+        component: NewHomePageComponent,
+      },
+      {
         path: 'new-about',
         component: NewAboutComponent,
       },

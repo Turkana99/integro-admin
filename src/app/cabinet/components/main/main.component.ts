@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { finalize } from 'rxjs';
 import { HomeService } from '../../../core/services/home.service';
+import { MessageService } from 'primeng/api';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-main',
@@ -13,19 +15,23 @@ export class MainComponent implements OnInit {
   pageSize = 10;
   pageIndex = 0;
 
-  constructor(private homeService: HomeService) {}
+  constructor(
+    private homeService: HomeService,
+    private router: Router,
+    private messageService: MessageService
+  ) {}
 
   displayedColumns: any[] = [
     {
-      key: 'title',
+      key: 'titleAz',
       name: 'Başlıq',
     },
     {
-      key: 'subTitle',
+      key: 'subTitleAz',
       name: 'Alt başlıq',
     },
     {
-      key: 'text',
+      key: 'textAz',
       name: 'Məzmun',
     },
   ];
@@ -71,7 +77,8 @@ export class MainComponent implements OnInit {
       .subscribe(
         (response) => {
           console.log('response', response);
-          this.ELEMENT_DATA = response.items;
+          this.ELEMENT_DATA = response.body.items;
+          console.log('ELEMENT_DATA', this.ELEMENT_DATA);
         },
         (error) => {
           console.error('Error fetching data:', error);
@@ -81,5 +88,9 @@ export class MainComponent implements OnInit {
 
   onPageChange($event: any) {
     this.getHomePageInfo($event.pageSize, $event.pageIndex);
+  }
+
+  editHomePageInfo(id: any) {
+    this.router.navigate(['/new-homepage', id]);
   }
 }

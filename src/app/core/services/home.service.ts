@@ -44,8 +44,12 @@ export class HomeService {
   editHomePageInfo(req: any): Observable<any> {
     return this.http.put<any>(environment.homePages, req);
   }
-  
+
   addHomePageInfo(req: any): Observable<any> {
     return this.http.post<any>(environment.homePages, req);
+  }
+
+  deleteHomePageInfo(id: number) {
+    return this.http.delete<any>(`${environment.homePages}/${id}`);
   }
 }
