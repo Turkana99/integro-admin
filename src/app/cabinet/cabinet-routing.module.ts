@@ -67,7 +67,15 @@ const routes: Routes = [
         component: NewAboutComponent,
       },
       {
+        path: 'new-about/:id',
+        component: NewAboutComponent,
+      },
+      {
         path: 'new-blog',
+        component: NewBlogComponent,
+      },
+      {
+        path: 'new-blog/:id',
         component: NewBlogComponent,
       },
       {
@@ -75,7 +83,15 @@ const routes: Routes = [
         component: NewContactComponent,
       },
       {
+        path: 'new-contact/:id',
+        component: NewContactComponent,
+      },
+      {
         path: 'new-member',
+        component: NewMemberComponent,
+      },
+      {
+        path: 'new-member/:id',
         component: NewMemberComponent,
       },
       {
@@ -83,7 +99,15 @@ const routes: Routes = [
         component: NewPartnerComponent,
       },
       {
+        path: 'new-partner/:id',
+        component: NewPartnerComponent,
+      },
+      {
         path: 'new-service',
+        component: NewServiceComponent,
+      },
+      {
+        path: 'new-service/:id',
         component: NewServiceComponent,
       },
     ],

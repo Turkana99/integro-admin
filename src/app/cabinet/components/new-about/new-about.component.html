@@ -8,60 +8,23 @@
       <p-tabView>
         <p-tabPanel header="Azərbaycan">
           <div class="az_form">
-            <div class="pb-2">
-              <label for="Title"> Başlıq</label>
-              <input
-                type="text"
-                pInputText
-                class="w-100"
-                formControlName="TitleAz"
-              />
-              <!--Required message-->
-              <div
-                class="validationMessage"
-                *ngIf="
-                  newAboutForm.get('TitleAz')?.invalid &&
-                  newAboutForm.get('TitleAz')?.touched
-                "
-              >
-                <p class="p-0 m-0">* Xana boş ola bilməz.</p>
+            <div>
+              <div class="d-flex flex-column pb-2 h-100">
+                <label for="Title">Məzmun</label>
+                <quill-editor
+                  formControlName="contentAz"
+                  [style]="{ height: '200px', fontSize: '16px!important' }"
+                  [modules]="quillModules"
+                >
+                </quill-editor>
               </div>
-            </div>
 
-            <div class="pb-2">
-              <label for="SubTitle"> Alt başlıq</label>
-              <input
-                type="text"
-                pInputText
-                class="w-100"
-                formControlName="SubTitleAz"
-              />
               <!--Required message-->
               <div
-                class="validationMessage"
+                class="validationMessage mt-5"
                 *ngIf="
-                  newAboutForm.get('SubTitleAz')?.invalid &&
-                  newAboutForm.get('SubTitleAz')?.touched
-                "
-              >
-                <p class="p-0 m-0">* Xana boş ola bilməz.</p>
-              </div>
-            </div>
-            <div class="d-flex flex-column pb-2">
-              <label for="Title"> Məzmun</label>
-              <textarea
-                rows="5"
-                cols="30"
-                pInputTextarea
-                formControlName="TextAz"
-              >
-              </textarea>
-              <!--Required message-->
-              <div
-                class="validationMessage"
-                *ngIf="
-                  newAboutForm.get('TextAz')?.invalid &&
-                  newAboutForm.get('TextAz')?.touched
+                  newAboutForm.get('contentAz')?.invalid &&
+                  newAboutForm.get('contentAz')?.touched
                 "
               >
                 <p class="p-0 m-0">* Xana boş ola bilməz.</p>
@@ -71,121 +34,49 @@
         </p-tabPanel>
         <p-tabPanel header="İngilis">
           <div class="en_form">
-            <div class="pb-2">
-              <label for="Title"> Title</label>
-              <input
-                type="text"
-                pInputText
-                class="w-100"
-                formControlName="TitleEn"
-              />
-              <!--Required message-->
-              <div
-                class="validationMessage"
-                *ngIf="
-                  newAboutForm.get('TitleEn')?.invalid &&
-                  newAboutForm.get('TitleEn')?.touched
-                "
-              >
-                <p class="p-0 m-0">* Field mustn't be empty.</p>
+            <div>
+              <div class="d-flex flex-column pb-2 h-100">
+                <label for="Title">Context</label>
+                <quill-editor
+                  formControlName="contentEn"
+                  [style]="{ height: '200px', fontSize: '16px!important' }"
+                  [modules]="quillModules"
+                >
+                </quill-editor>
               </div>
-            </div>
-            <div class="pb-2">
-              <label for="SubTitle"> SubTitle</label>
-              <input
-                type="text"
-                pInputText
-                class="w-100"
-                formControlName="SubTitleEn"
-              />
+
               <!--Required message-->
               <div
-                class="validationMessage"
+                class="validationMessage mt-5"
                 *ngIf="
-                  newAboutForm.get('SubTitleEn')?.invalid &&
-                  newAboutForm.get('SubTitleEn')?.touched
+                  newAboutForm.get('contentEn')?.invalid &&
+                  newAboutForm.get('contentEn')?.touched
                 "
               >
-                <p class="p-0 m-0">* Field mustn't be empty.</p>
-              </div>
-            </div>
-            <div class="d-flex flex-column pb-2">
-              <label for="Title">Context</label>
-              <textarea
-                rows="5"
-                cols="30"
-                pInputTextarea
-                formControlName="TextEn"
-              >
-              </textarea>
-              <!--Required message-->
-              <div
-                class="validationMessage"
-                *ngIf="
-                  newAboutForm.get('TextEn')?.invalid &&
-                  newAboutForm.get('TextEn')?.touched
-                "
-              >
-                <p class="p-0 m-0">* Field mustn't be empty.</p>
+                <p class="p-0 m-0">*Field mustn't be empty.</p>
               </div>
             </div>
           </div>
         </p-tabPanel>
         <p-tabPanel header="Rus">
           <div class="ru_form">
-            <div class="pb-2">
-              <label for="Title"> Заголовок</label>
-              <input
-                type="text"
-                pInputText
-                class="w-100"
-                formControlName="TitleRu"
-              />
-              <!--Required message-->
-              <div
-                class="validationMessage"
-                *ngIf="
-                  newAboutForm.get('TitleRu')?.invalid &&
-                  newAboutForm.get('TitleRu')?.touched
-                "
-              >
-                <p class="p-0 m-0">* Поле не должно быть пустым.</p>
+            <div>
+              <div class="d-flex flex-column pb-2 h-100">
+                <label for="Title">Kонтекст</label>
+                <quill-editor
+                  formControlName="contentRu"
+                  [style]="{ height: '200px', fontSize: '16px!important' }"
+                  [modules]="quillModules"
+                >
+                </quill-editor>
               </div>
-            </div>
-            <div class="pb-2">
-              <label for="SubTitle"> Подзаголовок</label>
-              <input
-                type="text"
-                pInputText
-                class="w-100"
-                formControlName="SubTitleRu"
-              />
+
               <!--Required message-->
               <div
-                class="validationMessage"
+                class="validationMessage mt-5"
                 *ngIf="
-                  newAboutForm.get('SubTitleRu')?.invalid &&
-                  newAboutForm.get('SubTitleRu')?.touched
-                "
-              >
-                <p class="p-0 m-0">* Поле не должно быть пустым.</p>
-              </div>
-            </div>
-            <div class="d-flex flex-column pb-2">
-              <label for="Title"> Контекст</label>
-              <textarea
-                rows="5"
-                cols="30"
-                pInputTextarea
-                formControlName="TextRu"
-              >
-              </textarea>
-              <!--Required message-->
-              <div
-                class="validationMessage"
-                *ngIf="
-                  newAboutForm.get('TextRu')?.invalid &&
-                  newAboutForm.get('TextRu')?.touched
+                  newAboutForm.get('contentRu')?.invalid &&
+                  newAboutForm.get('contentRu')?.touched
                 "
               >
                 <p class="p-0 m-0">* Поле не должно быть пустым.</p>
@@ -194,21 +85,34 @@
           </div>
         </p-tabPanel>
       </p-tabView>
-
-      <input
-        type="file"
-        accept="image/*"
-        (change)="onFileSelected($event)"
-        class="form-control"
-        id="uploadfile"
-      />
+      <!-- Display images if they exist -->
+      <div *ngIf="images && images.length > 0" class="pt-5">
+        <div
+          *ngFor="let img of images; trackBy: trackByAttachmentUrl"
+          class="bgImg row m-0 p-0"
+        >
+          <div class="col-lg-6 m-0 p-0">
+            <img [src]="img.attachmentUrl" alt="Attachment" />
+          </div>
+        </div>
+      </div>
+      <div class="pt-5">
+        <input
+          type="file"
+          accept="image/*"
+          (change)="onFileSelected($event)"
+          class="form-control"
+          id="uploadfile"
+          multiple
+        />
+      </div>
 
       <div class="d-flex justify-content-end pt-4">
         <p-button
           label="Əlavə et"
           icon="fa-solid fa-plus"
           [disabled]="newAboutForm.invalid"
-          
+          (click)="submitForm()"
         />
       </div>
     </form>

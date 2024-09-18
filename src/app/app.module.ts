@@ -12,6 +12,7 @@ import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { MessagesModule } from 'primeng/messages';
 import { MessageInterceptor } from './core/services/message-interceptor.service';
+import { QuillModule } from 'ngx-quill';
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,6 +26,7 @@ import { MessageInterceptor } from './core/services/message-interceptor.service'
     HttpClientModule,
     ToastModule,
     MessagesModule,
+    QuillModule.forRoot(), 
   ],
   providers: [
     provideAnimationsAsync(),

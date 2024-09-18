@@ -1,34 +1,77 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { UploadEvent } from 'primeng/fileupload';
+import { FormBuilder, Validators } from '@angular/forms';
 import { finalize } from 'rxjs';
 import { MessageService } from 'primeng/api';
 import { HomeService } from '../../../core/services/home.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import Quill from 'quill'; // Correct import
+
+// Register custom fonts
+const Font = Quill.import('formats/font') as any;
+Font.whitelist = ['chooseFont', 'poppins', 'arial', 'times New Roman']; // Adjust the font list
+Quill.register(Font, true);
 
 @Component({
   selector: 'app-new-home-page',
   templateUrl: './new-home-page.component.html',
-  styleUrl: './new-home-page.component.scss',
+  styleUrls: ['./new-home-page.component.scss'],
 })
 export class NewHomePageComponent implements OnInit {
   newHomePageForm: any;
   showSpinner = false;
-  buttonSpinner=false;
+  buttonSpinner = false;
   backgroundImage?: any;
   homePageId: any;
 
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
+    private router: Router,
     private homeService: HomeService,
     private messageService: MessageService
   ) {}
 
+  // Quill modules with font customization
+  quillModules: any = {
+    toolbar: [
+      ['bold', 'italic', 'underline', 'strike'], // toggled buttons
+      [
+        'blockquote',
+        //'code-block'
+      ],
+
+      [{ header: 1 }, { header: 2 }], // custom button values
+      [{ list: 'ordered' }, { list: 'bullet' }],
+      [
+        //{ 'script': 'sub'},
+        // { 'script': 'super' }
+      ], // superscript/subscript
+
+      [{ indent: '-1' }, { indent: '+1' }], // outdent/indent
+
+      [{ direction: 'rtl' }], // text direction
+
+      [{ size: ['small', false, 'large', 'huge'] }], // custom dropdown
+      [{ header: [1, 2, 3, 4, 5, 6, false] }],
+
+      [{ color: [] }, { background: [] }], // dropdown with defaults from theme
+      //[{ 'font':  ['arial']}],
+      [{ font: Font.whitelist }],
+      [{ align: [] }],
+
+      ['clean'], // remove formatting button
+
+      [
+        'link',
+        //'image',
+        //'video'
+      ],
+    ],
+  };
+
   ngOnInit(): void {
     this.initForm();
-    if (this.homePageId) this.getHomePageInfoById(this.homePageId);
-    this.route.paramMap.subscribe(params => {
+    this.route.paramMap.subscribe((params) => {
       this.homePageId = +params.get('id')!;
       if (this.homePageId) {
         this.getHomePageInfoById(this.homePageId);
@@ -58,8 +101,7 @@ export class NewHomePageComponent implements OnInit {
       .pipe(finalize(() => (this.showSpinner = false)))
       .subscribe(
         (response) => {
-          console.log("response", response);
-          this.backgroundImage=response.backgroundImageUrl;
+          this.backgroundImage = response.backgroundImageUrl;
           this.newHomePageForm.setValue({
             titleAz: response.titleAz,
             subTitleAz: response.subTitleAz,
@@ -90,8 +132,7 @@ export class NewHomePageComponent implements OnInit {
     }
   }
 
-  submitProject() {
-    // console.log(this.newHomePageForm.get('state')!.value);
+  submit() {
     const formData = new FormData();
     formData.append('titleAz', this.newHomePageForm.get('titleAz')!.value);
     formData.append(
@@ -115,6 +156,7 @@ export class NewHomePageComponent implements OnInit {
     if (this.backgroundImage) {
       formData.append('backgroundImage', this.backgroundImage);
     }
+
     if (this.homePageId) {
       this.buttonSpinner = true;
       formData.append('id', this.homePageId);
@@ -130,29 +172,17 @@ export class NewHomePageComponent implements OnInit {
         .subscribe(
           () => {
             console.log('Contact updated successfully');
-            this.messageService.add({
-              severity: 'success',
-              summary: 'Uğurlu',
-              detail: 'Məlumat müvəffəqiyyətlə yeniləndi!',
-              life: 2000,
-            });
             this.newHomePageForm.reset();
+            this.router.navigate(['/homepage']);
           },
           (error) => {
             console.error('Error updating contact:', error);
-            this.messageService.add({
-              severity: 'error',
-              summary: 'Xəbərdarlıq',
-              detail: error
-                ? error?.error?.error?.errors?.join('\n')
-                : 'Məlumat yenilənmədi!',
-            });
           }
         );
       return;
     }
+
     this.buttonSpinner = true;
-    console.log('FormData2', formData);
     this.homeService
       .addHomePageInfo(formData)
       .pipe(
@@ -164,22 +194,11 @@ export class NewHomePageComponent implements OnInit {
       )
       .subscribe(
         () => {
-          this.messageService.add({
-            severity: 'success',
-            summary: 'Uğurlu',
-            detail: 'Yeni ana səhifə məlumatı müvəffəqiyyətlə əlavə edildi!',
-          });
           console.log('Contact added successfully');
           this.newHomePageForm.reset();
+          this.router.navigate(['/homepage']);
         },
         (error) => {
-          this.messageService.add({
-            severity: 'error',
-            summary: 'Xəbərdarlıq',
-            detail: error
-              ? error?.error?.error?.errors?.join('\n')
-              : 'Məlumat əlavə edilmədi!',
-          });
           console.error('Error adding contact:', error);
         }
       );

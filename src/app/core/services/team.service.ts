@@ -46,4 +46,10 @@ export class TeamService {
       observe: 'response',
     });
   }
+  deleteMember(id: number) {
+    return this.http.delete<any>(`${environment.employees}/${id}`, {
+      observe: 'response',
+    });
+  }
+
 }

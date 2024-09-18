@@ -46,19 +46,27 @@
         </p-tabPanel>
       </p-tabView>
 
-      <input
-        type="file"
-        accept="image/*"
-        (change)="onFileSelected($event)"
-        class="form-control"
-        id="uploadfile"
-      />
+      @if(iconImg){
+      <div class="bgImg ps-3 py-2">
+        <img [src]="iconImg" alt="" />
+      </div>
+      }
+
+      <div class="pt-3">
+        <input
+          type="file"
+          accept="image/*"
+          (change)="onFileSelected($event)"
+          class="form-control"
+          id="uploadfile"
+        />
+      </div>
 
       <div class="d-flex justify-content-end pt-4">
         <p-button
           label="Əlavə et"
           icon="fa-solid fa-plus"
-          (onClick)="Submit()"
+          (onClick)="submit()"
         />
       </div>
     </form>

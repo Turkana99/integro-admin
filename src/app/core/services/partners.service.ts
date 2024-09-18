@@ -47,4 +47,9 @@ export class PartnersService {
       observe: 'response',
     });
   }
+  deletePartner(id: number) {
+    return this.http.delete<any>(`${environment.partners}/${id}`, {
+      observe: 'response',
+    });
+  }
 }

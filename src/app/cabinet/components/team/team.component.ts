@@ -1,30 +1,39 @@
 import { Component } from '@angular/core';
 import { finalize } from 'rxjs';
 import { TeamService } from '../../../core/services/team.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-team',
   templateUrl: './team.component.html',
   styleUrl: './team.component.scss',
 })
 export class TeamComponent {
-  ELEMENT_DATA: any;
+  members: any;
   showSpinner = false;
   pageSize = 10;
   pageIndex = 0;
-  constructor(private teamService: TeamService) {}
+  constructor(private teamService: TeamService, private router: Router) {}
 
   displayedColumns: any[] = [
     {
-      key: 'title',
-      name: 'Başlıq',
+      key: 'fullNameAz',
+      name: 'Ad',
     },
     {
-      key: 'subTitle',
-      name: 'Alt başlıq',
+      key: 'positionAz',
+      name: 'Vəzifəsi',
     },
     {
-      key: 'text',
-      name: 'Məzmun',
+      key: 'instagramUrl',
+      name: 'Instagram adresi',
+    },
+    {
+      key: 'facebookUrl',
+      name: 'Facebook adresi',
+    },
+    {
+      key: 'linkedinUrl',
+      name: 'Linkedin adresi',
     },
   ];
 
@@ -32,15 +41,12 @@ export class TeamComponent {
     console.log('event', $event);
   }
 
-  onPageChange($event: any) {
-    this.getMembers($event.pageSize, $event.pageIndex);
-  }
 
   getMembers(pageSize: number, pageIndex: number) {
     this.teamService
       .getMembers({
         pageSize: pageSize,
-        pageIndex: pageIndex + 1,
+        pageIndex: pageIndex,
       })
       .pipe(
         finalize(() => {
@@ -52,7 +58,8 @@ export class TeamComponent {
       .subscribe(
         (response) => {
           console.log('response', response);
-          this.ELEMENT_DATA = response.items;
+          this.members = response.body.items;
+          console.log('Services', this.members);
         },
         (error) => {
           console.error('Error fetching data:', error);
@@ -62,5 +69,19 @@ export class TeamComponent {
 
   ngOnInit(): void {
     this.getMembers(this.pageSize, this.pageIndex);
+  }
+  
+  onPageChange($event: any) {
+    this.getMembers($event.pageSize, $event.pageIndex);
+  }
+
+  deleteMember($event: any) {
+    this.teamService.deleteMember($event.id).subscribe(() => {
+      this.getMembers(this.pageSize, this.pageIndex);
+    });
+  }
+
+  editMember(id: any) {
+    this.router.navigate(['/new-member', id]);
   }
 }

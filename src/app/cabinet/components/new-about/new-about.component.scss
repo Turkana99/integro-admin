@@ -9,4 +9,70 @@
       color: $main-color;
     }
   }
+  ::ng-deep .p-button {
+    border-radius: 8px;
+    background-color: $mainInt-color;
+    border: none;
+  }
+
+  label {
+    font-family: "Poppins", sans-serif !important;
+    font-size: 16px !important;
+    padding: 5px 0px;
+  }
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 10px 0;
+  }
+}
+
+//Quill font style
+//default
+::ng-deep .ql-picker-label[data-value="chooseFont"],
+::ng-deep .ql-picker-item[data-value="chooseFont"],
+::ng-deep .ql-picker-label.ql-active[data-value="chooseFont"] {
+  &::before {
+    content: "Font seçin" !important;
+  }
+}
+
+//Poppins
+::ng-deep .ql-picker-label[data-value="poppins"],
+::ng-deep .ql-picker-item[data-value="poppins"],
+::ng-deep .ql-picker-label.ql-active[data-value="poppins"] {
+  &::before {
+    content: "Poppins" !important;
+    font-family: "Poppins", sans-serif;
+  }
+}
+::ng-deep .ql-font-inter {
+  font-family: "Poppins", sans-serif;
+}
+
+//Arial
+::ng-deep .ql-picker-label[data-value="arial"],
+::ng-deep .ql-picker-item[data-value="arial"],
+::ng-deep .ql-picker-label.ql-active[data-value="arial"] {
+  &::before {
+    content: "Arial" !important;
+    font-family: "Arial", sans-serif;
+  }
+}
+::ng-deep .ql-font-inter {
+  font-family: "Arial", sans-serif;
+}
+
+//Times new roman
+::ng-deep .ql-picker-label[data-value="times New Roman"],
+::ng-deep .ql-picker-item[data-value="times New Roman"],
+::ng-deep .ql-picker-label.ql-active[data-value="times New Roman"] {
+  &::before {
+    content: "Times New Roman" !important;
+    font-family: "Times New Roman", sans-serif;
+  }
+}
+::ng-deep .ql-font-inter {
+  font-family: "Times New Roman", serif;
 }

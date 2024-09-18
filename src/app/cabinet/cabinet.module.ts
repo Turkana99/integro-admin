@@ -33,6 +33,9 @@ import { MessagesModule } from 'primeng/messages';
 import { ToastModule } from 'primeng/toast';
 import { HomeService } from '../core/services/home.service';
 import { MessageService } from 'primeng/api';
+import { QuillModule } from 'ngx-quill';
+import { AboutService } from '../core/services/about.service';
+import { OurServicesService } from '../core/services/our-services.service';
 
 @NgModule({
   declarations: [
@@ -71,7 +74,8 @@ import { MessageService } from 'primeng/api';
     FileUploadModule,
     MessagesModule,
     ToastModule,
+    QuillModule.forRoot(),
   ],
-  providers: [HomeService,MessageService]
+  providers: [HomeService, MessageService, AboutService, OurServicesService],
 })
 export class CabinetModule {}

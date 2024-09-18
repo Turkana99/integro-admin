@@ -42,4 +42,9 @@ export class ContactsService {
       observe: 'response',
     });
   }
+  deleteContact(id: number) {
+    return this.http.delete<any>(`${environment.contacts}/${id}`, {
+      observe: 'response',
+    });
+  }
 }

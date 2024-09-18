@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BlogsService } from '../../../core/services/blogs.service';
 import { finalize } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-blogs',
@@ -8,40 +9,36 @@ import { finalize } from 'rxjs';
   styleUrl: './blogs.component.scss',
 })
 export class BlogsComponent implements OnInit {
-  ELEMENT_DATA: any;
+  blogs: any;
   showSpinner = false;
   pageSize = 10;
   pageIndex = 0;
-  constructor(private blogs: BlogsService) {}
+  constructor(private blogService: BlogsService, private router: Router) {}
 
   displayedColumns: any[] = [
     {
-      key: 'title',
+      key: 'titleAz',
       name: 'Başlıq',
     },
     {
-      key: 'subTitle',
-      name: 'Alt başlıq',
+      key: 'shortDescriptionAz',
+      name: 'Qısa məzmun',
     },
     {
-      key: 'text',
+      key: 'descriptionAz',
       name: 'Məzmun',
     },
   ];
 
-  logData($event: any) {
-    console.log('event', $event);
+  ngOnInit(): void {
+    this.getBlogPageInfo(this.pageSize, this.pageIndex);
   }
 
-  onPageChange($event: any) {
-    this.getBlogs($event.pageSize, $event.pageIndex);
-  }
-
-  getBlogs(pageSize: number, pageIndex: number) {
-    this.blogs
+  getBlogPageInfo(pageSize: number, pageIndex: number) {
+    this.blogService
       .getBlogs({
         pageSize: pageSize,
-        pageIndex: pageIndex + 1,
+        pageIndex: pageIndex,
       })
       .pipe(
         finalize(() => {
@@ -53,7 +50,8 @@ export class BlogsComponent implements OnInit {
       .subscribe(
         (response) => {
           console.log('response', response);
-          this.ELEMENT_DATA = response.items;
+          this.blogs = response.body.items;
+          console.log('About', this.blogs);
         },
         (error) => {
           console.error('Error fetching data:', error);
@@ -61,7 +59,18 @@ export class BlogsComponent implements OnInit {
       );
   }
 
-  ngOnInit(): void {
-    this.getBlogs(this.pageSize, this.pageIndex);
+  onPageChange($event: any) {
+    this.getBlogPageInfo($event.pageSize, $event.pageIndex);
+  }
+
+  editBlogPageInfo(id: any) {
+    this.router.navigate(['/new-blog', id]);
+  }
+
+  
+  deleteBlog($event: any) {
+    this.blogService.deleteBlog($event.id).subscribe(() => {
+      this.getBlogPageInfo(this.pageSize, this.pageIndex);
+    });
   }
 }

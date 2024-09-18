@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { OurServicesService } from '../../../core/services/our-services.service';
 import { finalize } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-services',
@@ -8,11 +9,14 @@ import { finalize } from 'rxjs/operators';
   styleUrl: './services.component.scss',
 })
 export class ServicesComponent implements OnInit {
-  ELEMENT_DATA: any;
+  services: any;
   showSpinner = false;
   pageSize = 10;
   pageIndex = 0;
-  constructor(private ourServices: OurServicesService) {}
+  constructor(
+    private ourServices: OurServicesService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.getServices(this.pageSize, this.pageIndex);
@@ -20,16 +24,8 @@ export class ServicesComponent implements OnInit {
 
   displayedColumns: any[] = [
     {
-      key: 'title',
+      key: 'titleAz',
       name: 'Başlıq',
-    },
-    {
-      key: 'subTitle',
-      name: 'Alt başlıq',
-    },
-    {
-      key: 'text',
-      name: 'Məzmun',
     },
   ];
 
@@ -41,7 +37,7 @@ export class ServicesComponent implements OnInit {
     this.ourServices
       .getServices({
         pageSize: pageSize,
-        pageIndex: pageIndex + 1,
+        pageIndex: pageIndex,
       })
       .pipe(
         finalize(() => {
@@ -53,7 +49,8 @@ export class ServicesComponent implements OnInit {
       .subscribe(
         (response) => {
           console.log('response', response);
-          this.ELEMENT_DATA = response.items;
+          this.services = response.body.items;
+          console.log('Services', this.services);
         },
         (error) => {
           console.error('Error fetching data:', error);
@@ -66,8 +63,12 @@ export class ServicesComponent implements OnInit {
   }
 
   deleteService($event: any) {
-    this.ourServices.deleteService($event.id).subscribe();
+    this.ourServices.deleteService($event.id).subscribe(() => {
+      this.getServices(this.pageSize, this.pageIndex);
+    });
   }
 
-  editService($event: any) {}
+  editService(id: any) {
+    this.router.navigate(['/new-service', id]);
+  }
 }

@@ -42,4 +42,9 @@ export class BlogsService {
       observe: 'response',
     });
   }
+  deleteBlog(id: number) {
+    return this.http.delete<any>(`${environment.blogs}/${id}`, {
+      observe: 'response',
+    });
+  }
 }

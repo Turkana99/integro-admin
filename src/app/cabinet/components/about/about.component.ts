@@ -1,31 +1,68 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HomeService } from '../../../core/services/home.service';
+import { AboutService } from '../../../core/services/about.service';
+import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-about',
   templateUrl: './about.component.html',
   styleUrl: './about.component.scss',
 })
-export class AboutComponent {
-  ELEMENT_DATA: any;
+export class AboutComponent implements OnInit{
+  abouts: any;
   showSpinner = false;
-  constructor(private homeService: HomeService) {}
+  pageSize = 10;
+  pageIndex = 0;
+
+  constructor(
+    private aboutService: AboutService,
+    private router: Router,
+    private messageService: MessageService
+  ) {}
+
   displayedColumns: any[] = [
     {
-      key: 'title',
-      name: 'Başlıq',
-    },
-    {
-      key: 'subTitle',
-      name: 'Alt başlıq',
-    },
-    {
-      key: 'text',
+      key: 'contentAz',
       name: 'Məzmun',
-    },
+    }
   ];
-
-  logData($event: any) {
-    console.log('event', $event);
+  ngOnInit(): void {
+    this.getAboutPageInfo(this.pageSize, this.pageIndex);
   }
+  getAboutPageInfo(pageSize: number, pageIndex: number) {
+    this.aboutService
+      .getAboutPageInfo({
+        pageSize: pageSize,
+        pageIndex: pageIndex,
+      })
+      .pipe(
+        finalize(() => {
+          setTimeout(() => {
+            this.showSpinner = false;
+          }, 200);
+        })
+      )
+      .subscribe(
+        (response) => {
+          console.log('response', response);
+          this.abouts = response.body.items;
+          console.log('About', this.abouts);
+        },
+        (error) => {
+          console.error('Error fetching data:', error);
+        }
+      );
+  }
+
+  onPageChange($event: any) {
+    this.getAboutPageInfo($event.pageSize, $event.pageIndex);
+  }
+
+  editAboutPageInfo(id: any) {
+    this.router.navigate(['/new-about', id]);
+  }
+
+  
 }

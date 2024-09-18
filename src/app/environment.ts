@@ -10,4 +10,5 @@ export const environment = {
   pageSettings: `${apiUrl}/PageSettings`,
   partners: `${apiUrl}/Partners`,
   services: `${apiUrl}/Services`,
+  about: `${apiUrl}/Abouts`,
 };

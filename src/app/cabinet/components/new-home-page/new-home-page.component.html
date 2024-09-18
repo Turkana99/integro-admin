@@ -47,24 +47,23 @@
               </div>
             </div>
             <div class="d-flex flex-column pb-2">
-              <label for="Title"> Məzmun</label>
-              <textarea
-                rows="5"
-                cols="30"
-                pInputTextarea
+              <label for="Title">Məzmun</label>
+              <quill-editor
                 formControlName="textAz"
+                [style]="{ height: '200px' }"
+                [modules]="quillModules"
               >
-              </textarea>
-              <!--Required message-->
-              <div
-                class="validationMessage"
-                *ngIf="
-                  newHomePageForm.get('textAz')?.invalid &&
-                  newHomePageForm.get('textAz')?.touched
-                "
-              >
-                <p class="p-0 m-0">* Xana boş ola bilməz.</p>
-              </div>
+              </quill-editor>
+            </div>
+            <!--Required message-->
+            <div
+              class="validationMessage mt-5"
+              *ngIf="
+                newHomePageForm.get('textAz')?.invalid &&
+                newHomePageForm.get('textAz')?.touched
+              "
+            >
+              <p class="p-0 m-0">* Xana boş ola bilməz.</p>
             </div>
           </div>
         </p-tabPanel>
@@ -110,23 +109,22 @@
             </div>
             <div class="d-flex flex-column pb-2">
               <label for="Title">Context</label>
-              <textarea
-                rows="5"
-                cols="30"
-                pInputTextarea
+              <quill-editor
                 formControlName="textEn"
+                [style]="{ height: '200px' }"
+                [modules]="quillModules"
               >
-              </textarea>
-              <!--Required message-->
-              <div
-                class="validationMessage"
-                *ngIf="
-                  newHomePageForm.get('textEn')?.invalid &&
-                  newHomePageForm.get('textEn')?.touched
-                "
-              >
-                <p class="p-0 m-0">* Field mustn't be empty.</p>
-              </div>
+              </quill-editor>
+            </div>
+            <!--Required message-->
+            <div
+              class="validationMessage mt-5"
+              *ngIf="
+                newHomePageForm.get('textEn')?.invalid &&
+                newHomePageForm.get('textEn')?.touched
+              "
+            >
+              <p class="p-0 m-0">* Field mustn't be empty.</p>
             </div>
           </div>
         </p-tabPanel>
@@ -171,45 +169,49 @@
               </div>
             </div>
             <div class="d-flex flex-column pb-2">
-              <label for="Title"> Контекст</label>
-              <textarea
-                rows="5"
-                cols="30"
-                pInputTextarea
+              <label for="Title">Kонтекст</label>
+              <quill-editor
                 formControlName="textRu"
+                [style]="{ height: '200px', fontSize: '16px!important' }"
+                [modules]="quillModules"
               >
-              </textarea>
-              <!--Required message-->
-              <div
-                class="validationMessage"
-                *ngIf="
-                  newHomePageForm.get('textRu')?.invalid &&
-                  newHomePageForm.get('textRu')?.touched
-                "
-              >
-                <p class="p-0 m-0">* Поле не должно быть пустым.</p>
-              </div>
+              </quill-editor>
+            </div>
+            <!--Required message-->
+            <div
+              class="validationMessage mt-5"
+              *ngIf="
+                newHomePageForm.get('textRu')?.invalid &&
+                newHomePageForm.get('textRu')?.touched
+              "
+            >
+              <p class="p-0 m-0">* Поле не должно быть пустым.</p>
             </div>
           </div>
         </p-tabPanel>
       </p-tabView>
+
       @if(backgroundImage){
-      <img [src]="backgroundImage" alt="" class="mb-3" />
+      <div class="pt-5 bgImg">
+        <img [src]="backgroundImage" alt="" />
+      </div>
       }
 
-      <input
-        type="file"
-        accept="image/*"
-        (change)="onFileSelected($event)"
-        class="form-control"
-        id="uploadfile"
-      />
+      <div class="pt-5">
+        <input
+          type="file"
+          accept="image/*"
+          (change)="onFileSelected($event)"
+          class="form-control"
+          id="uploadfile"
+        />
+      </div>
 
       <div class="d-flex justify-content-end pt-4">
         <p-button
           label="Əlavə et"
           icon="fa-solid fa-plus"
-          (onClick)="submitProject()"
+          (onClick)="submit()"
           [disabled]="newHomePageForm.invalid"
         />
       </div>

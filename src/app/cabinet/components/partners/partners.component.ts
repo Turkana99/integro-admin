@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { PartnersService } from '../../../core/services/partners.service';
 import { finalize } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-partners',
@@ -8,11 +9,11 @@ import { finalize } from 'rxjs';
   styleUrl: './partners.component.scss',
 })
 export class PartnersComponent {
-  ELEMENT_DATA: any;
+  partners: any;
   showSpinner = false;
   pageSize = 10;
   pageIndex = 0;
-  constructor(private partnersService: PartnersService) {}
+  constructor(private partnersService: PartnersService, private router: Router) {}
 
   ngOnInit(): void {
     this.getPartners(this.pageSize, this.pageIndex);
@@ -20,16 +21,8 @@ export class PartnersComponent {
 
   displayedColumns: any[] = [
     {
-      key: 'title',
-      name: 'Başlıq',
-    },
-    {
-      key: 'subTitle',
-      name: 'Alt başlıq',
-    },
-    {
-      key: 'text',
-      name: 'Məzmun',
+      key: 'logo',
+      name: 'İkon',
     },
   ];
 
@@ -41,7 +34,7 @@ export class PartnersComponent {
     this.partnersService
       .getPartners({
         pageSize: pageSize,
-        pageIndex: pageIndex + 1,
+        pageIndex: pageIndex,
       })
       .pipe(
         finalize(() => {
@@ -53,7 +46,8 @@ export class PartnersComponent {
       .subscribe(
         (response) => {
           console.log('response', response);
-          this.ELEMENT_DATA = response.items;
+          this.partners = response.body.items;
+          console.log('Partners', this.partners);
         },
         (error) => {
           console.error('Error fetching data:', error);
@@ -63,5 +57,15 @@ export class PartnersComponent {
 
   onPageChange($event: any) {
     this.getPartners($event.pageSize, $event.pageIndex);
+  }
+
+  deletePartner($event: any) {
+    this.partnersService.deletePartner($event.id).subscribe(() => {
+      this.getPartners(this.pageSize, this.pageIndex);
+    });
+  }
+
+  editPartner(id: any) {
+    this.router.navigate(['/new-partner', id]);
   }
 }

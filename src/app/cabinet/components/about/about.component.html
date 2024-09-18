@@ -6,17 +6,18 @@
     </div>
   </div>
   <div class="data_table">
+    @if (abouts && abouts.length) {
     <!--Data table-->
     <table-togglable-columns
-      [dataSource]="ELEMENT_DATA"
+      [dataSource]="abouts"
       [displayedColumns]="displayedColumns"
       [paginator]="true"
       [editButton]="true"
       editButtonText="düzəliş et"
-      [deleteButton]="true"
+      [deleteButton]="false"
       deleteButtonText="sil"
-      (onEdit)="logData($event)"
-      (onDelete)="logData($event)"
+      (onEdit)="editAboutPageInfo($event.id)"
     ></table-togglable-columns>
+    }
   </div>
 </div>
