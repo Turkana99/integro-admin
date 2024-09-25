@@ -13,7 +13,10 @@ export class ContactComponent {
   showSpinner = false;
   pageSize = 10;
   pageIndex = 0;
-  constructor(private contactsService: ContactsService, private router: Router) {}
+  constructor(
+    private contactsService: ContactsService,
+    private router: Router
+  ) {}
   displayedColumns: any[] = [
     {
       key: 'phoneNumber',
@@ -90,7 +93,6 @@ export class ContactComponent {
     this.router.navigate(['/new-contact', id]);
   }
 
-  
   deleteContact($event: any) {
     this.contactsService.deleteContact($event.id).subscribe(() => {
       this.getContactInfo(this.pageSize, this.pageIndex);
