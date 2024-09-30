@@ -88,5 +88,10 @@
     mat-cell {
       padding: 20px 10px;
     }
+
+    mat-header-cell,
+    mat-cell {
+      min-width: 400px;
+    }
   }
 }

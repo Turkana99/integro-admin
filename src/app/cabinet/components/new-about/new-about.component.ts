@@ -108,7 +108,8 @@ export class NewAboutComponent implements OnInit {
     formData.append('contentRu', this.newAboutForm.get('contentRu')!.value);
 
     this.selectedFiles.forEach((file, index) => {
-      formData.append(`file${index + 1}`, file);
+      console.log('file' + (index + 1), file);
+      formData.append(`attachment`, file);
     });
 
     // Append the `id` only if it's not null

@@ -122,24 +122,25 @@ mat-table.material-table {
 }
 /*Scroll style end*/
 
-
-
 /* Include Google Fonts or system fonts */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
 .ql-editor {
-  font-family: 'Poppins', 'Arial', 'Times New Roman', sans-serif;
+  font-family: "Poppins", "Arial", "Times New Roman", sans-serif;
 }
 
 .ql-font-roboto {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 .ql-font-arial {
-  font-family: 'Arial', sans-serif;
+  font-family: "Arial", sans-serif;
 }
 .ql-font-times-new-roman {
-  font-family: 'Times New Roman', serif;
+  font-family: "Times New Roman", serif;
 }
-
-
-
+.mat-sort-header-arrow {
+  color: white !important;
+}
+mat-header-cell {
+  user-select: none;
+}

@@ -6,5 +6,6 @@ div.right-side {
 
   .main-content {
     min-height: calc(100vh - 58px);
+    width: calc(100vw - 85px) !important;
   }
 }

@@ -7,7 +7,7 @@
   >
     @for (item of expandableFilteredColumns; track $index) {
     <ng-container [matColumnDef]="item.key">
-      <mat-header-cell *matHeaderCellDef [ngStyle]="{ flex: columnWidth }">
+      <mat-header-cell *matHeaderCellDef>
         @if(item.key != 'actions2'){
         <mat-form-field class="example-full-width" appearance="outline">
           <input
@@ -29,28 +29,27 @@
         </mat-form-field>
         }
       </mat-header-cell>
-      <mat-cell *matCellDef="let element" [ngStyle]="{ flex: columnWidth }">
+      <mat-cell *matCellDef="let element">
         {{ element[item] }}
       </mat-cell>
     </ng-container>
     } @for (item of filteredColumns; track $index) {
     <ng-container [matColumnDef]="item.key">
       @if(item.key=='actions'){
-      <mat-header-cell *matHeaderCellDef [ngStyle]="{ flex: columnWidth }">
+      <mat-header-cell *matHeaderCellDef>
         {{ item.name | titlecase }}
       </mat-header-cell>
       } @if(item.key!='actions'){
-      <mat-header-cell
-        *matHeaderCellDef
-        mat-sort-header
-        [ngStyle]="{ flex: columnWidth }"
-      >
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
         {{ item.name | titlecase }}
       </mat-header-cell>
       }
-      <mat-cell *matCellDef="let element" [ngStyle]="{ flex: columnWidth }">
+      <mat-cell *matCellDef="let element">
+        @if(!item.hasImage){
         {{ element[item.key] }}
-        @if(item.key == 'actions'){
+        } @if(item.hasImage){
+        <img [src]="element[item.key]" />
+        } @if(item.key == 'actions'){
         <div class="actions-buttons-wrapper ps-5 pe-0 m-0">
           <button
             mat-icon-button

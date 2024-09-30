@@ -23,15 +23,26 @@ export class MessageInterceptor implements HttpInterceptor {
       tap((event: any) => {
         if (event instanceof HttpResponse) {
           //successful responses
+          console.log('@@@@@req', req);
+          const isLogin =
+            req.url.split('/')[req.url.split('/').length - 1].toLowerCase() ==
+            'login';
           let method = req.method.toLowerCase();
           if (['post', 'put', 'patch', 'delete'].includes(method)) {
             this.messageService.add({
               severity: 'success',
               summary: 'Uğurlu',
-              detail: `Uğurla ${method == 'post' && 'əlavə edildi'}${
-                ['put', 'patch'].includes(method) && 'yeniləndi'
-              }${method == 'delete' && 'silindi'}`,
-              key: 'br',
+              detail: `Uğurla ${
+                method === 'post'
+                  ? isLogin
+                    ? 'giriş edildi'
+                    : 'əlavə edildi'
+                  : ['put', 'patch'].includes(method)
+                  ? 'yeniləndi'
+                  : method === 'delete'
+                  ? 'silindi'
+                  : ''
+              }`,
               life: 2000,
             });
           }

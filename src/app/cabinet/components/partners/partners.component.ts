@@ -13,7 +13,10 @@ export class PartnersComponent {
   showSpinner = false;
   pageSize = 10;
   pageIndex = 0;
-  constructor(private partnersService: PartnersService, private router: Router) {}
+  constructor(
+    private partnersService: PartnersService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.getPartners(this.pageSize, this.pageIndex);
@@ -21,8 +24,9 @@ export class PartnersComponent {
 
   displayedColumns: any[] = [
     {
-      key: 'logo',
+      key: 'attachmentUrl',
       name: 'İkon',
+      hasImage: true,
     },
   ];
 
