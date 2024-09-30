@@ -27,18 +27,16 @@ export class TeamService {
     });
   }
 
-  createMember(req: any) {
-    let form = new FormData();
-    for (const key of Object.keys(req)) {
-      form.append(key, req[key]);
-    }
-    return this.http.post<any>(environment.employees, form, {
-      observe: 'response',
-    });
+  createMember(req: any): Observable<any> {
+    return this.http.post<any>(environment.employees, req);
   }
 
-  updateMemberInfo(req: any) {
-    return this.http.put<any>(environment.employees, { observe: 'response' });
+  getMemberInfoWithId(id: string): Observable<any> {
+    return this.http.get<any>(`${environment.employees}/${id}`);
+  }
+
+  updateMemberInfo(req: any): Observable<any> {
+    return this.http.put<any>(environment.employees, req);
   }
 
   getActiveWithLang(lang: string) {
@@ -46,10 +44,10 @@ export class TeamService {
       observe: 'response',
     });
   }
+
   deleteMember(id: number) {
     return this.http.delete<any>(`${environment.employees}/${id}`, {
       observe: 'response',
     });
   }
-
 }

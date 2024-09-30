@@ -10,7 +10,7 @@ import { finalize } from 'rxjs';
   templateUrl: './about.component.html',
   styleUrl: './about.component.scss',
 })
-export class AboutComponent implements OnInit{
+export class AboutComponent implements OnInit {
   abouts: any;
   showSpinner = false;
   pageSize = 10;
@@ -26,7 +26,7 @@ export class AboutComponent implements OnInit{
     {
       key: 'contentAz',
       name: 'Məzmun',
-    }
+    },
   ];
   ngOnInit(): void {
     this.getAboutPageInfo(this.pageSize, this.pageIndex);
@@ -63,6 +63,4 @@ export class AboutComponent implements OnInit{
   editAboutPageInfo(id: any) {
     this.router.navigate(['/new-about', id]);
   }
-
-  
 }

@@ -1,0 +1,26 @@
+<div class="main px-5 py-5">
+    <div class="title d-flex justify-content-between align-items-center">
+      <div><h1>Səhifələr</h1></div>
+      <div>
+        <button routerLink="/new-pageSetting" class="px-4 py-2">Əlavə et</button>
+      </div>
+    </div>
+    <div class="data_table">
+      @if (pages && pages.length) {
+      <!--Data table-->
+      <table-togglable-columns
+        [dataSource]="pages"
+        [displayedColumns]="displayedColumns"
+        [paginator]="true"
+        [editButton]="true"
+        editButtonText="düzəliş et"
+        [deleteButton]="true"
+        deleteButtonText="sil"
+        (onEdit)="editPages($event.id)"
+        (onDelete)="deletePages($event)"
+        (onPage)="onPageChange($event)"
+      ></table-togglable-columns>
+      }
+    </div>
+  </div>
+  

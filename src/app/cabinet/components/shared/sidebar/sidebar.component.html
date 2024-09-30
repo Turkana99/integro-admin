@@ -27,7 +27,7 @@
         routerLink="main"
         [routerLinkActiveOptions]="{ exact: true }"
         routerLinkActive="router-link-active"
-        ><span class="material-symbols-outlined"> home </span>Home</a
+        ><span class="material-symbols-outlined"> home </span>Ana səhifə</a
       >
     </li>
     <li>
@@ -35,7 +35,7 @@
         routerLink="about"
         [routerLinkActiveOptions]="{ exact: true }"
         routerLinkActive="router-link-active"
-        ><span class="material-symbols-outlined"> info </span>About</a
+        ><span class="material-symbols-outlined"> info </span>Haqqımızda</a
       >
     </li>
     <li>
@@ -44,7 +44,7 @@
         [routerLinkActiveOptions]="{ exact: true }"
         routerLinkActive="router-link-active"
         ><span class="material-symbols-outlined"> volunteer_activism </span
-        >Services</a
+        >Xidmətlərimiz</a
       >
     </li>
     <li>
@@ -52,7 +52,7 @@
         routerLink="team"
         [routerLinkActiveOptions]="{ exact: true }"
         routerLinkActive="router-link-active"
-        ><span class="material-symbols-outlined"> groups </span>Team</a
+        ><span class="material-symbols-outlined"> groups </span>Əməkdaşlar</a
       >
     </li>
     <li>
@@ -60,7 +60,7 @@
         routerLink="partners"
         [routerLinkActiveOptions]="{ exact: true }"
         routerLinkActive="router-link-active"
-        ><span class="material-symbols-outlined"> handshake </span>Partners</a
+        ><span class="material-symbols-outlined"> handshake </span>Partnyorlar</a
       >
     </li>
     <li>
@@ -68,7 +68,7 @@
         routerLink="blogs"
         [routerLinkActiveOptions]="{ exact: true }"
         routerLinkActive="router-link-active"
-        ><span class="material-symbols-outlined"> rss_feed </span>Blogs</a
+        ><span class="material-symbols-outlined"> rss_feed </span>Məqalələr</a
       >
     </li>
     <li>
@@ -76,28 +76,49 @@
         routerLink="contact"
         [routerLinkActiveOptions]="{ exact: true }"
         routerLinkActive="router-link-active"
-        ><span class="material-symbols-outlined"> call </span>Contact</a
+        ><span class="material-symbols-outlined"> call </span>Əlaqə məlumatları</a
+      >
+    </li>
+    <li>
+      <a
+        routerLink="pageSettings"
+        [routerLinkActiveOptions]="{ exact: true }"
+        routerLinkActive="router-link-active"
+        ><span class="material-symbols-outlined"> pageless </span>Səhifələr</a
+      >
+    </li>
+    <li>
+      <a
+        routerLink="feedbacks"
+        [routerLinkActiveOptions]="{ exact: true }"
+        routerLinkActive="router-link-active"
+      >
+        <span class="material-symbols-outlined"> forum </span>Rəylər</a
+      >
+    </li>
+    <li>
+      <a
+        routerLink="evaluate"
+        [routerLinkActiveOptions]="{ exact: true }"
+        routerLinkActive="router-link-active"
+      >
+        <span class="material-symbols-outlined"> gavel </span>Qiymətləndirmə</a
       >
     </li>
     <h4>
-      <span>Account</span>
+      <span>Hesab</span>
       <div class="menu-separator"></div>
     </h4>
     <li>
       <a href="#"
         ><span class="material-symbols-outlined"> account_circle </span
-        >Profile</a
-      >
-    </li>
-    <li>
-      <a href="#"
-        ><span class="material-symbols-outlined"> settings </span>Settings</a
+        >Profil</a
       >
     </li>
   </ul>
   <div class="user-account">
     <div class="user-profile">
-      <img src="assets/images/profile-img.jpg" alt="Profile Image" />
+      <img src="assets/images/user.png" alt="Profile Image" />
       <div class="user-detail">
         <h3>{{ getUser()?.name }}</h3>
         <span>{{

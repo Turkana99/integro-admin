@@ -27,14 +27,12 @@ export class BlogsService {
     });
   }
 
-  createBlog(req: any) {
-    return this.http.post<any>(environment.blogs, req, {
-      observe: 'response',
-    });
+  createBlog(req: any): Observable<any> {
+    return this.http.post<any>(environment.blogs, req);
   }
 
-  updateBlogInfo(req: any) {
-    return this.http.put<any>(environment.blogs, { observe: 'response' });
+  updateBlogInfo(req: any): Observable<any> {
+    return this.http.put<any>(environment.blogs, req);
   }
 
   getActiveWithLang(lang: string) {

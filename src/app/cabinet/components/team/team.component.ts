@@ -78,6 +78,7 @@ export class TeamComponent {
   deleteMember($event: any) {
     this.teamService.deleteMember($event.id).subscribe(() => {
       this.getMembers(this.pageSize, this.pageIndex);
+      location.reload();
     });
   }
 

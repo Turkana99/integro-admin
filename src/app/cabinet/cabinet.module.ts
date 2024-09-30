@@ -36,6 +36,10 @@ import { MessageService } from 'primeng/api';
 import { QuillModule } from 'ngx-quill';
 import { AboutService } from '../core/services/about.service';
 import { OurServicesService } from '../core/services/our-services.service';
+import { PageSettingsComponent } from './components/page-settings/page-settings.component';
+import { NewPageSettingsComponent } from './components/new-page-settings/new-page-settings.component';
+import { FeedbacksComponent } from './components/feedbacks/feedbacks.component';
+import { EvaluateComponent } from './components/evaluate/evaluate.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +63,10 @@ import { OurServicesService } from '../core/services/our-services.service';
     NewPartnerComponent,
     NewServiceComponent,
     NewMemberComponent,
+    PageSettingsComponent,
+    NewPageSettingsComponent,
+    FeedbacksComponent,
+    EvaluateComponent,
   ],
   imports: [
     CommonModule,

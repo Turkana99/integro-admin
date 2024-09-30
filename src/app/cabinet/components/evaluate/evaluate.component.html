@@ -1,0 +1,22 @@
+<div class="main px-5 py-5">
+    <div class="title d-flex justify-content-between align-items-center">
+      <div><h1>Hüquqi dəyərləndirmə</h1></div>
+    </div>
+    <div class="data_table">
+      @if (evaluations && evaluations.length) {
+      <!--Data table-->
+      <table-togglable-columns
+        [dataSource]="evaluations"
+        [displayedColumns]="displayedColumns"
+        [paginator]="true"
+        [editButton]="false"
+        editButtonText="düzəliş et"
+        [deleteButton]="true"
+        deleteButtonText="sil"
+        (onDelete)="deleteEvaluation($event)"
+        (onPage)="onPageChange($event)"
+      ></table-togglable-columns>
+      }
+    </div>
+  </div>
+  

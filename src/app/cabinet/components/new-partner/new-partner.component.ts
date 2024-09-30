@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { PartnersService } from '../../../core/services/partners.service';
+import { UtilsSerice } from '../../../core/services/utils.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-new-partner',
@@ -9,34 +12,111 @@ import { PartnersService } from '../../../core/services/partners.service';
 })
 export class NewPartnerComponent implements OnInit {
   newPartnerForm: any;
-
+  showSpinner = false;
+  buttonSpinner = false;
+  iconImg?: any;
+  partnerId: any;
   constructor(
+    private fb: FormBuilder,
     private partnerService: PartnersService,
-    private fb: FormBuilder
+    private utilsService: UtilsSerice,
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
     this.initForm();
+    this.route.paramMap.subscribe((params) => {
+      this.partnerId = +params.get('id')!;
+      if (this.partnerId) {
+        this.getPartnerById(this.partnerId);
+      }
+    });
   }
-
-  onFileSelected(event: any) {
-    (this.newPartnerForm as FormGroup).controls['Logo'].setValue(
-      event.target.files[0]
-    );
-    console.log('this.newPartnerForm', this.newPartnerForm.value);
-  }
-
-  Submit() {
-    this.partnerService
-      .createPartner(this.newPartnerForm.value)
-      .subscribe((res) => {
-        console.log('res', res);
-      });
-  }
-
   initForm() {
     this.newPartnerForm = this.fb.group({
       Logo: null,
     });
+  }
+
+  getPartnerById(id: any) {
+    this.showSpinner = true;
+    this.partnerService
+      .getPartnersInfoById(id)
+      .pipe(finalize(() => (this.showSpinner = false)))
+      .subscribe(
+        (response) => {
+          console.log('resods', response);
+          this.iconImg = response.body.attachmentUrl;
+          this.newPartnerForm.setValue({
+            icon: response.body.attachmentUrl,
+          });
+        },
+        (error) => {
+          console.error('Error fetching project data:', error);
+        }
+      );
+  }
+
+  onFileSelected(event: any) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.iconImg = file;
+      this.newPartnerForm.controls['iconImg'].setValue(this.iconImg);
+      console.log(this.iconImg);
+    }
+  }
+
+  submit() {
+    const formData = new FormData();
+    if (this.iconImg) {
+      formData.append('logo', this.iconImg);
+    }
+
+    if (this.partnerId) {
+      this.buttonSpinner = true;
+      formData.append('id', this.partnerId);
+      this.partnerService
+        .updatePartnerInfo(formData)
+        .pipe(
+          finalize(() => {
+            setTimeout(() => {
+              this.buttonSpinner = false;
+            }, 200);
+          })
+        )
+        .subscribe(
+          () => {
+            console.log('Contact updated successfully');
+            this.newPartnerForm.reset();
+            this.router.navigate(['/partners']);
+          },
+          (error) => {
+            console.error('Error updating contact:', error);
+          }
+        );
+      return;
+    }
+
+    this.buttonSpinner = true;
+    this.partnerService
+      .createPartner(formData)
+      .pipe(
+        finalize(() => {
+          setTimeout(() => {
+            this.buttonSpinner = false;
+          }, 200);
+        })
+      )
+      .subscribe(
+        () => {
+          console.log('Contact added successfully');
+          this.newPartnerForm.reset();
+          this.router.navigate(['/partners']);
+        },
+        (error) => {
+          console.error('Error adding contact:', error);
+        }
+      );
   }
 }

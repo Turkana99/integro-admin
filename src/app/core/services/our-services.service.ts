@@ -27,14 +27,12 @@ export class OurServicesService {
     });
   }
 
-  createServiceInfo(req: any) {
-    return this.http.post<any>(environment.services, req, {
-      observe: 'response',
-    });
+  createServiceInfo(req: any): Observable<any> {
+    return this.http.post<any>(environment.services, req);
   }
-
-  updateServiceInfo(req: any) {
-    return this.http.put<any>(environment.services, { observe: 'response' });
+  
+  updateServiceInfo(req: any): Observable<any> {
+    return this.http.put<any>(environment.services, req);
   }
 
   getActiveWithLang(lang: string) {

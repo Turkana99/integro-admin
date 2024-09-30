@@ -8,7 +8,10 @@ export const environment = {
   employees: `${apiUrl}/Employees`,
   homePages: `${apiUrl}/HomePages`,
   pageSettings: `${apiUrl}/PageSettings`,
+  pageSettingsType:`${apiUrl}/PageSettings/getPageTypes`,
+  feedbacks:`${apiUrl}/FeedbackAndSuggestions`,
   partners: `${apiUrl}/Partners`,
   services: `${apiUrl}/Services`,
   about: `${apiUrl}/Abouts`,
+  evaluate: `${apiUrl}/CaseEvaluations`,
 };

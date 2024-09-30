@@ -8,12 +8,12 @@
         <p-tabPanel header="Azərbaycan">
           <div class="az_form">
             <div class="pb-2">
-              <label for="Title"> Tam ad</label>
+              <label for="Title"> Ad, soyad</label>
               <input
                 type="text"
                 pInputText
                 class="w-100"
-                formControlName="FullNameAz"
+                formControlName="fullNameAz"
               />
             </div>
             <div class="pb-2">
@@ -22,7 +22,7 @@
                 type="text"
                 pInputText
                 class="w-100"
-                formControlName="PositionAz"
+                formControlName="positionAz"
               />
             </div>
           </div>
@@ -35,16 +35,16 @@
                 type="text"
                 pInputText
                 class="w-100"
-                formControlName="FullNameEn"
+                formControlName="fullNameEn"
               />
             </div>
             <div class="pb-2">
-              <label for="SubTitle"> Position name</label>
+              <label for="SubTitle"> Position</label>
               <input
                 type="text"
                 pInputText
                 class="w-100"
-                formControlName="PositionEn"
+                formControlName="positionEn"
               />
             </div>
           </div>
@@ -57,7 +57,7 @@
                 type="text"
                 pInputText
                 class="w-100"
-                formControlName="FullNameRu"
+                formControlName="fullNameRu"
               />
             </div>
             <div class="pb-2">
@@ -66,7 +66,7 @@
                 type="text"
                 pInputText
                 class="w-100"
-                formControlName="PositionRu"
+                formControlName="positionRu"
               />
             </div>
           </div>
@@ -79,7 +79,7 @@
           type="text"
           pInputText
           class="w-100"
-          formControlName="InstagramUrl"
+          formControlName="instagramUrl"
         />
       </div>
 
@@ -89,7 +89,7 @@
           type="text"
           pInputText
           class="w-100"
-          formControlName="FacebookUrl"
+          formControlName="facebookUrl"
         />
       </div>
 
@@ -100,10 +100,12 @@
           type="text"
           pInputText
           class="w-100"
-          formControlName="LinkedinUrl"
+          formControlName="linkedinUrl"
         />
       </div>
-
+      <div *ngIf="coverImage">
+        <img [src]="coverImage" alt="" />
+      </div>
       <input
         type="file"
         accept="image/*"
@@ -116,7 +118,7 @@
         <p-button
           label="Əlavə et"
           icon="fa-solid fa-plus"
-          (onClick)="Submit()"
+          (onClick)="submit()"
         />
       </div>
     </form>

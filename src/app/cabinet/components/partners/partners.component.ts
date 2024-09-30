@@ -66,6 +66,7 @@ export class PartnersComponent {
   deletePartner($event: any) {
     this.partnersService.deletePartner($event.id).subscribe(() => {
       this.getPartners(this.pageSize, this.pageIndex);
+      location.reload();
     });
   }
 

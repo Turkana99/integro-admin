@@ -27,19 +27,12 @@ export class PartnersService {
     });
   }
 
-  createPartner(req: any) {
-    let form = new FormData();
-    for (const key of Object.keys(req)) {
-      form.append(key, req[key]);
-    }
-
-    return this.http.post<any>(environment.partners, form, {
-      observe: 'response',
-    });
+  createPartner(req: any): Observable<any> {
+    return this.http.post<any>(environment.partners, req);
   }
 
-  updatePartnerInfo(req: any) {
-    return this.http.put<any>(environment.partners, { observe: 'response' });
+  updatePartnerInfo(req: any): Observable<any> {
+    return this.http.put<any>(environment.partners, req);
   }
 
   getActiveWithLang(lang: string) {

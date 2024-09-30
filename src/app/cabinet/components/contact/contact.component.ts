@@ -35,10 +35,6 @@ export class ContactComponent {
       name: 'Facebook adresi',
     },
     {
-      key: 'addressAz',
-      name: 'Ünvan',
-    },
-    {
       key: 'twitterUrl',
       name: 'Twitter adresi',
     },
@@ -96,6 +92,7 @@ export class ContactComponent {
   deleteContact($event: any) {
     this.contactsService.deleteContact($event.id).subscribe(() => {
       this.getContactInfo(this.pageSize, this.pageIndex);
+      location.reload();
     });
   }
 }

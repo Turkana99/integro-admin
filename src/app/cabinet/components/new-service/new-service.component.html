@@ -16,6 +16,25 @@
                 formControlName="titleAz"
               />
             </div>
+            <div class="d-flex flex-column pb-2">
+              <label for="Title">Məzmun</label>
+              <quill-editor
+                formControlName="descriptionAz"
+                [style]="{ height: '200px' }"
+                [modules]="quillModules"
+              >
+              </quill-editor>
+            </div>
+            <!--Required message-->
+            <div
+              class="validationMessage mt-5"
+              *ngIf="
+                newServiceForm.get('descriptionAz')?.invalid &&
+                newServiceForm.get('descriptionAz')?.touched
+              "
+            >
+              <p class="p-0 m-0">* Xana boş ola bilməz.</p>
+            </div>
           </div>
         </p-tabPanel>
         <p-tabPanel header="İngilis">
@@ -28,6 +47,25 @@
                 class="w-100"
                 formControlName="titleEn"
               />
+            </div>
+            <div class="d-flex flex-column pb-2">
+              <label for="Title">Context</label>
+              <quill-editor
+                formControlName="descriptionEn"
+                [style]="{ height: '200px' }"
+                [modules]="quillModules"
+              >
+              </quill-editor>
+            </div>
+            <!--Required message-->
+            <div
+              class="validationMessage mt-5"
+              *ngIf="
+                newServiceForm.get('descriptionEn')?.invalid &&
+                newServiceForm.get('descriptionEn')?.touched
+              "
+            >
+              <p class="p-0 m-0">* Xana boş ola bilməz.</p>
             </div>
           </div>
         </p-tabPanel>
@@ -42,17 +80,38 @@
                 formControlName="titleRu"
               />
             </div>
+            <div class="d-flex flex-column pb-2">
+              <label for="Title">Контекст</label>
+              <quill-editor
+                formControlName="descriptionRu"
+                [style]="{ height: '200px' }"
+                [modules]="quillModules"
+              >
+              </quill-editor>
+            </div>
+            <!--Required message-->
+            <div
+              class="validationMessage mt-5"
+              *ngIf="
+                newServiceForm.get('descriptionRu')?.invalid &&
+                newServiceForm.get('descriptionRu')?.touched
+              "
+            >
+              <p class="p-0 m-0">* Xana boş ola bilməz.</p>
+            </div>
           </div>
         </p-tabPanel>
       </p-tabView>
 
       @if(iconImg){
-      <div class="bgImg ps-3 py-2">
-        <img [src]="iconImg" alt="" />
-      </div>
+        <div class="pt-5">
+          <div class="bgImg ps-3 py-2">
+            <img [src]="iconImg" alt="" />
+          </div>
+        </div>
       }
 
-      <div class="pt-3">
+      <div class="pt-5">
         <input
           type="file"
           accept="image/*"

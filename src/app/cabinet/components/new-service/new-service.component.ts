@@ -5,6 +5,12 @@ import { UtilsSerice } from '../../../core/services/utils.service';
 import { MessageService } from 'primeng/api';
 import { ActivatedRoute, Router } from '@angular/router';
 import { finalize } from 'rxjs';
+import Quill from 'quill';
+
+// Register custom fonts
+const Font = Quill.import('formats/font') as any;
+Font.whitelist = ['chooseFont', 'poppins', 'arial', 'times New Roman']; // Adjust the font list
+Quill.register(Font, true);
 
 @Component({
   selector: 'app-new-service',
@@ -43,9 +49,48 @@ export class NewServiceComponent implements OnInit {
       titleAz: ['', Validators.required],
       titleEn: ['', Validators.required],
       titleRu: ['', Validators.required],
+      descriptionAz: ['', Validators.required],
+      descriptionEn: ['', Validators.required],
+      descriptionRu: ['', Validators.required],
     });
   }
+  // Quill modules with font customization
+  quillModules: any = {
+    toolbar: [
+      ['bold', 'italic', 'underline', 'strike'], // toggled buttons
+      [
+        'blockquote',
+        //'code-block'
+      ],
 
+      [{ header: 1 }, { header: 2 }], // custom button values
+      [{ list: 'ordered' }, { list: 'bullet' }],
+      [
+        //{ 'script': 'sub'},
+        // { 'script': 'super' }
+      ], // superscript/subscript
+
+      [{ indent: '-1' }, { indent: '+1' }], // outdent/indent
+
+      [{ direction: 'rtl' }], // text direction
+
+      [{ size: ['small', false, 'large', 'huge'] }], // custom dropdown
+      [{ header: [1, 2, 3, 4, 5, 6, false] }],
+
+      [{ color: [] }, { background: [] }], // dropdown with defaults from theme
+      //[{ 'font':  ['arial']}],
+      [{ font: Font.whitelist }],
+      [{ align: [] }],
+
+      ['clean'], // remove formatting button
+
+      [
+        'link',
+        //'image',
+        //'video'
+      ],
+    ],
+  };
   getServiceById(id: any) {
     this.showSpinner = true;
     this.ourServices
@@ -59,7 +104,10 @@ export class NewServiceComponent implements OnInit {
             titleAz: response.body.titleAz,
             titleEn: response.body.titleEn,
             titleRu: response.body.titleRu,
-            icon:response.body.icon,
+            descriptionAz: response.body.descriptionAz,
+            descriptionEn: response.body.descriptionEn,
+            descriptionRu: response.body.descriptionRu,
+            icon: response.body.icon,
           });
         },
         (error) => {
@@ -82,6 +130,9 @@ export class NewServiceComponent implements OnInit {
     formData.append('titleAz', this.newServiceForm.get('titleAz')!.value);
     formData.append('titleEn', this.newServiceForm.get('titleEn')!.value);
     formData.append('titleRu', this.newServiceForm.get('titleRu')!.value);
+    formData.append('descriptionAz', this.newServiceForm.get('descriptionAz')!.value);
+    formData.append('descriptionEn', this.newServiceForm.get('descriptionEn')!.value);
+    formData.append('descriptionRu', this.newServiceForm.get('descriptionRu')!.value);
     if (this.iconImg) {
       formData.append('backgroundImage', this.iconImg);
     }

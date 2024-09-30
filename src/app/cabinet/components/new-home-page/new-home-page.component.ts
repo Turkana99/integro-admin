@@ -27,8 +27,7 @@ export class NewHomePageComponent implements OnInit {
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private homeService: HomeService,
-    private messageService: MessageService
+    private homeService: HomeService
   ) {}
 
   // Quill modules with font customization
@@ -173,7 +172,7 @@ export class NewHomePageComponent implements OnInit {
           () => {
             console.log('Contact updated successfully');
             this.newHomePageForm.reset();
-            this.router.navigate(['/homepage']);
+            this.router.navigate(['/main']);
           },
           (error) => {
             console.error('Error updating contact:', error);
@@ -196,7 +195,7 @@ export class NewHomePageComponent implements OnInit {
         () => {
           console.log('Contact added successfully');
           this.newHomePageForm.reset();
-          this.router.navigate(['/homepage']);
+          this.router.navigate(['/main']);
         },
         (error) => {
           console.error('Error adding contact:', error);

@@ -71,6 +71,7 @@ export class BlogsComponent implements OnInit {
   deleteBlog($event: any) {
     this.blogService.deleteBlog($event.id).subscribe(() => {
       this.getBlogPageInfo(this.pageSize, this.pageIndex);
+      location.reload();
     });
   }
 }

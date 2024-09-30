@@ -27,14 +27,12 @@ export class ContactsService {
     });
   }
 
-  createContact(req: any) {
-    return this.http.post<any>(environment.contacts, req, {
-      observe: 'response',
-    });
+  createContact(req: any): Observable<any> {
+    return this.http.post<any>(environment.contacts, req);
   }
 
-  updateContactsInfo(req: any) {
-    return this.http.put<any>(environment.contacts, { observe: 'response' });
+  updateContactsInfo(req: any): Observable<any> {
+    return this.http.put<any>(environment.contacts, req);
   }
 
   getActiveWithLang(lang: string) {

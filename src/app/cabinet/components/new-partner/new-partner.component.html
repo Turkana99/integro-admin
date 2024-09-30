@@ -3,6 +3,11 @@
     <h1>Yeni partnyor</h1>
   </div>
   <div class="w-100 tab-content">
+    @if(iconImg){
+    <div class="bgImg ps-3 py-2">
+      <img [src]="iconImg" alt="" />
+    </div>
+    }
     <form [formGroup]="newPartnerForm">
       <input
         type="file"
@@ -16,7 +21,7 @@
         <p-button
           label="Əlavə et"
           icon="fa-solid fa-plus"
-          (onClick)="Submit()"
+          (onClick)="submit()"
         />
       </div>
     </form>

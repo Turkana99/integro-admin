@@ -15,6 +15,10 @@ import { NewMemberComponent } from './components/new-member/new-member.component
 import { NewPartnerComponent } from './components/new-partner/new-partner.component';
 import { NewServiceComponent } from './components/new-service/new-service.component';
 import { NewAboutComponent } from './components/new-about/new-about.component';
+import { PageSettingsComponent } from './components/page-settings/page-settings.component';
+import { NewPageSettingsComponent } from './components/new-page-settings/new-page-settings.component';
+import { FeedbacksComponent } from './components/feedbacks/feedbacks.component';
+import { EvaluateComponent } from './components/evaluate/evaluate.component';
 
 const routes: Routes = [
   {
@@ -53,6 +57,26 @@ const routes: Routes = [
       {
         path: 'contact',
         component: ContactComponent,
+      },
+      {
+        path: 'evaluate',
+        component: EvaluateComponent,
+      },
+      {
+        path: 'pageSettings',
+        component: PageSettingsComponent,
+      },
+      {
+        path: 'feedbacks',
+        component: FeedbacksComponent,
+      },
+      {
+        path: 'new-pageSetting',
+        component: NewPageSettingsComponent,
+      },
+      {
+        path: 'new-pageSetting/:id',
+        component: NewPageSettingsComponent,
       },
       {
         path: 'new-homepage',

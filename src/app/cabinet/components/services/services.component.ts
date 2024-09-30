@@ -65,6 +65,7 @@ export class ServicesComponent implements OnInit {
   deleteService($event: any) {
     this.ourServices.deleteService($event.id).subscribe(() => {
       this.getServices(this.pageSize, this.pageIndex);
+      location.reload();
     });
   }
 
