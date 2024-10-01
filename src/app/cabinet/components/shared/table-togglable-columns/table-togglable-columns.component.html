@@ -63,7 +63,7 @@
             mat-icon-button
             color="warn"
             *ngIf="deleteButton"
-            (click)="onDelete.emit(element)"
+            (click)="confirmDelete(element)"
           >
             <mat-icon>delete</mat-icon>
           </button>
@@ -92,7 +92,7 @@
   ></mat-paginator>
   }
 </div>
-
+<p-confirmDialog />
 <div class="sidebar-panel-cust">
   <button mat-icon-button (click)="openDialog()">
     <mat-icon>more_vert</mat-icon>

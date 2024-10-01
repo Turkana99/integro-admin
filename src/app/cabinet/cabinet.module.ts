@@ -32,7 +32,7 @@ import { NewMemberComponent } from './components/new-member/new-member.component
 import { MessagesModule } from 'primeng/messages';
 import { ToastModule } from 'primeng/toast';
 import { HomeService } from '../core/services/home.service';
-import { MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { QuillModule } from 'ngx-quill';
 import { AboutService } from '../core/services/about.service';
 import { OurServicesService } from '../core/services/our-services.service';
@@ -40,7 +40,9 @@ import { PageSettingsComponent } from './components/page-settings/page-settings.
 import { NewPageSettingsComponent } from './components/new-page-settings/new-page-settings.component';
 import { FeedbacksComponent } from './components/feedbacks/feedbacks.component';
 import { EvaluateComponent } from './components/evaluate/evaluate.component';
-
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { IconFieldModule } from 'primeng/iconfield';
+import { InputIconModule } from 'primeng/inputicon';
 @NgModule({
   declarations: [
     CabinetComponent,
@@ -77,6 +79,7 @@ import { EvaluateComponent } from './components/evaluate/evaluate.component';
     CheckboxModule,
     ButtonModule,
     TabViewModule,
+    ConfirmDialogModule,
     InputTextModule,
     InputTextareaModule,
     FileUploadModule,
@@ -84,6 +87,12 @@ import { EvaluateComponent } from './components/evaluate/evaluate.component';
     ToastModule,
     QuillModule.forRoot(),
   ],
-  providers: [HomeService, MessageService, AboutService, OurServicesService],
+  providers: [
+    HomeService,
+    MessageService,
+    AboutService,
+    OurServicesService,
+    ConfirmationService,
+  ],
 })
 export class CabinetModule {}

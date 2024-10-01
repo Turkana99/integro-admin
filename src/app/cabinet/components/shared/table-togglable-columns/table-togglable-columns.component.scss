@@ -95,3 +95,19 @@
     }
   }
 }
+
+::ng-deep .button-reject {
+  border: none;
+  border-radius: 20px !important;
+  outline: none;
+  background: transparent;
+  span {
+    color: #2563eb;
+  }
+}
+::ng-deep .button-accept {
+  border: none;
+  border-radius: 20px !important;
+  outline: none;
+  background: red;
+}

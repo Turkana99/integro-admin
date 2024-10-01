@@ -14,14 +14,14 @@
                 type="text"
                 pInputText
                 class="w-100"
-                formControlName="TitleAz"
+                formControlName="titleAz"
               />
               <!--Required message-->
               <div
                 class="validationMessage"
                 *ngIf="
-                  newBlogForm.get('TitleAz')?.invalid &&
-                  newBlogForm.get('TitleAz')?.touched
+                  newBlogForm.get('titleAz')?.invalid &&
+                  newBlogForm.get('titleAz')?.touched
                 "
               >
                 <p class="p-0 m-0">* Xana boş ola bilməz.</p>
@@ -34,14 +34,14 @@
                 type="text"
                 pInputText
                 class="w-100"
-                formControlName="ShortDescriptionAz"
+                formControlName="shortDescriptionAz"
               />
               <!--Required message-->
               <div
                 class="validationMessage"
                 *ngIf="
-                  newBlogForm.get('ShortDescriptionAz')?.invalid &&
-                  newBlogForm.get('ShortDescriptionAz')?.touched
+                  newBlogForm.get('shortDescriptionAz')?.invalid &&
+                  newBlogForm.get('shortDescriptionAz')?.touched
                 "
               >
                 <p class="p-0 m-0">* Xana boş ola bilməz.</p>
@@ -53,15 +53,15 @@
                 rows="5"
                 cols="30"
                 pInputTextarea
-                formControlName="DescriptionAz"
+                formControlName="descriptionAz"
               >
               </textarea>
               <!--Required message-->
               <div
                 class="validationMessage"
                 *ngIf="
-                  newBlogForm.get('DescriptionAz')?.invalid &&
-                  newBlogForm.get('DescriptionAz')?.touched
+                  newBlogForm.get('descriptionAz')?.invalid &&
+                  newBlogForm.get('descriptionAz')?.touched
                 "
               >
                 <p class="p-0 m-0">* Xana boş ola bilməz.</p>
@@ -77,14 +77,14 @@
                 type="text"
                 pInputText
                 class="w-100"
-                formControlName="TitleEn"
+                formControlName="titleEn"
               />
               <!--Required message-->
               <div
                 class="validationMessage"
                 *ngIf="
-                  newBlogForm.get('TitleEn')?.invalid &&
-                  newBlogForm.get('TitleEn')?.touched
+                  newBlogForm.get('titleEn')?.invalid &&
+                  newBlogForm.get('titleEn')?.touched
                 "
               >
                 <p class="p-0 m-0">* Field mustn't be empty.</p>
@@ -96,14 +96,14 @@
                 type="text"
                 pInputText
                 class="w-100"
-                formControlName="ShortDescriptionEn"
+                formControlName="shortDescriptionEn"
               />
               <!--Required message-->
               <div
                 class="validationMessage"
                 *ngIf="
-                  newBlogForm.get('ShortDescriptionEn')?.invalid &&
-                  newBlogForm.get('ShortDescriptionEn')?.touched
+                  newBlogForm.get('shortDescriptionEn')?.invalid &&
+                  newBlogForm.get('shortDescriptionEn')?.touched
                 "
               >
                 <p class="p-0 m-0">* Field mustn't be empty.</p>
@@ -115,15 +115,15 @@
                 rows="5"
                 cols="30"
                 pInputTextarea
-                formControlName="DescriptionEn"
+                formControlName="descriptionEn"
               >
               </textarea>
               <!--Required message-->
               <div
                 class="validationMessage"
                 *ngIf="
-                  newBlogForm.get('DescriptionEn')?.invalid &&
-                  newBlogForm.get('DescriptionEn')?.touched
+                  newBlogForm.get('descriptionEn')?.invalid &&
+                  newBlogForm.get('descriptionEn')?.touched
                 "
               >
                 <p class="p-0 m-0">* Field mustn't be empty.</p>
@@ -139,14 +139,14 @@
                 type="text"
                 pInputText
                 class="w-100"
-                formControlName="TitleRu"
+                formControlName="titleRu"
               />
               <!--Required message-->
               <div
                 class="validationMessage"
                 *ngIf="
-                  newBlogForm.get('TitleRu')?.invalid &&
-                  newBlogForm.get('TitleRu')?.touched
+                  newBlogForm.get('titleRu')?.invalid &&
+                  newBlogForm.get('titleRu')?.touched
                 "
               >
                 <p class="p-0 m-0">* Поле не должно быть пустым.</p>
@@ -158,14 +158,14 @@
                 type="text"
                 pInputText
                 class="w-100"
-                formControlName="ShortDescriptionRu"
+                formControlName="shortDescriptionRu"
               />
               <!--Required message-->
               <div
                 class="validationMessage"
                 *ngIf="
-                  newBlogForm.get('ShortDescriptionRu')?.invalid &&
-                  newBlogForm.get('ShortDescriptionRu')?.touched
+                  newBlogForm.get('shortDescriptionRu')?.invalid &&
+                  newBlogForm.get('shortDescriptionRu')?.touched
                 "
               >
                 <p class="p-0 m-0">* Поле не должно быть пустым.</p>
@@ -177,15 +177,15 @@
                 rows="5"
                 cols="30"
                 pInputTextarea
-                formControlName="TextRu"
+                formControlName="descriptionRu"
               >
               </textarea>
               <!--Required message-->
               <div
                 class="validationMessage"
                 *ngIf="
-                  newBlogForm.get('TextRu')?.invalid &&
-                  newBlogForm.get('TextRu')?.touched
+                  newBlogForm.get('descriptionRu')?.invalid &&
+                  newBlogForm.get('descriptionRu')?.touched
                 "
               >
                 <p class="p-0 m-0">* Поле не должно быть пустым.</p>
@@ -200,9 +200,9 @@
         <input
           type="file"
           accept="image/*"
-          (change)="onFileSelected($event)"
+          (change)="onFile1Selected($event)"
           class="form-control"
-          id="uploadfile"
+          id="coverImage"
         />
       </div>
       <div>
@@ -210,7 +210,7 @@
         <input
           type="file"
           accept="image/*"
-          (change)="onFileSelected($event)"
+          (change)="onFile2Selected($event)"
           class="form-control"
           id="uploadfile"
         />
@@ -220,6 +220,7 @@
           label="Əlavə et"
           icon="fa-solid fa-plus"
           [disabled]="newBlogForm.invalid"
+          (click)="submitForm()"
         />
       </div>
     </form>

@@ -24,6 +24,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { MatInput } from '@angular/material/input';
 import { TableMenuDialogComponent } from '../../../../dialogs/table-menu-dialog/table-menu-dialog.component';
+import { ConfirmationService } from 'primeng/api';
 
 @Component({
   selector: 'table-togglable-columns',
@@ -86,7 +87,10 @@ export class TableTogglableColumnsComponent
   expandedElement: any;
 
   isHeaderExpanded = false;
-  constructor(private dialog: MatDialog) {}
+  constructor(
+    private dialog: MatDialog,
+    private confirmationService: ConfirmationService
+  ) {}
 
   ngOnInit(): void {
     this.dataSource2 = new MatTableDataSource<any>(this.dataSource);
@@ -201,5 +205,21 @@ export class TableTogglableColumnsComponent
     }
 
     this.dataSource2.data = filteredCollection;
+  }
+
+  confirmDelete(element: any) {
+    this.confirmationService.confirm({
+      message: 'Silmək istədiyinizə əminsiniz?',
+      header: 'Silinmə',
+      acceptButtonStyleClass: 'button-accept',
+      rejectButtonStyleClass: 'button-reject',
+      icon: 'pi pi-info-circle',
+      acceptIcon: 'none',
+      rejectIcon: 'none',
+
+      accept: () => {
+        this.onDelete.emit(element);
+      },
+    });
   }
 }

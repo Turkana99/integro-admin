@@ -67,7 +67,6 @@ export class BlogsComponent implements OnInit {
     this.router.navigate(['/new-blog', id]);
   }
 
-  
   deleteBlog($event: any) {
     this.blogService.deleteBlog($event.id).subscribe(() => {
       this.getBlogPageInfo(this.pageSize, this.pageIndex);
