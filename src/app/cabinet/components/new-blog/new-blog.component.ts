@@ -21,7 +21,7 @@ export class NewBlogComponent {
   showSpinner = false;
   buttonSpinner = false;
   mainImg?: any;
-  blogAttachments:any;
+  blogAttachments: any;
   blogId: any;
   selectedFiles: File[] = [];
   constructor(
@@ -124,7 +124,7 @@ export class NewBlogComponent {
         (response) => {
           console.log('resods', response);
           this.mainImg = response.body.coverImageUrl;
-          this.blogAttachments= response.body.blogAttachments;
+          this.blogAttachments = response.body.blogAttachments;
           this.newBlogForm.setValue({
             titleAz: response.body.titleAz,
             titleEn: response.body.titleEn,
@@ -135,9 +135,11 @@ export class NewBlogComponent {
             shortDescriptionAz: response.body.shortDescriptionAz,
             shortDescriptionEn: response.body.shortDescriptionEn,
             shortDescriptionRu: response.body.shortDescriptionRu,
-            coverImage: response.body?.coverImage || null,
-            attachments: response.body?.attachments || null,
+            coverImage: response.body?.coverImageUrl || null,
+            attachments: response.body?.blogAttachments || null,
           });
+
+          console.log('this.newBlogForm', this.newBlogForm);
         },
         (error) => {
           console.error('Error fetching project data:', error);
@@ -176,7 +178,7 @@ export class NewBlogComponent {
     formData.append('CoverImage', this.newBlogForm.get('coverImage')!.value);
 
     this.selectedFiles.forEach((file, index) => {
-      formData.append(`attachments`, file); 
+      formData.append(`attachments`, file);
     });
 
     if (this.blogId) {
@@ -205,7 +207,7 @@ export class NewBlogComponent {
           () => {
             console.log('Blog created successfully');
             this.newBlogForm.reset();
-            this.selectedFiles = []; 
+            this.selectedFiles = [];
             this.router.navigate(['/blogs']);
           },
           (error) => {
