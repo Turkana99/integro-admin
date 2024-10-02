@@ -28,6 +28,7 @@ export class NewContactComponent implements OnInit {
     this.initForm();
     this.route.paramMap.subscribe((params) => {
       this.contactId = +params.get('id')!;
+      console.log('this.contactId', this.contactId);
       if (this.contactId) {
         this.getContactInfoById(this.contactId);
       }
@@ -44,29 +45,29 @@ export class NewContactComponent implements OnInit {
       twitterUrl: ['', Validators.required],
       instagramUrl: ['', Validators.required],
       googleMapUrl: ['', Validators.required],
-      state:['']
+      state: [''],
     });
   }
 
   getContactInfoById(id: any) {
     this.showSpinner = true;
     this.contactService
-      .getContacts(id)
+      .getContactsInfoById(id)
       .pipe(finalize(() => (this.showSpinner = false)))
       .subscribe(
         (response) => {
           console.log('resods', response);
           this.newContactForm.setValue({
-            phoneNumber: response.body.phoneNumber,
-            emailAddress: response.body.emailAddress,
-            addressAz: response.body.addressAz,
-            addressEn: response.body.addressEn,
-            addressRu: response.body.addressRu,
-            facebookUrl: response.body.facebookUrl,
-            twitterUrl: response.body.twitterUrl,
-            instagramUrl: response.body.instagramUrl,
-            googleMapUrl: response.body.googleMapUrl,
-            state: response.body.state,
+            phoneNumber: response.phoneNumber,
+            emailAddress: response.emailAddress,
+            addressAz: response.addressAz,
+            addressEn: response.addressEn,
+            addressRu: response.addressRu,
+            facebookUrl: response.facebookUrl,
+            twitterUrl: response.twitterUrl,
+            instagramUrl: response.instagramUrl,
+            googleMapUrl: response.googleMapUrl,
+            state: response?.state ?? true,
           });
         },
         (error) => {
@@ -76,20 +77,22 @@ export class NewContactComponent implements OnInit {
   }
 
   submit() {
-    const formData = new FormData();
-    formData.append('phoneNumber', this.newContactForm.get('phoneNumber')!.value);
-    formData.append('emailAddress', this.newContactForm.get('emailAddress')!.value);
-    formData.append('addressAz', this.newContactForm.get('addressAz')!.value);
-    formData.append('addressEn', this.newContactForm.get('addressEn')!.value);
-    formData.append('addressRu', this.newContactForm.get('addressRu')!.value);
-    formData.append('facebookUrl', this.newContactForm.get('facebookUrl')!.value);
-    formData.append('twitterUrl', this.newContactForm.get('twitterUrl')!.value);
-    formData.append('instagramUrl', this.newContactForm.get('instagramUrl')!.value);
-    formData.append('googleMapUrl', this.newContactForm.get('googleMapUrl')!.value);
-    formData.append('state', this.newContactForm.get('state')!.value);
+    let formData: any = {
+      phoneNumber: this.newContactForm.value.phoneNumber,
+      emailAddress: this.newContactForm.value.emailAddress,
+      addressAz: this.newContactForm.value.addressAz,
+      addressEn: this.newContactForm.value.addressEn,
+      addressRu: this.newContactForm.value.addressRu,
+      facebookUrl: this.newContactForm.value.facebookUrl,
+      twitterUrl: this.newContactForm.value.twitterUrl,
+      instagramUrl: this.newContactForm.value.instagramUrl,
+      googleMapUrl: this.newContactForm.value.googleMapUrl,
+      state: this.newContactForm.value.state,
+    };
+
     if (this.contactId) {
       this.buttonSpinner = true;
-      formData.append('id', this.contactId);
+      formData['id'] = this.contactId;
       this.contactService
         .updateContactsInfo(formData)
         .pipe(

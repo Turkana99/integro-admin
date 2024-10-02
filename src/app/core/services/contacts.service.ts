@@ -22,9 +22,7 @@ export class ContactsService {
   }
 
   getContactsInfoById(id: number) {
-    return this.http.get<any>(`${environment.contacts}/${id}`, {
-      observe: 'response',
-    });
+    return this.http.get<any>(`${environment.contacts}/${id}`);
   }
 
   createContact(req: any): Observable<any> {
