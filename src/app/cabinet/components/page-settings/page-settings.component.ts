@@ -80,6 +80,6 @@ export class PageSettingsComponent {
   }
 
   editPages(id: any) {
-    this.router.navigate(['/new-feedback', id]);
+    this.router.navigate(['/new-pageSetting', id]);
   }
 }

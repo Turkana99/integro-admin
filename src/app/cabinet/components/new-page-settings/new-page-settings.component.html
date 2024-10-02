@@ -30,45 +30,45 @@
         <p-tabPanel header="İngilis">
           <div class="en_form">
             <div class="pb-2">
-                <label for="SubTitle"> Title</label>
-                <input
-                  type="text"
-                  pInputText
-                  class="w-100"
-                  formControlName="titleEn"
-                />
-              </div>
-              <div class="pb-2">
-                <label for="subTitle">Subtitle</label>
-                <input
-                  type="text"
-                  pInputText
-                  class="w-100"
-                  formControlName="subTitleEn"
-                />
-              </div>
+              <label for="SubTitle"> Title</label>
+              <input
+                type="text"
+                pInputText
+                class="w-100"
+                formControlName="titleEn"
+              />
+            </div>
+            <div class="pb-2">
+              <label for="subTitle">Subtitle</label>
+              <input
+                type="text"
+                pInputText
+                class="w-100"
+                formControlName="subTitleEn"
+              />
+            </div>
           </div>
         </p-tabPanel>
         <p-tabPanel header="Rus">
           <div class="ru_form">
             <div class="pb-2">
-                <label for="SubTitle"> Title</label>
-                <input
-                  type="text"
-                  pInputText
-                  class="w-100"
-                  formControlName="titleRu"
-                />
-              </div>
-              <div class="pb-2">
-                <label for="SubTitle">Subtitle</label>
-                <input
-                  type="text"
-                  pInputText
-                  class="w-100"
-                  formControlName="subTitleRu"
-                />
-              </div>
+              <label for="SubTitle"> Заголовок</label>
+              <input
+                type="text"
+                pInputText
+                class="w-100"
+                formControlName="titleRu"
+              />
+            </div>
+            <div class="pb-2">
+              <label for="SubTitle">Подзаголовок</label>
+              <input
+                type="text"
+                pInputText
+                class="w-100"
+                formControlName="subTitleRu"
+              />
+            </div>
           </div>
         </p-tabPanel>
       </p-tabView>
@@ -85,6 +85,13 @@
       <div *ngIf="coverImage">
         <img [src]="coverImage" alt="" />
       </div>
+
+      @if(backgroundImageUrl){
+        <div class="bgImg">
+          <img [src]="backgroundImageUrl" alt="" />
+        </div>
+        }
+
       <input
         type="file"
         accept="image/*"

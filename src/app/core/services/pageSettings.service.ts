@@ -26,9 +26,7 @@ export class PageSettingsService {
   }
 
   getPagesInfoById(id: number) {
-    return this.http.get<any>(`${environment.pageSettings}/${id}`, {
-      observe: 'response',
-    });
+    return this.http.get<any>(`${environment.pageSettings}/${id}`);
   }
 
   createPages(req: any): Observable<any> {

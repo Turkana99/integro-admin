@@ -8,7 +8,7 @@ import { finalize } from 'rxjs';
 @Component({
   selector: 'app-new-page-settings',
   templateUrl: './new-page-settings.component.html',
-  styleUrl: './new-page-settings.component.scss'
+  styleUrl: './new-page-settings.component.scss',
 })
 export class NewPageSettingsComponent {
   newPageForm: any;
@@ -16,6 +16,7 @@ export class NewPageSettingsComponent {
   buttonSpinner = false;
   coverImage?: any;
   memberId: any;
+  backgroundImageUrl: any;
   constructor(
     private fb: FormBuilder,
     private pageService: PageSettingsService,
@@ -46,10 +47,11 @@ export class NewPageSettingsComponent {
       coverImageUrl: ['', Validators.required],
     });
   }
-  getMemberInfoById(id: string) {
+  getMemberInfoById(id: number) {
     this.showSpinner = true;
-    this.pageService.getPages(id).subscribe(
-      (response) => {
+    this.pageService.getPagesInfoById(id).subscribe(
+      (response: any) => {
+        console.log('response', response);
         this.coverImage = response.coverImageUrl;
         this.newPageForm.setValue({
           titleAz: response.titleAz,
@@ -59,8 +61,9 @@ export class NewPageSettingsComponent {
           subTitleEn: response.subTitleEn,
           subTitleRu: response.subTitleRu,
           pageName: response.pageName,
-          coverImageUrl: response.coverImageUrl,
+          coverImageUrl: response.backgroundImageUrl,
         });
+        this.backgroundImageUrl = response.backgroundImageUrl;
       },
       (error) => {
         console.error('Error fetching project data:', error);
@@ -68,27 +71,26 @@ export class NewPageSettingsComponent {
     );
   }
 
-onFileSelected(event: any) {
-  const file = event.target.files[0];
-  (this.newPageForm as FormGroup).controls['coverImageUrl'].setValue(file);
-  this.coverImage = file; 
-  console.log("this.coverImage", this.coverImage);
-  
-}
+  onFileSelected(event: any) {
+    const file = event.target.files[0];
+    (this.newPageForm as FormGroup).controls['coverImageUrl'].setValue(file);
+    this.coverImage = file;
+    console.log('this.coverImage', this.coverImage);
+  }
 
   submit() {
     const formData = new FormData();
     formData.append('TitleAz', this.newPageForm.get('titleAz').value);
-    formData.append('TitleEn',this.newPageForm.get('titleEn').value);
+    formData.append('TitleEn', this.newPageForm.get('titleEn').value);
     formData.append('TitleRu', this.newPageForm.get('titleRu').value);
     formData.append('SubTitleAz', this.newPageForm.get('subTitleAz').value);
     formData.append('SubTitleEn', this.newPageForm.get('subTitleEn').value);
     formData.append('SubTitleRu', this.newPageForm.get('subTitleRu').value);
     formData.append('PageName', this.newPageForm.get('pageName').value);
     if (this.coverImage) {
-      formData.append('BackgroundImg', this.coverImage);
+      formData.append('BackgroundImage', this.coverImage);
     }
-    console.log("Formdata", formData);
+    console.log('Formdata', formData);
 
     if (this.memberId) {
       this.buttonSpinner = true;
@@ -99,8 +101,7 @@ onFileSelected(event: any) {
           finalize(() => {
             setTimeout(() => {
               this.buttonSpinner = false;
-              console.log("dhjsd", formData);
-              
+              console.log('dhjsd', formData);
             }, 200);
           })
         )
