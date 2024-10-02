@@ -1,1 +1,105 @@
-<p>new-page-settings works!</p>
+<div class="new-pageSettings px-5 py-5">
+  <div class="title">
+    <h1>Yeni səhifə əlavəsi</h1>
+  </div>
+  <div class="w-100 tab-content">
+    <form [formGroup]="newPageForm">
+      <p-tabView>
+        <p-tabPanel header="Azərbaycan">
+          <div class="az_form">
+            <div class="pb-2">
+              <label for="SubTitle"> Başlıq</label>
+              <input
+                type="text"
+                pInputText
+                class="w-100"
+                formControlName="titleAz"
+              />
+            </div>
+            <div class="pb-2">
+              <label for="SubTitle"> Alt Başlıq</label>
+              <input
+                type="text"
+                pInputText
+                class="w-100"
+                formControlName="subTitleAz"
+              />
+            </div>
+          </div>
+        </p-tabPanel>
+        <p-tabPanel header="İngilis">
+          <div class="en_form">
+            <div class="pb-2">
+                <label for="SubTitle"> Title</label>
+                <input
+                  type="text"
+                  pInputText
+                  class="w-100"
+                  formControlName="titleEn"
+                />
+              </div>
+              <div class="pb-2">
+                <label for="subTitle">Subtitle</label>
+                <input
+                  type="text"
+                  pInputText
+                  class="w-100"
+                  formControlName="subTitleEn"
+                />
+              </div>
+          </div>
+        </p-tabPanel>
+        <p-tabPanel header="Rus">
+          <div class="ru_form">
+            <div class="pb-2">
+                <label for="SubTitle"> Title</label>
+                <input
+                  type="text"
+                  pInputText
+                  class="w-100"
+                  formControlName="titleRu"
+                />
+              </div>
+              <div class="pb-2">
+                <label for="SubTitle">Subtitle</label>
+                <input
+                  type="text"
+                  pInputText
+                  class="w-100"
+                  formControlName="subTitleRu"
+                />
+              </div>
+          </div>
+        </p-tabPanel>
+      </p-tabView>
+
+      <div class="pb-2">
+        <label for="Title"> Səhifənin adı</label>
+        <input
+          type="text"
+          pInputText
+          class="w-100"
+          formControlName="pageName"
+        />
+      </div>
+      <div *ngIf="coverImage">
+        <img [src]="coverImage" alt="" />
+      </div>
+      <input
+        type="file"
+        accept="image/*"
+        (change)="onFileSelected($event)"
+        class="form-control mt-3"
+        id="uploadfile"
+      />
+
+      <div class="d-flex justify-content-end pt-4">
+        <p-button
+          label="Əlavə et"
+          icon="fa-solid fa-plus"
+          (onClick)="submit()"
+        />
+      </div>
+    </form>
+  </div>
+</div>

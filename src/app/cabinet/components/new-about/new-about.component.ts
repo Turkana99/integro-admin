@@ -20,7 +20,7 @@ export class NewAboutComponent implements OnInit {
   selectedFiles: File[] = [];
   aboutId: number | null = null; // Track the about ID
   showSpinner = false;
-  images: any[] = [];
+  videos: any[] = [];
   buttonSpinner = false;
 
   constructor(
@@ -79,8 +79,8 @@ export class NewAboutComponent implements OnInit {
         (response) => {
           console.log('AboutresponseId', response);
 
-          this.images = response.aboutAttachments;
-          console.log('Attachements', this.images);
+          this.videos = response.aboutAttachments;
+          console.log('Attachements', this.videos);
           this.newAboutForm.setValue({
             contentAz: response.contentAz,
             contentEn: response.contentEn,

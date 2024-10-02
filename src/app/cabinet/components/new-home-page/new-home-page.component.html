@@ -50,7 +50,6 @@
               <label for="Title">Məzmun</label>
               <quill-editor
                 formControlName="textAz"
-                [style]="{ height: '200px' }"
                 [modules]="quillModules"
               >
               </quill-editor>
@@ -111,7 +110,6 @@
               <label for="Title">Context</label>
               <quill-editor
                 formControlName="textEn"
-                [style]="{ height: '200px' }"
                 [modules]="quillModules"
               >
               </quill-editor>
@@ -172,7 +170,6 @@
               <label for="Title">Kонтекст</label>
               <quill-editor
                 formControlName="textRu"
-                [style]="{ height: '200px', fontSize: '16px!important' }"
                 [modules]="quillModules"
               >
               </quill-editor>
@@ -192,12 +189,12 @@
       </p-tabView>
 
       @if(backgroundImage){
-      <div class="pt-5 bgImg">
+      <div class="bgImg">
         <img [src]="backgroundImage" alt="" />
       </div>
       }
 
-      <div class="pt-5">
+      <div>
         <input
           type="file"
           accept="image/*"

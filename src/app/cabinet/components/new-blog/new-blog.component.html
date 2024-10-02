@@ -28,14 +28,13 @@
               </div>
             </div>
 
-            <div class="pb-2">
-              <label for="SubTitle"> Alt başlıq</label>
-              <input
-                type="text"
-                pInputText
-                class="w-100"
+            <div class="d-flex flex-column pb-2">
+              <label for="SubTitle">Qısa məzmun</label>
+              <quill-editor
                 formControlName="shortDescriptionAz"
-              />
+                [modules]="quillModules"
+              >
+              </quill-editor>
               <!--Required message-->
               <div
                 class="validationMessage"
@@ -48,24 +47,22 @@
               </div>
             </div>
             <div class="d-flex flex-column pb-2">
-              <label for="Title"> Məzmun</label>
-              <textarea
-                rows="5"
-                cols="30"
-                pInputTextarea
+              <label for="Title">Məzmun</label>
+              <quill-editor
                 formControlName="descriptionAz"
+                [modules]="quillModules"
               >
-              </textarea>
-              <!--Required message-->
-              <div
-                class="validationMessage"
-                *ngIf="
-                  newBlogForm.get('descriptionAz')?.invalid &&
-                  newBlogForm.get('descriptionAz')?.touched
-                "
-              >
-                <p class="p-0 m-0">* Xana boş ola bilməz.</p>
-              </div>
+              </quill-editor>
+            </div>
+            <!--Required message-->
+            <div
+              class="validationMessage"
+              *ngIf="
+                newBlogForm.get('descriptionAz')?.invalid &&
+                newBlogForm.get('descriptionAz')?.touched
+              "
+            >
+              <p class="p-0 m-0">* Xana boş ola bilməz.</p>
             </div>
           </div>
         </p-tabPanel>
@@ -90,14 +87,13 @@
                 <p class="p-0 m-0">* Field mustn't be empty.</p>
               </div>
             </div>
-            <div class="pb-2">
-              <label for="SubTitle"> SubTitle</label>
-              <input
-                type="text"
-                pInputText
-                class="w-100"
+            <div class="d-flex flex-column pb-2">
+              <label for="SubTitle">Short context</label>
+              <quill-editor
                 formControlName="shortDescriptionEn"
-              />
+                [modules]="quillModules"
+              >
+              </quill-editor>
               <!--Required message-->
               <div
                 class="validationMessage"
@@ -111,13 +107,11 @@
             </div>
             <div class="d-flex flex-column pb-2">
               <label for="Title">Context</label>
-              <textarea
-                rows="5"
-                cols="30"
-                pInputTextarea
+              <quill-editor
                 formControlName="descriptionEn"
+                [modules]="quillModules"
               >
-              </textarea>
+              </quill-editor>
               <!--Required message-->
               <div
                 class="validationMessage"
@@ -152,14 +146,13 @@
                 <p class="p-0 m-0">* Поле не должно быть пустым.</p>
               </div>
             </div>
-            <div class="pb-2">
-              <label for="SubTitle"> Подзаголовок</label>
-              <input
-                type="text"
-                pInputText
-                class="w-100"
+            <div class="d-flex flex-column pb-2">
+              <label for="SubTitle">Краткий контекст</label>
+              <quill-editor
                 formControlName="shortDescriptionRu"
-              />
+                [modules]="quillModules"
+              >
+              </quill-editor>
               <!--Required message-->
               <div
                 class="validationMessage"
@@ -173,13 +166,11 @@
             </div>
             <div class="d-flex flex-column pb-2">
               <label for="Title"> Контекст</label>
-              <textarea
-                rows="5"
-                cols="30"
-                pInputTextarea
+              <quill-editor
                 formControlName="descriptionRu"
+                [modules]="quillModules"
               >
-              </textarea>
+              </quill-editor>
               <!--Required message-->
               <div
                 class="validationMessage"
@@ -195,6 +186,12 @@
         </p-tabPanel>
       </p-tabView>
 
+      @if(mainImg){
+      <div class="bgImg">
+        <img [src]="mainImg" alt="" />
+      </div>
+      }
+
       <div class="pb-3">
         <label for="coverImage">Əsas şəkil</label>
         <input
@@ -205,14 +202,24 @@
           id="coverImage"
         />
       </div>
+
+      @if(blogAttachments){
+      <div class="w-100 pb-3" *ngFor="let item of blogAttachments" >
+        <div class="d-flex justify-content-between bgImg">
+          <img [src]="item.attachmentUrl" alt="" />
+        </div>
+      </div>
+
+      }
       <div>
-        <label for="">Blog üçün şəkil</label>
+        <label for="">Blog detalı üçün şəkil</label>
         <input
           type="file"
           accept="image/*"
           (change)="onFile2Selected($event)"
           class="form-control"
           id="uploadfile"
+          multiple
         />
       </div>
       <div class="d-flex justify-content-end pt-4">

@@ -13,7 +13,6 @@
                 <label for="Title">Məzmun</label>
                 <quill-editor
                   formControlName="contentAz"
-                  [style]="{ height: '200px', fontSize: '16px!important' }"
                   [modules]="quillModules"
                 >
                 </quill-editor>
@@ -39,7 +38,6 @@
                 <label for="Title">Context</label>
                 <quill-editor
                   formControlName="contentEn"
-                  [style]="{ height: '200px', fontSize: '16px!important' }"
                   [modules]="quillModules"
                 >
                 </quill-editor>
@@ -65,7 +63,6 @@
                 <label for="Title">Kонтекст</label>
                 <quill-editor
                   formControlName="contentRu"
-                  [style]="{ height: '200px', fontSize: '16px!important' }"
                   [modules]="quillModules"
                 >
                 </quill-editor>
@@ -73,7 +70,7 @@
 
               <!--Required message-->
               <div
-                class="validationMessage mt-5"
+                class="validationMessage"
                 *ngIf="
                   newAboutForm.get('contentRu')?.invalid &&
                   newAboutForm.get('contentRu')?.touched
@@ -85,18 +82,27 @@
           </div>
         </p-tabPanel>
       </p-tabView>
-      <!-- Display images if they exist -->
-      <div *ngIf="images && images.length > 0" class="pt-5">
+      <!-- Display video if they exist -->
+      <!-- <div *ngIf="videos && videos.length > 0" class="pt-5">
         <div
-          *ngFor="let img of images; trackBy: trackByAttachmentUrl"
+          *ngFor="let video of videos; trackBy: trackByAttachmentUrl"
           class="bgImg row m-0 p-0"
         >
           <div class="col-lg-6 m-0 p-0">
-            <img [src]="img.attachmentUrl" alt="Attachment" />
+            <video
+              [src]="video.attachmentUrl"
+              class="p-0 m-0"
+              width="100%"
+              height="100%"
+              autoplay
+              controlsList="nodownload noplaybackrate"
+              disablePictureInPicture
+            ></video>
           </div>
         </div>
-      </div>
-      <div class="pt-5">
+      </div> -->
+
+      <div>
         <input
           type="file"
           accept="image/*"

@@ -20,7 +20,8 @@ export class NewBlogComponent {
   newBlogForm: any;
   showSpinner = false;
   buttonSpinner = false;
-  iconImg?: any;
+  mainImg?: any;
+  blogAttachments:any;
   blogId: any;
   selectedFiles: File[] = [];
   constructor(
@@ -64,10 +65,16 @@ export class NewBlogComponent {
     console.log('this.newHomePageForm', this.newBlogForm.value);
   }
   onFile2Selected(event: any) {
-    (this.newBlogForm as FormGroup).controls['attachments'].setValue(
-      event.target.files[0]
-    );
-    console.log('this.newHomePageForm', this.newBlogForm.value);
+    if (event.target.files && event.target.files.length > 0) {
+      this.selectedFiles = [];
+      for (let i = 0; i < event.target.files.length; i++) {
+        this.selectedFiles.push(event.target.files[i]);
+      }
+      (this.newBlogForm as FormGroup).controls['attachments'].setValue(
+        this.selectedFiles
+      );
+      console.log('Selected files:', this.selectedFiles);
+    }
   }
 
   // Quill modules with font customization
@@ -116,7 +123,8 @@ export class NewBlogComponent {
       .subscribe(
         (response) => {
           console.log('resods', response);
-          this.iconImg = response.body.icon;
+          this.mainImg = response.body.coverImageUrl;
+          this.blogAttachments= response.body.blogAttachments;
           this.newBlogForm.setValue({
             titleAz: response.body.titleAz,
             titleEn: response.body.titleEn,
@@ -136,7 +144,6 @@ export class NewBlogComponent {
         }
       );
   }
-
   submitForm(): void {
     const formData = new FormData();
     formData.append('TitleAz', this.newBlogForm.get('titleAz')!.value);
@@ -166,16 +173,12 @@ export class NewBlogComponent {
       'ShortDescriptionRu',
       this.newBlogForm.get('shortDescriptionRu')!.value
     );
-
     formData.append('CoverImage', this.newBlogForm.get('coverImage')!.value);
 
     this.selectedFiles.forEach((file, index) => {
-      console.log('file' + (index + 1), file);
-      formData.append(`attachment`, file);
+      formData.append(`attachments`, file); 
     });
 
-    // Append the `id` only if it's not null
-    console.log('this.blogId', this.blogId);
     if (this.blogId) {
       formData.append('id', this.blogId.toString());
       this.buttonSpinner = true;
@@ -184,32 +187,31 @@ export class NewBlogComponent {
         .pipe(finalize(() => (this.buttonSpinner = false)))
         .subscribe(
           () => {
-            console.log('Page updated successfully');
+            console.log('Blog updated successfully');
             this.newBlogForm.reset();
-            this.selectedFiles = []; // Clear selected files after submission
+            this.selectedFiles = [];
             this.router.navigate(['/blogs']);
           },
           (error) => {
-            console.error('Error updating page:', error);
+            console.error('Error updating blog:', error);
           }
         );
-      return;
+    } else {
+      this.buttonSpinner = true;
+      this.blogService
+        .createBlog(formData)
+        .pipe(finalize(() => (this.buttonSpinner = false)))
+        .subscribe(
+          () => {
+            console.log('Blog created successfully');
+            this.newBlogForm.reset();
+            this.selectedFiles = []; 
+            this.router.navigate(['/blogs']);
+          },
+          (error) => {
+            console.error('Error creating blog:', error);
+          }
+        );
     }
-    // Add new page info if no `aboutId`
-    this.buttonSpinner = true;
-    this.blogService
-      .createBlog(formData)
-      .pipe(finalize(() => (this.buttonSpinner = false)))
-      .subscribe(
-        () => {
-          console.log('Page added successfully');
-          this.newBlogForm.reset();
-          this.selectedFiles = []; // Clear selected files after submission
-          this.router.navigate(['/blogs']);
-        },
-        (error) => {
-          console.error('Error adding page:', error);
-        }
-      );
   }
 }

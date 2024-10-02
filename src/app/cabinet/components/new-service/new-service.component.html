@@ -20,14 +20,13 @@
               <label for="Title">Məzmun</label>
               <quill-editor
                 formControlName="descriptionAz"
-                [style]="{ height: '200px' }"
                 [modules]="quillModules"
               >
               </quill-editor>
             </div>
             <!--Required message-->
             <div
-              class="validationMessage mt-5"
+              class="validationMessage"
               *ngIf="
                 newServiceForm.get('descriptionAz')?.invalid &&
                 newServiceForm.get('descriptionAz')?.touched
@@ -52,14 +51,13 @@
               <label for="Title">Context</label>
               <quill-editor
                 formControlName="descriptionEn"
-                [style]="{ height: '200px' }"
                 [modules]="quillModules"
               >
               </quill-editor>
             </div>
             <!--Required message-->
             <div
-              class="validationMessage mt-5"
+              class="validationMessage"
               *ngIf="
                 newServiceForm.get('descriptionEn')?.invalid &&
                 newServiceForm.get('descriptionEn')?.touched
@@ -84,14 +82,13 @@
               <label for="Title">Контекст</label>
               <quill-editor
                 formControlName="descriptionRu"
-                [style]="{ height: '200px' }"
                 [modules]="quillModules"
               >
               </quill-editor>
             </div>
             <!--Required message-->
             <div
-              class="validationMessage mt-5"
+              class="validationMessage"
               *ngIf="
                 newServiceForm.get('descriptionRu')?.invalid &&
                 newServiceForm.get('descriptionRu')?.touched
@@ -103,18 +100,16 @@
         </p-tabPanel>
       </p-tabView>
 
-      @if(iconImg){
-        <div class="pt-5">
-          <div class="bgImg ps-3 py-2">
-            <img [src]="iconImg" alt="" />
-          </div>
-        </div>
+      @if(iconImg && iconImg!=null){
+      <div class="bgImg ps-3 py-2 mb-3">
+        <img [src]="iconImg" alt="" />
+      </div>
       }
 
-      <div class="pt-5">
+      <div>
         <input
           type="file"
-          accept="image/*"
+          accept="image/svg+xml, image/png"
           (change)="onFileSelected($event)"
           class="form-control"
           id="uploadfile"

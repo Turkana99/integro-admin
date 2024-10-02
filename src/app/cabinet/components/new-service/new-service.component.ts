@@ -22,7 +22,7 @@ export class NewServiceComponent implements OnInit {
   newServiceForm: any;
   showSpinner = false;
   buttonSpinner = false;
-  iconImg?: any;
+  iconImg?: string;
   serviceId: any;
   constructor(
     private fb: FormBuilder,
@@ -45,7 +45,6 @@ export class NewServiceComponent implements OnInit {
 
   initForm() {
     this.newServiceForm = this.fb.group({
-      icon: ['', Validators.required],
       titleAz: ['', Validators.required],
       titleEn: ['', Validators.required],
       titleRu: ['', Validators.required],
@@ -107,7 +106,6 @@ export class NewServiceComponent implements OnInit {
             descriptionAz: response.body.descriptionAz,
             descriptionEn: response.body.descriptionEn,
             descriptionRu: response.body.descriptionRu,
-            icon: response.body.icon,
           });
         },
         (error) => {
@@ -120,8 +118,6 @@ export class NewServiceComponent implements OnInit {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
       this.iconImg = file;
-      this.newServiceForm.controls['iconImg'].setValue(this.iconImg);
-      console.log(this.iconImg);
     }
   }
 
@@ -130,11 +126,20 @@ export class NewServiceComponent implements OnInit {
     formData.append('titleAz', this.newServiceForm.get('titleAz')!.value);
     formData.append('titleEn', this.newServiceForm.get('titleEn')!.value);
     formData.append('titleRu', this.newServiceForm.get('titleRu')!.value);
-    formData.append('descriptionAz', this.newServiceForm.get('descriptionAz')!.value);
-    formData.append('descriptionEn', this.newServiceForm.get('descriptionEn')!.value);
-    formData.append('descriptionRu', this.newServiceForm.get('descriptionRu')!.value);
+    formData.append(
+      'descriptionAz',
+      this.newServiceForm.get('descriptionAz')!.value
+    );
+    formData.append(
+      'descriptionEn',
+      this.newServiceForm.get('descriptionEn')!.value
+    );
+    formData.append(
+      'descriptionRu',
+      this.newServiceForm.get('descriptionRu')!.value
+    );
     if (this.iconImg) {
-      formData.append('backgroundImage', this.iconImg);
+      formData.append('icon', this.iconImg);
     }
 
     if (this.serviceId) {
