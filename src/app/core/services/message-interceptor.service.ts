@@ -23,7 +23,6 @@ export class MessageInterceptor implements HttpInterceptor {
       tap((event: any) => {
         if (event instanceof HttpResponse) {
           //successful responses
-          console.log('@@@@@req', req);
           const isLogin =
             req.url.split('/')[req.url.split('/').length - 1].toLowerCase() ==
             'login';
