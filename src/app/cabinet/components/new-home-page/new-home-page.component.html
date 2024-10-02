@@ -1,6 +1,6 @@
 <div class="new-homePage px-5 py-5">
   <div class="title">
-    <h1>Yeni Ana səhifə məlumatı</h1>
+    <h1>{{ pageTitle }}</h1>
   </div>
   <div class="w-100 tab-content">
     <form [formGroup]="newHomePageForm">
@@ -48,10 +48,7 @@
             </div>
             <div class="d-flex flex-column pb-2">
               <label for="Title">Məzmun</label>
-              <quill-editor
-                formControlName="textAz"
-                [modules]="quillModules"
-              >
+              <quill-editor formControlName="textAz" [modules]="quillModules">
               </quill-editor>
             </div>
             <!--Required message-->
@@ -108,10 +105,7 @@
             </div>
             <div class="d-flex flex-column pb-2">
               <label for="Title">Context</label>
-              <quill-editor
-                formControlName="textEn"
-                [modules]="quillModules"
-              >
+              <quill-editor formControlName="textEn" [modules]="quillModules">
               </quill-editor>
             </div>
             <!--Required message-->
@@ -168,10 +162,7 @@
             </div>
             <div class="d-flex flex-column pb-2">
               <label for="Title">Kонтекст</label>
-              <quill-editor
-                formControlName="textRu"
-                [modules]="quillModules"
-              >
+              <quill-editor formControlName="textRu" [modules]="quillModules">
               </quill-editor>
             </div>
             <!--Required message-->
@@ -206,7 +197,7 @@
 
       <div class="d-flex justify-content-end pt-4">
         <p-button
-          label="Əlavə et"
+          [label]="submitButtonText"
           icon="fa-solid fa-plus"
           (onClick)="submit()"
           [disabled]="newHomePageForm.invalid"

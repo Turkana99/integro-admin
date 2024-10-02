@@ -1,6 +1,6 @@
 <div class="new-contact px-5 py-5">
   <div class="title">
-    <h1>Yeni əlaqə məlumatı</h1>
+    <h1>{{ pageTitle }}</h1>
   </div>
   <div class="w-100 tab-content">
     <form [formGroup]="newContactForm">
@@ -107,12 +107,13 @@
       </div>
 
       <div class="d-flex align-items-center gap-2">
-        <p-checkbox  [binary]="true" inputId="binary" formControlName="state" />  Aktiv
+        <p-checkbox [binary]="true" inputId="binary" formControlName="state" />
+        Aktiv
       </div>
 
       <div class="d-flex justify-content-end pt-4">
         <p-button
-          label="Əlavə et"
+          [label]="submitButtonText"
           icon="fa-solid fa-plus"
           (onClick)="submit()"
         />

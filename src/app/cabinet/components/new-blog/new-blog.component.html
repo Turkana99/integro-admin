@@ -1,6 +1,6 @@
 <div class="new-blog px-5 py-5">
   <div class="title">
-    <h1>Yeni Məqalə məlumatı</h1>
+    <h1>{{ pageTitle }}</h1>
   </div>
 
   <div class="w-100 tab-content">
@@ -204,7 +204,7 @@
       </div>
 
       @if(blogAttachments){
-      <div class="w-100 pb-3" *ngFor="let item of blogAttachments" >
+      <div class="w-100 pb-3" *ngFor="let item of blogAttachments">
         <div class="d-flex justify-content-between bgImg">
           <img [src]="item.attachmentUrl" alt="" />
         </div>
@@ -224,7 +224,7 @@
       </div>
       <div class="d-flex justify-content-end pt-4">
         <p-button
-          label="Əlavə et"
+          [label]="submitButtonText"
           icon="fa-solid fa-plus"
           [disabled]="newBlogForm.invalid"
           (click)="submitForm()"

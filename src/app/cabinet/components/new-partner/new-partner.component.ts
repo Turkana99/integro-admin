@@ -16,6 +16,8 @@ export class NewPartnerComponent implements OnInit {
   buttonSpinner = false;
   iconImg?: any;
   partnerId: any;
+  pageTitle = 'Yeni partnyor';
+  submitButtonText = 'Əlavə et';
   constructor(
     private fb: FormBuilder,
     private partnerService: PartnersService,
@@ -30,6 +32,8 @@ export class NewPartnerComponent implements OnInit {
       this.partnerId = +params.get('id')!;
       if (this.partnerId) {
         this.getPartnerById(this.partnerId);
+        this.pageTitle = 'Partnyor - düzəliş';
+        this.submitButtonText = 'Yadda saxla';
       }
     });
   }

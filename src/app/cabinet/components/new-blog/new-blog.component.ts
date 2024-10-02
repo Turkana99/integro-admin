@@ -24,6 +24,8 @@ export class NewBlogComponent {
   blogAttachments: any;
   blogId: any;
   selectedFiles: File[] = [];
+  pageTitle = 'Yeni Məqalə məlumatı';
+  submitButtonText = 'Əlavə et';
   constructor(
     private fb: FormBuilder,
     private blogService: BlogsService,
@@ -38,6 +40,8 @@ export class NewBlogComponent {
       this.blogId = +params.get('id')!;
       if (this.blogId) {
         this.getBlogById(this.blogId);
+        this.pageTitle = 'Məqalə - düzəliş';
+        this.submitButtonText = 'Yadda saxla';
       }
     });
   }

@@ -17,6 +17,8 @@ export class NewPageSettingsComponent {
   coverImage?: any;
   memberId: any;
   backgroundImageUrl: any;
+  pageTitle = 'Yeni səhifə əlavəsi';
+  submitButtonText = 'Əlavə et';
   constructor(
     private fb: FormBuilder,
     private pageService: PageSettingsService,
@@ -31,6 +33,8 @@ export class NewPageSettingsComponent {
       this.memberId = +params.get('id')!;
       if (this.memberId) {
         this.getMemberInfoById(this.memberId);
+        this.pageTitle = 'Səhifə - düzəliş';
+        this.submitButtonText = 'Yadda saxla';
       }
     });
   }

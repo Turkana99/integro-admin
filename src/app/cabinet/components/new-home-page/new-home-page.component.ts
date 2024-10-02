@@ -22,6 +22,8 @@ export class NewHomePageComponent implements OnInit {
   buttonSpinner = false;
   backgroundImage?: any;
   homePageId: any;
+  pageTitle = 'Yeni Ana səhifə məlumatı';
+  submitButtonText = 'Əlavə et';
 
   constructor(
     private fb: FormBuilder,
@@ -74,6 +76,8 @@ export class NewHomePageComponent implements OnInit {
       this.homePageId = +params.get('id')!;
       if (this.homePageId) {
         this.getHomePageInfoById(this.homePageId);
+        this.pageTitle = 'Ana səhifə - düzəliş';
+        this.submitButtonText = 'Yadda saxla';
       }
     });
   }

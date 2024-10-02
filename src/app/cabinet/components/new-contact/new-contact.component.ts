@@ -16,6 +16,8 @@ export class NewContactComponent implements OnInit {
   buttonSpinner = false;
   iconImg?: any;
   contactId: any;
+  pageTitle = 'Yeni əlaqə məlumatı';
+  submitButtonText = 'Əlavə et';
   constructor(
     private fb: FormBuilder,
     private contactService: ContactsService,
@@ -30,6 +32,8 @@ export class NewContactComponent implements OnInit {
       this.contactId = +params.get('id')!;
       if (this.contactId) {
         this.getContactInfoById(this.contactId);
+        this.pageTitle = 'Əlaqə - düzəliş';
+        this.submitButtonText = 'Yadda saxla';
       }
     });
   }

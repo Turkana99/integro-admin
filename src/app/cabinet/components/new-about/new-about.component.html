@@ -1,6 +1,6 @@
 <div class="new-about px-5 py-5">
   <div class="title">
-    <h1>Yeni Haqqımızda məlumatı</h1>
+    <h1>{{ pageTitle }}</h1>
   </div>
 
   <div class="w-100 tab-content">
@@ -114,7 +114,7 @@
 
       <div class="d-flex justify-content-end pt-4">
         <p-button
-          label="Əlavə et"
+          [label]="submitButtonText"
           icon="fa-solid fa-plus"
           [disabled]="newAboutForm.invalid"
           (click)="submitForm()"

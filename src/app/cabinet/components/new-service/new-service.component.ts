@@ -24,6 +24,8 @@ export class NewServiceComponent implements OnInit {
   buttonSpinner = false;
   iconImg?: string;
   serviceId: any;
+  pageTitle = 'Yeni xidmət';
+  submitButtonText = 'Əlavə et';
   constructor(
     private fb: FormBuilder,
     private ourServices: OurServicesService,
@@ -39,6 +41,8 @@ export class NewServiceComponent implements OnInit {
       this.serviceId = +params.get('id')!;
       if (this.serviceId) {
         this.getServiceById(this.serviceId);
+        this.pageTitle = 'Xidmət - düzəliş';
+        this.submitButtonText = 'Yadda saxla';
       }
     });
   }

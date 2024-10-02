@@ -22,7 +22,8 @@ export class NewAboutComponent implements OnInit {
   showSpinner = false;
   videos: any[] = [];
   buttonSpinner = false;
-
+  pageTitle = 'Yeni Haqqımızda məlumatı';
+  submitButtonText = 'Əlavə et';
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
@@ -55,6 +56,8 @@ export class NewAboutComponent implements OnInit {
       this.aboutId = params.get('id') ? parseInt(params.get('id')!, 10) : null;
       if (this.aboutId) {
         this.getAboutPageInfoById(this.aboutId);
+        this.pageTitle = 'Haqqımızda - düzəliş';
+        this.submitButtonText = 'Yadda saxla';
       }
     });
   }

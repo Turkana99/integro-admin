@@ -16,6 +16,8 @@ export class NewMemberComponent implements OnInit {
   buttonSpinner = false;
   coverImage?: any;
   memberId: any;
+  pageTitle = 'Yeni komanda üzvü';
+  submitButtonText = 'Əlavə et';
   constructor(
     private fb: FormBuilder,
     private teamService: TeamService,
@@ -30,6 +32,8 @@ export class NewMemberComponent implements OnInit {
       this.memberId = +params.get('id')!;
       if (this.memberId) {
         this.getMemberInfoById(this.memberId);
+        this.pageTitle = 'Komanda üzvü - düzəliş';
+        this.submitButtonText = 'Yadda saxla';
       }
     });
   }
@@ -61,7 +65,7 @@ export class NewMemberComponent implements OnInit {
           positionEn: response.positionEn,
           positionRu: response.positionRu,
           instagramUrl: response.instagramUrl,
-          facebookUrl:response.facebookUrl,
+          facebookUrl: response.facebookUrl,
           linkedinUrl: response.linkedinUrl,
           coverImageUrl: response.coverImageUrl,
         });
@@ -72,22 +76,25 @@ export class NewMemberComponent implements OnInit {
     );
   }
 
-onFileSelected(event: any) {
-  const file = event.target.files[0];
-  (this.newMemberForm as FormGroup).controls['coverImageUrl'].setValue(file);
-  this.coverImage = file; // Store the file for submission
-}
+  onFileSelected(event: any) {
+    const file = event.target.files[0];
+    (this.newMemberForm as FormGroup).controls['coverImageUrl'].setValue(file);
+    this.coverImage = file; // Store the file for submission
+  }
 
   submit() {
     const formData = new FormData();
-    
+
     formData.append('FullNameAz', this.newMemberForm.get('fullNameAz').value);
-    formData.append('FullNameEn',this.newMemberForm.get('fullNameEn').value);
+    formData.append('FullNameEn', this.newMemberForm.get('fullNameEn').value);
     formData.append('FullNameRu', this.newMemberForm.get('fullNameRu').value);
     formData.append('PositionAz', this.newMemberForm.get('positionAz').value);
     formData.append('PositionEn', this.newMemberForm.get('positionEn').value);
     formData.append('PositionRu', this.newMemberForm.get('positionRu').value);
-    formData.append('InstagramUrl', this.newMemberForm.get('instagramUrl').value);
+    formData.append(
+      'InstagramUrl',
+      this.newMemberForm.get('instagramUrl').value
+    );
     formData.append('FacebookUrl', this.newMemberForm.get('facebookUrl').value);
     formData.append('LinkedinUrl', this.newMemberForm.get('linkedinUrl').value);
     if (this.coverImage) {
