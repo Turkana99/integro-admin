@@ -58,9 +58,7 @@ export class PageSettingsComponent {
       )
       .subscribe(
         (response) => {
-          console.log('response', response);
           this.pages = response.body.items;
-          console.log('pages', this.pages);
         },
         (error) => {
           console.error('Error fetching data:', error);

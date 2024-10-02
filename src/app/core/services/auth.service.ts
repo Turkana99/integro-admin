@@ -37,15 +37,9 @@ export class AuthService {
       .post<any>(environment.loginUrl, { username, password })
       .pipe(
         map((response) => {
-          console.log('RESPONSE', response);
           if (!response.accessToken) {
             throw new Error('Login failed');
           }
-
-          console.log(
-            'token',
-            this.getDecodedAccessToken(response.accessToken.token)
-          );
 
           this.user = this.getDecodedAccessToken(response.accessToken.token);
           localStorage.setItem('accessToken', response.accessToken.token);

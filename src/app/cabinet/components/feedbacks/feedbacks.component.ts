@@ -60,9 +60,7 @@ export class FeedbacksComponent {
       )
       .subscribe(
         (response) => {
-          console.log('response', response);
           this.feedbacks = response.body.items;
-          console.log('feedbacks', this.feedbacks);
         },
         (error) => {
           console.error('Error fetching data:', error);

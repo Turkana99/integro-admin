@@ -48,9 +48,7 @@ export class ServicesComponent implements OnInit {
       )
       .subscribe(
         (response) => {
-          console.log('response', response);
           this.services = response.body.items;
-          console.log('Services', this.services);
         },
         (error) => {
           console.error('Error fetching data:', error);

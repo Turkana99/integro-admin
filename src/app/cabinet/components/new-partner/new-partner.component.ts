@@ -46,10 +46,9 @@ export class NewPartnerComponent implements OnInit {
       .pipe(finalize(() => (this.showSpinner = false)))
       .subscribe(
         (response) => {
-          console.log('resods', response);
           this.iconImg = response.body.attachmentUrl;
           this.newPartnerForm.setValue({
-            icon: response.body.attachmentUrl,
+            Logo: response.body.attachmentUrl,
           });
         },
         (error) => {
@@ -63,7 +62,6 @@ export class NewPartnerComponent implements OnInit {
       const file = event.target.files[0];
       this.iconImg = file;
       this.newPartnerForm.controls['iconImg'].setValue(this.iconImg);
-      console.log(this.iconImg);
     }
   }
 
@@ -87,7 +85,6 @@ export class NewPartnerComponent implements OnInit {
         )
         .subscribe(
           () => {
-            console.log('Contact updated successfully');
             this.newPartnerForm.reset();
             this.router.navigate(['/partners']);
           },
@@ -110,7 +107,6 @@ export class NewPartnerComponent implements OnInit {
       )
       .subscribe(
         () => {
-          console.log('Contact added successfully');
           this.newPartnerForm.reset();
           this.router.navigate(['/partners']);
         },

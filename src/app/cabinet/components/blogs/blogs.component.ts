@@ -49,9 +49,7 @@ export class BlogsComponent implements OnInit {
       )
       .subscribe(
         (response) => {
-          console.log('response', response);
           this.blogs = response.body.items;
-          console.log('About', this.blogs);
         },
         (error) => {
           console.error('Error fetching data:', error);

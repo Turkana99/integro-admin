@@ -51,7 +51,6 @@ export class NewPageSettingsComponent {
     this.showSpinner = true;
     this.pageService.getPagesInfoById(id).subscribe(
       (response: any) => {
-        console.log('response', response);
         this.coverImage = response.coverImageUrl;
         this.newPageForm.setValue({
           titleAz: response.titleAz,
@@ -75,7 +74,6 @@ export class NewPageSettingsComponent {
     const file = event.target.files[0];
     (this.newPageForm as FormGroup).controls['coverImageUrl'].setValue(file);
     this.coverImage = file;
-    console.log('this.coverImage', this.coverImage);
   }
 
   submit() {
@@ -90,8 +88,6 @@ export class NewPageSettingsComponent {
     if (this.coverImage) {
       formData.append('BackgroundImage', this.coverImage);
     }
-    console.log('Formdata', formData);
-
     if (this.memberId) {
       this.buttonSpinner = true;
       formData.append('id', this.memberId);
@@ -101,13 +97,11 @@ export class NewPageSettingsComponent {
           finalize(() => {
             setTimeout(() => {
               this.buttonSpinner = false;
-              console.log('dhjsd', formData);
             }, 200);
           })
         )
         .subscribe(
           () => {
-            console.log('Contact updated successfully');
             this.newPageForm.reset();
             this.router.navigate(['/pageSettings']);
           },
@@ -130,7 +124,6 @@ export class NewPageSettingsComponent {
       )
       .subscribe(
         () => {
-          console.log('Contact added successfully');
           this.newPageForm.reset();
           this.router.navigate(['/pageSettings']);
         },

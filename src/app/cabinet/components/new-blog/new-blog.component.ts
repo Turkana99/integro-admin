@@ -62,7 +62,6 @@ export class NewBlogComponent {
     (this.newBlogForm as FormGroup).controls['coverImage'].setValue(
       event.target.files[0]
     );
-    console.log('this.newHomePageForm', this.newBlogForm.value);
   }
   onFile2Selected(event: any) {
     if (event.target.files && event.target.files.length > 0) {
@@ -73,7 +72,6 @@ export class NewBlogComponent {
       (this.newBlogForm as FormGroup).controls['attachments'].setValue(
         this.selectedFiles
       );
-      console.log('Selected files:', this.selectedFiles);
     }
   }
 
@@ -122,7 +120,6 @@ export class NewBlogComponent {
       .pipe(finalize(() => (this.showSpinner = false)))
       .subscribe(
         (response) => {
-          console.log('resods', response);
           this.mainImg = response.body.coverImageUrl;
           this.blogAttachments = response.body.blogAttachments;
           this.newBlogForm.setValue({
@@ -138,8 +135,6 @@ export class NewBlogComponent {
             coverImage: response.body?.coverImageUrl || null,
             attachments: response.body?.blogAttachments || null,
           });
-
-          console.log('this.newBlogForm', this.newBlogForm);
         },
         (error) => {
           console.error('Error fetching project data:', error);
@@ -189,7 +184,6 @@ export class NewBlogComponent {
         .pipe(finalize(() => (this.buttonSpinner = false)))
         .subscribe(
           () => {
-            console.log('Blog updated successfully');
             this.newBlogForm.reset();
             this.selectedFiles = [];
             this.router.navigate(['/blogs']);
@@ -205,7 +199,6 @@ export class NewBlogComponent {
         .pipe(finalize(() => (this.buttonSpinner = false)))
         .subscribe(
           () => {
-            console.log('Blog created successfully');
             this.newBlogForm.reset();
             this.selectedFiles = [];
             this.router.navigate(['/blogs']);

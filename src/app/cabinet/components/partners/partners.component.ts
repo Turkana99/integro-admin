@@ -49,9 +49,7 @@ export class PartnersComponent {
       )
       .subscribe(
         (response) => {
-          console.log('response', response);
           this.partners = response.body.items;
-          console.log('Partners', this.partners);
         },
         (error) => {
           console.error('Error fetching data:', error);

@@ -57,9 +57,7 @@ export class TeamComponent {
       )
       .subscribe(
         (response) => {
-          console.log('response', response);
           this.members = response.body.items;
-          console.log('Services', this.members);
         },
         (error) => {
           console.error('Error fetching data:', error);

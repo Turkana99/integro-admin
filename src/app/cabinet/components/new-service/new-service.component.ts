@@ -97,7 +97,6 @@ export class NewServiceComponent implements OnInit {
       .pipe(finalize(() => (this.showSpinner = false)))
       .subscribe(
         (response) => {
-          console.log('resods', response);
           this.iconImg = response.body.icon;
           this.newServiceForm.setValue({
             titleAz: response.body.titleAz,
@@ -156,7 +155,6 @@ export class NewServiceComponent implements OnInit {
         )
         .subscribe(
           () => {
-            console.log('Contact updated successfully');
             this.newServiceForm.reset();
             this.router.navigate(['/services']);
           },
@@ -179,7 +177,6 @@ export class NewServiceComponent implements OnInit {
       )
       .subscribe(
         () => {
-          console.log('Contact added successfully');
           this.newServiceForm.reset();
           this.router.navigate(['/services']);
         },

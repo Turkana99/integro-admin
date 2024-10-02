@@ -46,9 +46,7 @@ export class AboutComponent implements OnInit {
       )
       .subscribe(
         (response) => {
-          console.log('response', response);
           this.abouts = response.body.items;
-          console.log('About', this.abouts);
         },
         (error) => {
           console.error('Error fetching data:', error);

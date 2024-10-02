@@ -76,9 +76,7 @@ export class MainComponent implements OnInit {
       )
       .subscribe(
         (response) => {
-          console.log('response', response);
           this.ELEMENT_DATA = response.body.items;
-          console.log('ELEMENT_DATA', this.ELEMENT_DATA);
         },
         (error) => {
           console.error('Error fetching data:', error);

@@ -48,9 +48,7 @@ export class EvaluateComponent {
       )
       .subscribe(
         (response) => {
-          console.log('response', response);
           this.evaluations = response.body.items;
-          console.log('feedbacks', this.evaluations);
         },
         (error) => {
           console.error('Error fetching data:', error);

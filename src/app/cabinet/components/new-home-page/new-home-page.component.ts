@@ -127,7 +127,6 @@ export class NewHomePageComponent implements OnInit {
       this.newHomePageForm.controls['backgroundImage'].setValue(
         this.backgroundImage
       );
-      console.log(this.backgroundImage);
     }
   }
 
@@ -170,7 +169,6 @@ export class NewHomePageComponent implements OnInit {
         )
         .subscribe(
           () => {
-            console.log('Contact updated successfully');
             this.newHomePageForm.reset();
             this.router.navigate(['/main']);
           },
@@ -193,7 +191,6 @@ export class NewHomePageComponent implements OnInit {
       )
       .subscribe(
         () => {
-          console.log('Contact added successfully');
           this.newHomePageForm.reset();
           this.router.navigate(['/main']);
         },

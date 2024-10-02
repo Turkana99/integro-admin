@@ -80,7 +80,6 @@ onFileSelected(event: any) {
 
   submit() {
     const formData = new FormData();
-    console.log("fullName", this.newMemberForm.get('fullNameAz').value);
     
     formData.append('FullNameAz', this.newMemberForm.get('fullNameAz').value);
     formData.append('FullNameEn',this.newMemberForm.get('fullNameEn').value);
@@ -94,7 +93,6 @@ onFileSelected(event: any) {
     if (this.coverImage) {
       formData.append('CoverImage', this.coverImage);
     }
-    console.log("Formdata", formData);
 
     if (this.memberId) {
       this.buttonSpinner = true;
@@ -105,14 +103,11 @@ onFileSelected(event: any) {
           finalize(() => {
             setTimeout(() => {
               this.buttonSpinner = false;
-              console.log("dhjsd", formData);
-              
             }, 200);
           })
         )
         .subscribe(
           () => {
-            console.log('Contact updated successfully');
             this.newMemberForm.reset();
             this.router.navigate(['/team']);
           },
@@ -135,7 +130,6 @@ onFileSelected(event: any) {
       )
       .subscribe(
         () => {
-          console.log('Contact added successfully');
           this.newMemberForm.reset();
           this.router.navigate(['/team']);
         },

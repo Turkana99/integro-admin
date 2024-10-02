@@ -77,10 +77,7 @@ export class NewAboutComponent implements OnInit {
       .pipe(finalize(() => (this.showSpinner = false)))
       .subscribe(
         (response) => {
-          console.log('AboutresponseId', response);
-
           this.videos = response.aboutAttachments;
-          console.log('Attachements', this.videos);
           this.newAboutForm.setValue({
             contentAz: response.contentAz,
             contentEn: response.contentEn,
@@ -97,7 +94,6 @@ export class NewAboutComponent implements OnInit {
   // Handle file selection
   onFileSelected(event: any): void {
     this.selectedFiles = Array.from(event.target.files);
-    console.log('Selected files:', this.selectedFiles);
     // No need to set in the form control
   }
 
@@ -108,7 +104,6 @@ export class NewAboutComponent implements OnInit {
     formData.append('contentRu', this.newAboutForm.get('contentRu')!.value);
 
     this.selectedFiles.forEach((file, index) => {
-      console.log('file' + (index + 1), file);
       formData.append(`attachment`, file);
     });
 
@@ -121,7 +116,6 @@ export class NewAboutComponent implements OnInit {
         .pipe(finalize(() => (this.buttonSpinner = false)))
         .subscribe(
           () => {
-            console.log('Page updated successfully');
             this.newAboutForm.reset();
             this.selectedFiles = []; // Clear selected files after submission
             this.router.navigate(['/about']);
@@ -140,7 +134,6 @@ export class NewAboutComponent implements OnInit {
       .pipe(finalize(() => (this.buttonSpinner = false)))
       .subscribe(
         () => {
-          console.log('Page added successfully');
           this.newAboutForm.reset();
           this.selectedFiles = []; // Clear selected files after submission
           this.router.navigate(['/about']);

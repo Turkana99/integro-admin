@@ -28,7 +28,6 @@ export class NewContactComponent implements OnInit {
     this.initForm();
     this.route.paramMap.subscribe((params) => {
       this.contactId = +params.get('id')!;
-      console.log('this.contactId', this.contactId);
       if (this.contactId) {
         this.getContactInfoById(this.contactId);
       }
@@ -56,7 +55,6 @@ export class NewContactComponent implements OnInit {
       .pipe(finalize(() => (this.showSpinner = false)))
       .subscribe(
         (response) => {
-          console.log('resods', response);
           this.newContactForm.setValue({
             phoneNumber: response.phoneNumber,
             emailAddress: response.emailAddress,
@@ -104,7 +102,6 @@ export class NewContactComponent implements OnInit {
         )
         .subscribe(
           () => {
-            console.log('Contact updated successfully');
             this.newContactForm.reset();
             this.router.navigate(['/contact']);
           },
@@ -127,7 +124,6 @@ export class NewContactComponent implements OnInit {
       )
       .subscribe(
         () => {
-          console.log('Contact added successfully');
           this.newContactForm.reset();
           this.router.navigate(['/contact']);
         },

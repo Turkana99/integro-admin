@@ -71,9 +71,7 @@ export class ContactComponent {
       )
       .subscribe(
         (response) => {
-          console.log('response', response);
           this.contacts = response.body.items;
-          console.log('contacts', this.contacts);
         },
         (error) => {
           console.error('Error fetching data:', error);
