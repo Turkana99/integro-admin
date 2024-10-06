@@ -28,3 +28,13 @@
     }
   }
 }
+
+.blog-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+
+  button {
+    color: red;
+  }
+}

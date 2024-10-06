@@ -26,6 +26,7 @@ export class NewBlogComponent {
   selectedFiles: File[] = [];
   pageTitle = 'Yeni Məqalə məlumatı';
   submitButtonText = 'Əlavə et';
+  deletionOnProgress = false;
   constructor(
     private fb: FormBuilder,
     private blogService: BlogsService,
@@ -212,5 +213,21 @@ export class NewBlogComponent {
           }
         );
     }
+  }
+
+  deleteAttachment(id: number) {
+    this.blogService
+      .deleteAttachment(id)
+      .pipe(
+        finalize(() => {
+          this.deletionOnProgress = false;
+        })
+      )
+      .subscribe(() => {
+        this.deletionOnProgress = true;
+        this.blogAttachments = this.blogAttachments.filter(
+          (item: any) => item.id != id
+        );
+      });
   }
 }

@@ -45,4 +45,10 @@ export class BlogsService {
       observe: 'response',
     });
   }
+
+  deleteAttachment(id: number) {
+    return this.http.delete<any>(`${environment.blogAttachment}/${id}`, {
+      observe: 'response',
+    });
+  }
 }

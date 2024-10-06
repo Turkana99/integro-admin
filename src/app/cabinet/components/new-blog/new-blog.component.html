@@ -204,12 +204,19 @@
       </div>
 
       @if(blogAttachments){
-      <div class="w-100 pb-3" *ngFor="let item of blogAttachments">
+      <div class="w-100 pb-3 blog-wrapper" *ngFor="let item of blogAttachments">
+        <button
+          mat-mini-fab
+          color="warn"
+          (click)="deleteAttachment(item.id)"
+          [disabled]="deletionOnProgress"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
         <div class="d-flex justify-content-between bgImg">
           <img [src]="item.attachmentUrl" alt="" />
         </div>
       </div>
-
       }
       <div>
         <label for="">Blog detalı üçün şəkil</label>
