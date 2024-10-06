@@ -4,6 +4,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { finalize } from 'rxjs';
+import Quill from 'quill';
+
+const Font = Quill.import('formats/font') as any;
+Font.whitelist = ['chooseFont', 'poppins', 'arial', 'times New Roman'];
+Quill.register(Font, true);
 
 @Component({
   selector: 'app-new-member',
@@ -18,6 +23,24 @@ export class NewMemberComponent implements OnInit {
   memberId: any;
   pageTitle = 'Yeni komanda üzvü';
   submitButtonText = 'Əlavə et';
+
+  quillModules: any = {
+    toolbar: [
+      ['bold', 'italic', 'underline', 'strike'],
+      ['blockquote'],
+      [{ header: 1 }, { header: 2 }],
+      [{ list: 'ordered' }, { list: 'bullet' }],
+      [{ indent: '-1' }, { indent: '+1' }],
+      [{ direction: 'rtl' }],
+      [{ size: ['small', false, 'large', 'huge'] }],
+      [{ header: [1, 2, 3, 4, 5, 6, false] }],
+      [{ color: [] }, { background: [] }],
+      [{ font: Font.whitelist }],
+      [{ align: [] }],
+      ['clean'],
+      ['link'],
+    ],
+  };
   constructor(
     private fb: FormBuilder,
     private teamService: TeamService,
@@ -46,6 +69,9 @@ export class NewMemberComponent implements OnInit {
       positionAz: ['', Validators.required],
       positionEn: ['', Validators.required],
       positionRu: ['', Validators.required],
+      descriptionAz: ['', Validators.required],
+      descriptionEn: ['', Validators.required],
+      descriptionRu: ['', Validators.required],
       instagramUrl: ['', Validators.required],
       facebookUrl: ['', Validators.required],
       linkedinUrl: ['', Validators.required],
@@ -64,6 +90,9 @@ export class NewMemberComponent implements OnInit {
           positionAz: response.positionAz,
           positionEn: response.positionEn,
           positionRu: response.positionRu,
+          descriptionAz: response?.descriptionAz ?? '',
+          descriptionEn: response?.descriptionEn ?? '',
+          descriptionRu: response?.descriptionRu ?? '',
           instagramUrl: response.instagramUrl,
           facebookUrl: response.facebookUrl,
           linkedinUrl: response.linkedinUrl,
@@ -91,6 +120,18 @@ export class NewMemberComponent implements OnInit {
     formData.append('PositionAz', this.newMemberForm.get('positionAz').value);
     formData.append('PositionEn', this.newMemberForm.get('positionEn').value);
     formData.append('PositionRu', this.newMemberForm.get('positionRu').value);
+    formData.append(
+      'DescriptionAz',
+      this.newMemberForm.get('descriptionAz').value
+    );
+    formData.append(
+      'DescriptionEn',
+      this.newMemberForm.get('descriptionEn').value
+    );
+    formData.append(
+      'DescriptionRu',
+      this.newMemberForm.get('descriptionRu').value
+    );
     formData.append(
       'InstagramUrl',
       this.newMemberForm.get('instagramUrl').value

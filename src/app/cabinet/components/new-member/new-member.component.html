@@ -25,6 +25,14 @@
                 formControlName="positionAz"
               />
             </div>
+            <div class="d-flex flex-column pb-2">
+              <label for="SubTitle"> Məzmun</label>
+              <quill-editor
+                [modules]="quillModules"
+                formControlName="descriptionAz"
+              >
+              </quill-editor>
+            </div>
           </div>
         </p-tabPanel>
         <p-tabPanel header="İngilis">
@@ -47,6 +55,14 @@
                 formControlName="positionEn"
               />
             </div>
+            <div class="d-flex flex-column pb-2">
+              <label for="SubTitle"> Context </label>
+              <quill-editor
+                [modules]="quillModules"
+                formControlName="descriptionEn"
+              >
+              </quill-editor>
+            </div>
           </div>
         </p-tabPanel>
         <p-tabPanel header="Rus">
@@ -68,6 +84,14 @@
                 class="w-100"
                 formControlName="positionRu"
               />
+            </div>
+            <div class="d-flex flex-column pb-2">
+              <label for="SubTitle"> Kонтекст </label>
+              <quill-editor
+                [modules]="quillModules"
+                formControlName="descriptionRu"
+              >
+              </quill-editor>
             </div>
           </div>
         </p-tabPanel>

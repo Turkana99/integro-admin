@@ -24,6 +24,10 @@ export class TeamComponent {
       name: 'Vəzifəsi',
     },
     {
+      key: 'descriptionAz',
+      name: 'Məzmun',
+    },
+    {
       key: 'instagramUrl',
       name: 'Instagram adresi',
     },
@@ -40,7 +44,6 @@ export class TeamComponent {
   logData($event: any) {
     console.log('event', $event);
   }
-
 
   getMembers(pageSize: number, pageIndex: number) {
     this.teamService
@@ -68,7 +71,7 @@ export class TeamComponent {
   ngOnInit(): void {
     this.getMembers(this.pageSize, this.pageIndex);
   }
-  
+
   onPageChange($event: any) {
     this.getMembers($event.pageSize, $event.pageIndex);
   }
