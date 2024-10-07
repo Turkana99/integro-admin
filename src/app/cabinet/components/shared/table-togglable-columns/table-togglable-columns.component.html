@@ -54,6 +54,14 @@
           <button
             mat-icon-button
             color="primary"
+            *ngIf="viewButton"
+            (click)="onView.emit(element)"
+          >
+            <mat-icon>visibility</mat-icon>
+          </button>
+          <button
+            mat-icon-button
+            color="primary"
             *ngIf="editButton"
             (click)="onEdit.emit(element)"
           >

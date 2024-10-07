@@ -6,7 +6,7 @@ import { finalize } from 'rxjs';
 @Component({
   selector: 'app-evaluate',
   templateUrl: './evaluate.component.html',
-  styleUrl: './evaluate.component.scss'
+  styleUrl: './evaluate.component.scss',
 })
 export class EvaluateComponent {
   evaluations: any = [];
@@ -59,7 +59,9 @@ export class EvaluateComponent {
   onPageChange($event: any) {
     this.getEvaluations($event.pageSize, $event.pageIndex);
   }
-
+  viewEvaluation($event: any) {
+    this.router.navigate(['/view-case-evaluation', $event.id]);
+  }
   deleteEvaluation($event: any) {
     this.evaluateService.deleteEvaluation($event.id).subscribe(() => {
       this.getEvaluations(this.pageSize, this.pageIndex);

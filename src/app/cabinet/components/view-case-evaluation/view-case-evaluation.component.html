@@ -1,0 +1,15 @@
+<div class="new-homePage px-5 py-5">
+  <div class="title">
+    <h1>Hüquqi dəyərləndirməyə baxış</h1>
+  </div>
+  <div class="w-100 tab-content">
+    <quill-editor [modules]="quillModules"> </quill-editor>
+    <div class="title">
+      <h4>Yüklənmiş fayllar</h4>
+      <div *ngFor="let item of caseEvaluationAttachments">
+        
+      </div>
+      <p *ngIf="!caseEvaluationAttachments.length">Fayl yoxdur</p>
+    </div>
+  </div>
+</div>

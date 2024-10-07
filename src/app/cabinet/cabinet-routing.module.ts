@@ -19,6 +19,7 @@ import { PageSettingsComponent } from './components/page-settings/page-settings.
 import { NewPageSettingsComponent } from './components/new-page-settings/new-page-settings.component';
 import { FeedbacksComponent } from './components/feedbacks/feedbacks.component';
 import { EvaluateComponent } from './components/evaluate/evaluate.component';
+import { ViewCaseEvaluationComponent } from './components/view-case-evaluation/view-case-evaluation.component';
 
 const routes: Routes = [
   {
@@ -133,6 +134,10 @@ const routes: Routes = [
       {
         path: 'new-service/:id',
         component: NewServiceComponent,
+      },
+      {
+        path: 'view-case-evaluation/:id',
+        component: ViewCaseEvaluationComponent,
       },
     ],
   },

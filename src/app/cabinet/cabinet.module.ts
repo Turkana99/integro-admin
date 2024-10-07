@@ -43,6 +43,7 @@ import { EvaluateComponent } from './components/evaluate/evaluate.component';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
+import { ViewCaseEvaluationComponent } from './components/view-case-evaluation/view-case-evaluation.component';
 @NgModule({
   declarations: [
     CabinetComponent,
@@ -69,6 +70,7 @@ import { InputIconModule } from 'primeng/inputicon';
     NewPageSettingsComponent,
     FeedbacksComponent,
     EvaluateComponent,
+    ViewCaseEvaluationComponent,
   ],
   imports: [
     CommonModule,

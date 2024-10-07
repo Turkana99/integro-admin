@@ -47,7 +47,7 @@ export class BlogsService {
   }
 
   deleteAttachment(id: number) {
-    return this.http.delete<any>(`${environment.blogAttachment}/${id}`, {
+    return this.http.delete<any>(`${environment.deleteAttachment}/${id}`, {
       observe: 'response',
     });
   }
