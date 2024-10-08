@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { finalize } from 'rxjs';
-import { MessageService } from 'primeng/api';
 import { HomeService } from '../../../core/services/home.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import Quill from 'quill'; // Correct import
@@ -136,25 +135,18 @@ export class NewHomePageComponent implements OnInit {
 
   submit() {
     const formData = new FormData();
+
+    // Append form data
     formData.append('titleAz', this.newHomePageForm.get('titleAz')!.value);
-    formData.append(
-      'subTitleAz',
-      this.newHomePageForm.get('subTitleAz')!.value
-    );
+    formData.append('subTitleAz', this.newHomePageForm.get('subTitleAz')!.value);
     formData.append('textAz', this.newHomePageForm.get('textAz')!.value);
     formData.append('titleEn', this.newHomePageForm.get('titleEn')!.value);
-    formData.append(
-      'subTitleEn',
-      this.newHomePageForm.get('subTitleEn')!.value
-    );
+    formData.append('subTitleEn', this.newHomePageForm.get('subTitleEn')!.value);
     formData.append('textEn', this.newHomePageForm.get('textEn')!.value);
     formData.append('titleRu', this.newHomePageForm.get('titleRu')!.value);
-    formData.append(
-      'subTitleRu',
-      this.newHomePageForm.get('subTitleRu')!.value
-    );
+    formData.append('subTitleRu', this.newHomePageForm.get('subTitleRu')!.value);
     formData.append('textRu', this.newHomePageForm.get('textRu')!.value);
-
+    
     if (this.backgroundImage) {
       formData.append('backgroundImage', this.backgroundImage);
     }
