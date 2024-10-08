@@ -24,10 +24,6 @@ export class TeamComponent {
       name: 'Vəzifəsi',
     },
     {
-      key: 'descriptionAz',
-      name: 'Məzmun',
-    },
-    {
       key: 'instagramUrl',
       name: 'Instagram adresi',
     },

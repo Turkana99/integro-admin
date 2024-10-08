@@ -57,14 +57,17 @@ export class TableTogglableColumnsComponent
   @Input() displayedColumns: any[] = [];
   @Input() paginator: boolean = false;
   @Input() pageSizeOptions: number[] = [10, 50, 100];
+  @Input() viewButton: boolean = false;
   @Input() editButton: boolean = false;
   @Input() deleteButton: boolean = false;
+  @Input() viewButtonText: string = 'View';
   @Input() editButtonText: string = 'Edit';
   @Input() deleteButtonText: string = 'Delete';
   @Input() maxHeight: number = 650;
   @Input() columnWidth: string | number = '0 0 25%';
   @Input() notFoundText: string = 'Məlumat tapılmadı';
 
+  @Output() onView = new EventEmitter<any>();
   @Output() onEdit = new EventEmitter<any>();
   @Output() onDelete = new EventEmitter<any>();
   @Output() onPage = new EventEmitter<any>();
@@ -95,7 +98,7 @@ export class TableTogglableColumnsComponent
   ngOnInit(): void {
     this.dataSource2 = new MatTableDataSource<any>(this.dataSource);
     this._displayedColumns = structuredClone(this.displayedColumns);
-    if (this.editButton || this.deleteButton) {
+    if (this.viewButton || this.editButton || this.deleteButton) {
       this._displayedColumns.push({
         key: 'actions',
         name: '',

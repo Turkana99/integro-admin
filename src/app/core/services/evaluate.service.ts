@@ -26,4 +26,8 @@ export class EvaluateService {
       observe: 'response',
     });
   }
+
+  getEvaluationById(id: number) {
+    return this.http.get<any>(`${environment.evaluate}/${id}`);
+  }
 }
