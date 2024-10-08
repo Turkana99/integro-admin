@@ -4,7 +4,7 @@ export const environment = {
   loginUrl: `${apiUrl}/Auth/Login`,
   resetPass: `${apiUrl}/Auth/ResetPassword`,
   blogs: `${apiUrl}/Blogs`,
-  blogAttachment: `${apiUrl}/Blogs/Attachment`,
+  blogAttachment: `${apiUrl}/Blogs/DeleteAttachment`,
   contacts: `${apiUrl}/Contacts`,
   employees: `${apiUrl}/Employees`,
   homePages: `${apiUrl}/HomePages`,
