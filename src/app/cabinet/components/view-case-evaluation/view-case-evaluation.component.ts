@@ -16,6 +16,7 @@ export class ViewCaseEvaluationComponent implements OnInit {
   caseEvaluationForm!: FormGroup;
   evaluationId!: number;
   caseEvaluationAttachments: any[] = [];
+  message:any;
   quillModules: any = {
     toolbar: [
       ['bold', 'italic', 'underline', 'strike'],
@@ -50,6 +51,7 @@ export class ViewCaseEvaluationComponent implements OnInit {
     this.evaluateService
       .getEvaluationById(evaluationId)
       .subscribe((response: any) => {
+        this.message = response.message;
         this.caseEvaluationAttachments = response.caseEvaluationAttachments;
       });
   }
