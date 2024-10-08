@@ -10,7 +10,11 @@
     </div>
     <div class="title pt-3">
       <h4>Yüklənmiş fayllar</h4>
-      <div *ngFor="let item of caseEvaluationAttachments"></div>
+      <div *ngFor="let item of caseEvaluationAttachments">
+        <a target="_blank" [href]="item.attachmentUrl">{{
+          item.attachmentUrl
+        }}</a>
+      </div>
       <p *ngIf="!caseEvaluationAttachments.length">Fayl yoxdur</p>
     </div>
   </div>
