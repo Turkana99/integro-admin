@@ -2,11 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { EvaluateService } from '../../../core/services/evaluate.service';
 import { ActivatedRoute } from '@angular/router';
-import Quill from 'quill';
-
-const Font = Quill.import('formats/font') as any;
-Font.whitelist = ['chooseFont', 'poppins', 'arial', 'times New Roman'];
-Quill.register(Font, true);
 @Component({
   selector: 'app-view-case-evaluation',
   templateUrl: './view-case-evaluation.component.html',
@@ -16,24 +11,7 @@ export class ViewCaseEvaluationComponent implements OnInit {
   caseEvaluationForm!: FormGroup;
   evaluationId!: number;
   caseEvaluationAttachments: any[] = [];
-  message:any;
-  quillModules: any = {
-    toolbar: [
-      ['bold', 'italic', 'underline', 'strike'],
-      ['blockquote'],
-      [{ header: 1 }, { header: 2 }],
-      [{ list: 'ordered' }, { list: 'bullet' }],
-      [{ indent: '-1' }, { indent: '+1' }],
-      [{ direction: 'rtl' }],
-      [{ size: ['small', false, 'large', 'huge'] }],
-      [{ header: [1, 2, 3, 4, 5, 6, false] }],
-      [{ color: [] }, { background: [] }],
-      [{ font: Font.whitelist }],
-      [{ align: [] }],
-      ['clean'],
-      ['link'],
-    ],
-  };
+  message: any;
 
   constructor(
     private evaluateService: EvaluateService,
@@ -52,7 +30,49 @@ export class ViewCaseEvaluationComponent implements OnInit {
       .getEvaluationById(evaluationId)
       .subscribe((response: any) => {
         this.message = response.message;
-        this.caseEvaluationAttachments = response.caseEvaluationAttachments;
+        this.caseEvaluationAttachments = response.caseEvaluationAttachments.map(
+          (item: any) => {
+            item.fileName = item.attachmentUrl.substring(
+              item.attachmentUrl.lastIndexOf('/') + 1
+            );
+            item.fileFormat = item.fileName.substring(
+              item.fileName.lastIndexOf('.') + 1
+            );
+            item.fileIcon = this.getFileIcon(item.fileFormat);
+            return item;
+          }
+        );
       });
+  }
+
+  getFileIcon(format: string) {
+    let iconName;
+    switch (format) {
+      case 'docx':
+      case 'doc':
+        iconName = 'description';
+        break;
+
+      case 'pdf':
+        iconName = 'picture_as_pdf';
+        break;
+
+      case 'zip':
+      case 'rar':
+        iconName = 'folder_zip';
+        break;
+
+      case 'png':
+      case 'jpg':
+      case 'jpeg':
+      case 'svg':
+        iconName = 'imagesmode';
+        break;
+
+      default:
+        iconName = 'file_save';
+        break;
+    }
+    return iconName;
   }
 }

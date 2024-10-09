@@ -36,8 +36,14 @@
       font-weight: bold;
       font-style: italic;
     }
-    p{
+    p {
       font-size: 13px;
     }
   }
+}
+.attachment-url {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #3c85f1;
 }

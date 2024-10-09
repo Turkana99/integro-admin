@@ -65,7 +65,6 @@ export class EvaluateComponent {
   deleteEvaluation($event: any) {
     this.evaluateService.deleteEvaluation($event.id).subscribe(() => {
       this.getEvaluations(this.pageSize, this.pageIndex);
-      location.reload();
     });
   }
 }

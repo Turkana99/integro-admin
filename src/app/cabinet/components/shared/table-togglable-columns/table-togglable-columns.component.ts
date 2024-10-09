@@ -1,12 +1,15 @@
 import {
   AfterViewInit,
+  ChangeDetectorRef,
   Component,
   EventEmitter,
   Input,
+  OnChanges,
   OnDestroy,
   OnInit,
   Output,
   QueryList,
+  SimpleChanges,
   ViewChild,
   ViewChildren,
 } from '@angular/core';
@@ -51,7 +54,7 @@ import { ConfirmationService } from 'primeng/api';
   ],
 })
 export class TableTogglableColumnsComponent
-  implements OnInit, OnDestroy, AfterViewInit
+  implements OnInit, OnChanges, OnDestroy, AfterViewInit
 {
   @Input() dataSource: any[] = [];
   @Input() displayedColumns: any[] = [];
@@ -92,8 +95,21 @@ export class TableTogglableColumnsComponent
   isHeaderExpanded = false;
   constructor(
     private dialog: MatDialog,
-    private confirmationService: ConfirmationService
+    private confirmationService: ConfirmationService,
+    private cd: ChangeDetectorRef
   ) {}
+
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log('changes', changes);
+    for (const key of Object.keys(changes)) {
+      (this as any)[key] = changes[key].currentValue;
+      if (key == 'dataSource') {
+        this.dataSource2 = new MatTableDataSource<any>(
+          changes[key].currentValue
+        );
+      }
+    }
+  }
 
   ngOnInit(): void {
     this.dataSource2 = new MatTableDataSource<any>(this.dataSource);

@@ -11,9 +11,10 @@
     <div class="title pt-3">
       <h4>Yüklənmiş fayllar</h4>
       <div *ngFor="let item of caseEvaluationAttachments">
-        <a target="_blank" [href]="item.attachmentUrl">{{
-          item.attachmentUrl
-        }}</a>
+        <a class="attachment-url" target="_blank" [href]="item.attachmentUrl"
+          ><mat-icon>{{ item.fileIcon }}</mat-icon
+          >{{ item.fileName }}</a
+        >
       </div>
       <p *ngIf="!caseEvaluationAttachments.length">Fayl yoxdur</p>
     </div>
