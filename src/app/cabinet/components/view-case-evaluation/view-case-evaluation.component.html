@@ -11,7 +11,7 @@
     <div class="title pt-3">
       <h4>Yüklənmiş fayllar</h4>
       <div *ngFor="let item of caseEvaluationAttachments">
-        <a class="attachment-url" target="_blank" [href]="item.attachmentUrl"
+        <a class="attachment-url py-2" target="_blank" [href]="item.attachmentUrl"
           ><mat-icon>{{ item.fileIcon }}</mat-icon
           >{{ item.fileName }}</a
         >
