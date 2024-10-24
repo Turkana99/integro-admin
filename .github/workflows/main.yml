@@ -1,4 +1,4 @@
-name: INTEGRO-ADMIN CI
+name: INTEGRO ADMIN CI
 
 on:
   push:
