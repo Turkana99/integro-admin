@@ -32,7 +32,7 @@ jobs:
       - name: Build
         run: |
           ssh root@78.46.249.105 "cd /opt/integro/integro-admin && git pull" || (echo "Git pull failed" && exit 1)
-          ssh root@78.46.249.105 "cd /opt/integro/integro-admin && docker-compose build" || (echo "Docker-compose build failed" && exit 1)
+          ssh root@78.46.249.105 "cd /opt/integro && docker-compose build" || (echo "Docker-compose build failed" && exit 1)
         shell: /usr/bin/bash -e {0}
         env:
           SSH_AUTH_SOCK: ${{ env.SSH_AUTH_SOCK }}
@@ -57,7 +57,7 @@ jobs:
           cat ~/.ssh/known_hosts
       - name: Deploy
         run: |
-          ssh root@78.46.249.105 "cd /opt/integro/integro-admin && docker-compose up -d --force-recreate" || (echo "Docker-compose up failed" && exit 1)
+          ssh root@78.46.249.105 "cd /opt/integro && docker-compose up -d --force-recreate" || (echo "Docker-compose up failed" && exit 1)
           ssh root@78.46.249.105 "docker container prune -f" || (echo "Docker container prune failed" && exit 1)
           ssh root@78.46.249.105 "docker image prune -f" || (echo "Docker image prune failed" && exit 1)
         env:
