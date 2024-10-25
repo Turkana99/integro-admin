@@ -1,4 +1,4 @@
-const apiUrl = 'https://api-int-test.fhn.gov.az/api/v1'; // Example API endpoint
+const apiUrl = 'https://api.integrolaw.az/api/v1'; // Example API endpoint
 
 export const environment = {
   loginUrl: `${apiUrl}/Auth/Login`,
