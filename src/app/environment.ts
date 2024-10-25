@@ -1,6 +1,7 @@
-const apiUrl = 'https://api.integrolaw.az/api/v1'; // Example API endpoint
+const apiUrl = 'https://api.integrolaw.az/api/v1'; 
 
 export const environment = {
+  production: false,
   loginUrl: `${apiUrl}/Auth/Login`,
   resetPass: `${apiUrl}/Auth/ResetPassword`,
   blogs: `${apiUrl}/Blogs`,
