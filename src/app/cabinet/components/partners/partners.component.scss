@@ -12,8 +12,15 @@
       border-radius: 8px;
       background-color: $mainInt-color;
       border: none;
-      color: white!important;
+      color: white !important;
       font-family: "Poppins", sans-serif !important;
     }
+  }
+}
+
+::ng-deep .mat-mdc-cell {
+  img {
+    width: 140px !important;
+    height: 50px !important;
   }
 }
