@@ -20,7 +20,7 @@ export class NewAboutComponent implements OnInit {
   selectedFiles: File[] = [];
   aboutId: number | null = null; // Track the about ID
   showSpinner = false;
-  videos: any[] = [];
+  attachmentUrl: any;
   buttonSpinner = false;
   pageTitle = 'Yeni Haqqımızda məlumatı';
   submitButtonText = 'Əlavə et';
@@ -80,7 +80,7 @@ export class NewAboutComponent implements OnInit {
       .pipe(finalize(() => (this.showSpinner = false)))
       .subscribe(
         (response) => {
-          this.videos = response.aboutAttachments;
+          this.attachmentUrl = response.attachmentUrl;
           this.newAboutForm.setValue({
             contentAz: response.contentAz,
             contentEn: response.contentEn,

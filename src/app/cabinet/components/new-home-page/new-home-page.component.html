@@ -180,15 +180,16 @@
       </p-tabView>
 
       @if(backgroundImage){
-      <div class="bgImg pb-4">
-        <img [src]="backgroundImage" alt="" />
-      </div>
+        <video
+        [src]="backgroundImage"
+        controls
+      ></video>
       }
 
       <div>
         <input
           type="file"
-          accept="image/*"
+          accept="video/*"
           (change)="onFileSelected($event)"
           class="form-control"
           id="uploadfile"

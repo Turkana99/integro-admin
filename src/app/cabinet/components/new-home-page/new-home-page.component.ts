@@ -148,7 +148,7 @@ export class NewHomePageComponent implements OnInit {
     formData.append('textRu', this.newHomePageForm.get('textRu')!.value);
     
     if (this.backgroundImage) {
-      formData.append('backgroundImage', this.backgroundImage);
+      formData.append('BackgroundImage', this.backgroundImage);
     }
 
     if (this.homePageId) {

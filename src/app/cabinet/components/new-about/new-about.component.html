@@ -82,25 +82,10 @@
           </div>
         </p-tabPanel>
       </p-tabView>
-      <!-- Display video if they exist -->
-      <!-- <div *ngIf="videos && videos.length > 0" class="pt-5">
-        <div
-          *ngFor="let video of videos; trackBy: trackByAttachmentUrl"
-          class="bgImg row m-0 p-0"
-        >
-          <div class="col-lg-6 m-0 p-0">
-            <video
-              [src]="video.attachmentUrl"
-              class="p-0 m-0"
-              width="100%"
-              height="100%"
-              autoplay
-              controlsList="nodownload noplaybackrate"
-              disablePictureInPicture
-            ></video>
-          </div>
-        </div>
-      </div> -->
+
+      @if(attachmentUrl){
+      <img [src]="attachmentUrl" alt="" />
+      }
 
       <div>
         <input
