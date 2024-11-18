@@ -2,12 +2,12 @@
   <div class="title">
     <h1>{{ pageTitle }}</h1>
   </div>
-  <div class="w-100 tab-content">
+  <div class="w-100 p-0 m-0 tab-content">
     <form [formGroup]="newContactForm">
-      <p-tabView>
-        <p-tabPanel header="Azərbaycan">
-          <div class="az_form">
-            <div class="pb-2">
+      <p-tabView class="p-0 m-0">
+        <p-tabPanel header="Azərbaycan" class="p-0 m-0">
+          <div class="az_form m-0 p-0">
+            <div class="py-2">
               <label for="Title"> Ünvan</label>
               <input
                 type="text"
@@ -16,11 +16,31 @@
                 formControlName="addressAz"
               />
             </div>
+
+            <div class="py-2 m-0">
+              <label for="Title"> Telefon nömrəsi</label>
+              <input
+                type="text"
+                pInputText
+                class="w-100"
+                formControlName="phoneNumber"
+              />
+            </div>
+
+            <div class="py-2">
+              <label for="Title"> Elektron-poçt</label>
+              <input
+                type="text"
+                pInputText
+                class="w-100"
+                formControlName="emailAddress"
+              />
+            </div>
           </div>
         </p-tabPanel>
-        <p-tabPanel header="İngilis">
+        <p-tabPanel header="İngilis" class="p-0 m-0">
           <div class="en_form">
-            <div class="pb-2">
+            <div class="py-2">
               <label for="Title"> Address</label>
               <input
                 type="text"
@@ -29,11 +49,30 @@
                 formControlName="addressEn"
               />
             </div>
+
+            <div class="py-2">
+              <label for="Title"> Phone number</label>
+              <input
+                type="text"
+                pInputText
+                class="w-100"
+                formControlName="phoneNumber"
+              />
+            </div>
+            <div class="py-2">
+              <label for="Title"> Email</label>
+              <input
+                type="text"
+                pInputText
+                class="w-100"
+                formControlName="emailAddress"
+              />
+            </div>
           </div>
         </p-tabPanel>
-        <p-tabPanel header="Rus">
+        <p-tabPanel header="Rus" class="p-0 m-0">
           <div class="ru_form">
-            <div class="pb-2">
+            <div class="py-2">
               <label for="Title"> Адрес</label>
               <input
                 type="text"
@@ -42,31 +81,30 @@
                 formControlName="addressRu"
               />
             </div>
+
+            <div class="py-2">
+              <label for="Title"> Номер телефона</label>
+              <input
+                type="text"
+                pInputText
+                class="w-100"
+                formControlName="phoneNumber"
+              />
+            </div>
+            <div class="py-2">
+              <label for="Title"> Электронная почта</label>
+              <input
+                type="text"
+                pInputText
+                class="w-100"
+                formControlName="emailAddress"
+              />
+            </div>
           </div>
         </p-tabPanel>
       </p-tabView>
 
-      <div class="pb-2 my-2">
-        <label for="Title"> Telefon nömrəsi</label>
-        <input
-          type="text"
-          pInputText
-          class="w-100"
-          formControlName="phoneNumber"
-        />
-      </div>
-
-      <div class="pb-2 my-2">
-        <label for="Title"> Email</label>
-        <input
-          type="text"
-          pInputText
-          class="w-100"
-          formControlName="emailAddress"
-        />
-      </div>
-
-      <div class="pb-2 my-2">
+      <div class="pb-2">
         <label for="Title"> Facebook URL</label>
         <input
           type="text"

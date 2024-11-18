@@ -20,7 +20,8 @@
 
 ::ng-deep .mat-mdc-cell {
   img {
-    width: 140px !important;
-    height: 50px !important;
+    width: 150px !important;
+    height: 100px !important;
+    object-fit: contain;
   }
 }
