@@ -24,15 +24,15 @@ jobs:
           cat ~/.ssh/known_hosts
       - name: Test SSH Connection
         run: |
-          ssh -p522 -v root@94.216.64.190 "echo 'SSH connection successful'" || (echo "SSH connection failed" && exit 1)
+          ssh -p522 -v root@95.216.64.190 "echo 'SSH connection successful'" || (echo "SSH connection failed" && exit 1)
         env:
           SSH_AUTH_SOCK: ${{ env.SSH_AUTH_SOCK }}
           SSH_AGENT_PID: ${{ env.SSH_AGENT_PID }}
 
       - name: Build
         run: |
-          ssh -p522 root@94.216.64.190 "cd /opt/integro/integro-admin && git pull" || (echo "Git pull failed" && exit 1)
-          ssh -p522 root@94.216.64.190 "cd /opt/integro && docker-compose build integro_admin" || (echo "Docker-compose build failed" && exit 1)
+          ssh -p522 root@95.216.64.190 "cd /opt/integro/integro-admin && git pull" || (echo "Git pull failed" && exit 1)
+          ssh -p522 root@95.216.64.190 "cd /opt/integro && docker-compose build integro_admin" || (echo "Docker-compose build failed" && exit 1)
         shell: /usr/bin/bash -e {0}
         env:
           SSH_AUTH_SOCK: ${{ env.SSH_AUTH_SOCK }}
@@ -53,13 +53,13 @@ jobs:
 
       - name: Verify and add host key
         run: |
-          ssh-keyscan -p 522 -H 94.216.64.190 >> ~/.ssh/known_hosts || (echo "ssh-keyscan failed" && exit 1)
+          ssh-keyscan -p 522 -H 95.216.64.190 >> ~/.ssh/known_hosts || (echo "ssh-keyscan failed" && exit 1)
           cat ~/.ssh/known_hosts
       - name: Deploy
         run: |
-          ssh -p522 root@94.216.64.190 "cd /opt/integro && docker-compose up -d --force-recreate integro_admin" || (echo "Docker-compose up failed" && exit 1)
-          ssh -p522 root@94.216.64.190 "docker container prune -f" || (echo "Docker container prune failed" && exit 1)
-          ssh -p522 root@94.216.64.190 "docker image prune -f" || (echo "Docker image prune failed" && exit 1)
+          ssh -p522 root@95.216.64.190 "cd /opt/integro && docker-compose up -d --force-recreate integro_admin" || (echo "Docker-compose up failed" && exit 1)
+          ssh -p522 root@95.216.64.190 "docker container prune -f" || (echo "Docker container prune failed" && exit 1)
+          ssh -p522 root@95.216.64.190 "docker image prune -f" || (echo "Docker image prune failed" && exit 1)
         env:
           SSH_AUTH_SOCK: ${{ env.SSH_AUTH_SOCK }}
           SSH_AGENT_PID: ${{ env.SSH_AGENT_PID }}
