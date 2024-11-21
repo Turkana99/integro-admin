@@ -20,7 +20,7 @@ jobs:
 
       - name: Verify and add host key
         run: |
-          ssh-keyscan -p522 -H 94.216.64.190 >> ~/.ssh/known_hosts || (echo "ssh-keyscan failed" && exit 1)
+          ssh-keyscan -p 522 -H 95.216.64.190 >> ~/.ssh/known_hosts || (echo "ssh-keyscan failed" && exit 1)
           cat ~/.ssh/known_hosts
       - name: Test SSH Connection
         run: |
